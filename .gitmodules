@@ -7,3 +7,6 @@
 [submodule "themes/relearn"]
 	path = themes/relearn
 	url = https://github.com/McShelby/hugo-theme-relearn.git
+[submodule "content/helm-tutorials"]
+  path = content/helm-tutorials
+  url = https://github.com/nirpendra83/helm-tutorials.git
