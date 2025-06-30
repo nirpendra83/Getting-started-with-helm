@@ -5,18 +5,20 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.4">
     <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
-    <meta name="description" content="">
+    <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+    <meta name="description" content="Table of Contents What is helm ? Walk through helm official Docs Using exisiting helm charts Know Repo Release Values files using command -set option Update the exisitng release rollback the release to previous version Getting the exisitng values files Using multiple environment using helm Debug and dry run Helm Chart Creation Quick Start Guide Helm templates Built in Objects Prerequisites Basic understanding of Kubernetes Familiarity with Linux commands Required Tools Visual Studio Code (VSCode) kubectl command-line tool Helm CLI Hands-On Demos Deploy applications using existing Helm charts Create custom Helm charts from scratch Explore and practice key Helm commands">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Tags :: Helm">
-    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html">
+    <meta name="twitter:description" content="Table of Contents What is helm ? Walk through helm official Docs Using exisiting helm charts Know Repo Release Values files using command -set option Update the exisitng release rollback the release to previous version Getting the exisitng values files Using multiple environment using helm Debug and dry run Helm Chart Creation Quick Start Guide Helm templates Built in Objects Prerequisites Basic understanding of Kubernetes Familiarity with Linux commands Required Tools Visual Studio Code (VSCode) kubectl command-line tool Helm CLI Hands-On Demos Deploy applications using existing Helm charts Create custom Helm charts from scratch Explore and practice key Helm commands">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/index.html">
     <meta property="og:site_name" content="Helm">
-    <meta property="og:title" content="Tags :: Helm">
+    <meta property="og:description" content="Table of Contents What is helm ? Walk through helm official Docs Using exisiting helm charts Know Repo Release Values files using command -set option Update the exisitng release rollback the release to previous version Getting the exisitng values files Using multiple environment using helm Debug and dry run Helm Chart Creation Quick Start Guide Helm templates Built in Objects Prerequisites Basic understanding of Kubernetes Familiarity with Linux commands Required Tools Visual Studio Code (VSCode) kubectl command-line tool Helm CLI Hands-On Demos Deploy applications using existing Helm charts Create custom Helm charts from scratch Explore and practice key Helm commands">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Tags :: Helm">
-    <title>Tags :: Helm</title>
-    <link href="../tags/index.xml" rel="alternate" type="application/rss+xml" title="Tags :: Helm">
+    <meta itemprop="description" content="Table of Contents What is helm ? Walk through helm official Docs Using exisiting helm charts Know Repo Release Values files using command -set option Update the exisitng release rollback the release to previous version Getting the exisitng values files Using multiple environment using helm Debug and dry run Helm Chart Creation Quick Start Guide Helm templates Built in Objects Prerequisites Basic understanding of Kubernetes Familiarity with Linux commands Required Tools Visual Studio Code (VSCode) kubectl command-line tool Helm CLI Hands-On Demos Deploy applications using existing Helm charts Create custom Helm charts from scratch Explore and practice key Helm commands">
+    <meta itemprop="wordCount" content="100">
+    <title></title>
+    <link href="../helm/index.xml" rel="alternate" type="application/rss+xml" title="">
     <link href="../css/fontawesome-all.min.css?1751303788" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1751303788" rel="stylesheet"></noscript>
     <link href="../css/auto-complete.css?1751303788" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1751303788" rel="stylesheet"></noscript>
     <link href="../css/perfect-scrollbar.min.css?1751303788" rel="stylesheet">
@@ -70,7 +72,7 @@
       window.T_N_results_found = `{1} results found for "{0}"`;
     </script>
   </head>
-  <body class="mobile-support html" data-url="../tags/index.html">
+  <body class="mobile-support html" data-url="../helm/index.html">
     <div id="R-body" class="default-animation">
       <div id="R-body-overlay"></div>
       <nav id="R-topbar">
@@ -81,18 +83,25 @@
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#required-tools">Required Tools</a></li>
+    <li><a href="#hands-on-demos">Hands-On Demos</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
-          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Tags</span><meta itemprop="position" content="1"></li>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList">
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="Helm (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../helm/toc/index.html" title="Helm Table of Contents (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -106,13 +115,58 @@
         </div>
       </nav>
       <div id="R-main-overlay"></div>
-      <main id="R-body-inner" class="highlightable tags" tabindex="-1">
+      <main id="R-body-inner" class="highlightable home" tabindex="-1">
         <div class="flex-block-wrapper">
-<article>
+<article class="home">
   <header class="headline">
   </header>
-<h1 id="tags">Tags</h1>
 
+<h1 id=""></h1>
+
+<p><a href="#R-image-06d617254bbdd1d828e6fcc33e683d6e" class="lightbox-link"><img alt="ocp01" class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../images/helm.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-06d617254bbdd1d828e6fcc33e683d6e"><img alt="ocp01" class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../images/helm.png"></a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li>What is helm ?</li>
+<li>Walk through <a href="https://helm.sh" rel="external" target="_blank">helm official Docs</a></li>
+<li>Using exisiting helm charts
+<ul>
+<li>Know Repo</li>
+<li>Release</li>
+<li>Values files</li>
+<li>using command -set option</li>
+<li>Update the exisitng release</li>
+<li>rollback the release to previous version</li>
+<li>Getting the exisitng values files</li>
+<li>Using multiple environment using helm</li>
+<li>Debug and dry run</li>
+</ul>
+</li>
+<li>Helm Chart Creation
+<ul>
+<li><a href="https://helm.sh/docs/intro/quickstart/" rel="external" target="_blank">Quick Start Guide</a></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/getting_started/" rel="external" target="_blank">Helm templates</a></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/builtin_objects/" rel="external" target="_blank">Built in Objects</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Basic understanding of Kubernetes</li>
+<li>Familiarity with Linux commands</li>
+</ul>
+<h2 id="required-tools">Required Tools</h2>
+<ul>
+<li>Visual Studio Code (VSCode)</li>
+<li><code>kubectl</code> command-line tool</li>
+<li>Helm CLI</li>
+</ul>
+<h2 id="hands-on-demos">Hands-On Demos</h2>
+<ul>
+<li>Deploy applications using existing Helm charts</li>
+<li>Create custom Helm charts from scratch</li>
+<li>Explore and practice key Helm commands</li>
+</ul>
 
   <footer class="footline">
   </footer>
@@ -158,6 +212,13 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
+            <li class="active parent hidden " data-nav-id="/helm/index.html"><a class="padding" href="../helm/index.html"></a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
+            <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../helm/toc/index.html">Helm Table of Contents</a></li>
+            <li class="" data-nav-id="/helm/01.helm/index.html"><a class="padding" href="../helm/01.helm/index.html">What is Helm?</a></li>
+            <li class="" data-nav-id="/helm/03-helm/index.html"><a class="padding" href="../helm/03-helm/index.html">Helm Components</a></li>
+            <li class="" data-nav-id="/helm/04.helm/index.html"><a class="padding" href="../helm/04.helm/index.html">Creating Helm Charts </a></li>
+            <li class="" data-nav-id="/helm/05.helm/index.html"><a class="padding" href="../helm/05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../helm/additional/index.html">Additional</a></li></ul></li>
           </ul>
         </div>
     
@@ -173,7 +234,7 @@ Helm
                   <div class="control-style">
                     <label class="a11y-only" for="R-select-language">Language</label>
                     <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
-                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../tags/index.html" lang="en-us" selected></option>
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../helm/index.html" lang="en-us" selected></option>
                     </select>
                   </div>
                   <div class="clear"></div>
