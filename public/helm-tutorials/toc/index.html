@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.4">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Table of Contents 📌 Introduction to Helm What is Helm? Why use Helm for Kubernetes application deployment? Key components: Charts, Repositories, Releases 📚 Exploring the Official Helm Documentation Navigating helm.sh/docs Installation and prerequisites Understanding the Helm CLI and commands Helm 3 vs Helm 2 (brief overview) 🧩 Working with Existing Helm Charts 🔍 Discovering and Using Helm Repositories Adding public and private chart repositories Searching for charts (helm search hub vs helm search repo) Repository management commands 🚀 Deploying a Helm Release Installing a chart as a release Setting a namespace for the deployment Dry run and debug before actual deployment ⚙️ Customizing Charts with Values Understanding values.yaml Overriding values using: Custom values.yaml files --set CLI option --set-file and --set-string 🔁 Managing Helm Releases Upgrading a release with updated values or chart versions Rolling back to a previous release version Viewing and diffing historical release versions Uninstalling a release cleanly 🌐 Multi-Environment Helm Usage Structuring values for different environments (dev, staging, prod) Folder-based environment separation Using --values with multiple files for environment-specific configs 🛠️ Creating Your Own Helm Charts ⚡ Helm Chart Quick Start helm create mychart Directory structure explained Modifying the default template 🧬 Helm Template Engine and Syntax How Helm renders templates Using {{ .Values }}, {{ .Chart }}, {{ .Release }} objects 🏗 Built-in Objects and Functions Overview of available Helm objects Useful template functions (include, required, lookup, toYaml, etc.) Best practices in chart templating 🧪 Testing and Validating Charts helm lint and template validation Using helm template for local rendering Unit testing templates with tools like helm-unittest 🧰 Troubleshooting and Tips Debugging with --debug and --dry-run Common errors and how to fix them Checking logs and Helm release history Understanding exit codes and command output">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Helm Table of Contents :: Helm">
+    <meta name="twitter:description" content="Table of Contents 📌 Introduction to Helm What is Helm? Why use Helm for Kubernetes application deployment? Key components: Charts, Repositories, Releases 📚 Exploring the Official Helm Documentation Navigating helm.sh/docs Installation and prerequisites Understanding the Helm CLI and commands Helm 3 vs Helm 2 (brief overview) 🧩 Working with Existing Helm Charts 🔍 Discovering and Using Helm Repositories Adding public and private chart repositories Searching for charts (helm search hub vs helm search repo) Repository management commands 🚀 Deploying a Helm Release Installing a chart as a release Setting a namespace for the deployment Dry run and debug before actual deployment ⚙️ Customizing Charts with Values Understanding values.yaml Overriding values using: Custom values.yaml files --set CLI option --set-file and --set-string 🔁 Managing Helm Releases Upgrading a release with updated values or chart versions Rolling back to a previous release version Viewing and diffing historical release versions Uninstalling a release cleanly 🌐 Multi-Environment Helm Usage Structuring values for different environments (dev, staging, prod) Folder-based environment separation Using --values with multiple files for environment-specific configs 🛠️ Creating Your Own Helm Charts ⚡ Helm Chart Quick Start helm create mychart Directory structure explained Modifying the default template 🧬 Helm Template Engine and Syntax How Helm renders templates Using {{ .Values }}, {{ .Chart }}, {{ .Release }} objects 🏗 Built-in Objects and Functions Overview of available Helm objects Useful template functions (include, required, lookup, toYaml, etc.) Best practices in chart templating 🧪 Testing and Validating Charts helm lint and template validation Using helm template for local rendering Unit testing templates with tools like helm-unittest 🧰 Troubleshooting and Tips Debugging with --debug and --dry-run Common errors and how to fix them Checking logs and Helm release history Understanding exit codes and command output">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/toc/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Helm Table of Contents :: Helm">
+    <meta property="og:description" content="Table of Contents 📌 Introduction to Helm What is Helm? Why use Helm for Kubernetes application deployment? Key components: Charts, Repositories, Releases 📚 Exploring the Official Helm Documentation Navigating helm.sh/docs Installation and prerequisites Understanding the Helm CLI and commands Helm 3 vs Helm 2 (brief overview) 🧩 Working with Existing Helm Charts 🔍 Discovering and Using Helm Repositories Adding public and private chart repositories Searching for charts (helm search hub vs helm search repo) Repository management commands 🚀 Deploying a Helm Release Installing a chart as a release Setting a namespace for the deployment Dry run and debug before actual deployment ⚙️ Customizing Charts with Values Understanding values.yaml Overriding values using: Custom values.yaml files --set CLI option --set-file and --set-string 🔁 Managing Helm Releases Upgrading a release with updated values or chart versions Rolling back to a previous release version Viewing and diffing historical release versions Uninstalling a release cleanly 🌐 Multi-Environment Helm Usage Structuring values for different environments (dev, staging, prod) Folder-based environment separation Using --values with multiple files for environment-specific configs 🛠️ Creating Your Own Helm Charts ⚡ Helm Chart Quick Start helm create mychart Directory structure explained Modifying the default template 🧬 Helm Template Engine and Syntax How Helm renders templates Using {{ .Values }}, {{ .Chart }}, {{ .Release }} objects 🏗 Built-in Objects and Functions Overview of available Helm objects Useful template functions (include, required, lookup, toYaml, etc.) Best practices in chart templating 🧪 Testing and Validating Charts helm lint and template validation Using helm template for local rendering Unit testing templates with tools like helm-unittest 🧰 Troubleshooting and Tips Debugging with --debug and --dry-run Common errors and how to fix them Checking logs and Helm release history Understanding exit codes and command output">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Helm Tutorials">
+    <meta itemprop="name" content="Helm Table of Contents :: Helm">
+    <meta itemprop="description" content="Table of Contents 📌 Introduction to Helm What is Helm? Why use Helm for Kubernetes application deployment? Key components: Charts, Repositories, Releases 📚 Exploring the Official Helm Documentation Navigating helm.sh/docs Installation and prerequisites Understanding the Helm CLI and commands Helm 3 vs Helm 2 (brief overview) 🧩 Working with Existing Helm Charts 🔍 Discovering and Using Helm Repositories Adding public and private chart repositories Searching for charts (helm search hub vs helm search repo) Repository management commands 🚀 Deploying a Helm Release Installing a chart as a release Setting a namespace for the deployment Dry run and debug before actual deployment ⚙️ Customizing Charts with Values Understanding values.yaml Overriding values using: Custom values.yaml files --set CLI option --set-file and --set-string 🔁 Managing Helm Releases Upgrading a release with updated values or chart versions Rolling back to a previous release version Viewing and diffing historical release versions Uninstalling a release cleanly 🌐 Multi-Environment Helm Usage Structuring values for different environments (dev, staging, prod) Folder-based environment separation Using --values with multiple files for environment-specific configs 🛠️ Creating Your Own Helm Charts ⚡ Helm Chart Quick Start helm create mychart Directory structure explained Modifying the default template 🧬 Helm Template Engine and Syntax How Helm renders templates Using {{ .Values }}, {{ .Chart }}, {{ .Release }} objects 🏗 Built-in Objects and Functions Overview of available Helm objects Useful template functions (include, required, lookup, toYaml, etc.) Best practices in chart templating 🧪 Testing and Validating Charts helm lint and template validation Using helm template for local rendering Unit testing templates with tools like helm-unittest 🧰 Troubleshooting and Tips Debugging with --debug and --dry-run Common errors and how to fix them Checking logs and Helm release history Understanding exit codes and command output">
+    <meta itemprop="wordCount" content="289">
+    <title>Helm Table of Contents :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1751301810" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751301810" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751301810" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751301810" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751301810" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751301810" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751301810" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../helm-tutorials/toc/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#-introduction-to-helm">📌 Introduction to Helm</a></li>
+    <li><a href="#-exploring-the-official-helm-documentation">📚 Exploring the Official Helm Documentation</a></li>
+    <li><a href="#-working-with-existing-helm-charts">🧩 Working with Existing Helm Charts</a>
+      <ul>
+        <li><a href="#-discovering-and-using-helm-repositories">🔍 Discovering and Using Helm Repositories</a></li>
+        <li><a href="#-deploying-a-helm-release">🚀 Deploying a Helm Release</a></li>
+        <li><a href="#-customizing-charts-with-values">⚙️ Customizing Charts with Values</a></li>
+        <li><a href="#-managing-helm-releases">🔁 Managing Helm Releases</a></li>
+        <li><a href="#-multi-environment-helm-usage">🌐 Multi-Environment Helm Usage</a></li>
+      </ul>
+    </li>
+    <li><a href="#-creating-your-own-helm-charts">🛠️ Creating Your Own Helm Charts</a>
+      <ul>
+        <li><a href="#-helm-chart-quick-start">⚡ Helm Chart Quick Start</a></li>
+        <li><a href="#-helm-template-engine-and-syntax">🧬 Helm Template Engine and Syntax</a></li>
+        <li><a href="#-built-in-objects-and-functions">🏗 Built-in Objects and Functions</a></li>
+        <li><a href="#-testing-and-validating-charts">🧪 Testing and Validating Charts</a></li>
+      </ul>
+    </li>
+    <li><a href="#-troubleshooting-and-tips">🧰 Troubleshooting and Tips</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../helm-tutorials/index.html"><span itemprop="name">Helm Tutorials</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Helm Table of Contents</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm-tutorials/index.html" title="Helm Tutorials (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm-tutorials/01.helm/index.html" title="What is Helm? (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable helm-tutorials" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="helm-table-of-contents">Helm Table of Contents</h1>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="-introduction-to-helm">📌 Introduction to Helm</h2>
+<ul>
+<li>What is Helm?</li>
+<li>Why use Helm for Kubernetes application deployment?</li>
+<li>Key components: Charts, Repositories, Releases</li>
+</ul>
+<hr>
+<h2 id="-exploring-the-official-helm-documentation">📚 Exploring the Official Helm Documentation</h2>
+<ul>
+<li>Navigating <a href="https://helm.sh/docs/" rel="external" target="_blank">helm.sh/docs</a></li>
+<li>Installation and prerequisites</li>
+<li>Understanding the Helm CLI and commands</li>
+<li>Helm 3 vs Helm 2 (brief overview)</li>
+</ul>
+<hr>
+<h2 id="-working-with-existing-helm-charts">🧩 Working with Existing Helm Charts</h2>
+<h3 id="-discovering-and-using-helm-repositories">🔍 Discovering and Using Helm Repositories</h3>
+<ul>
+<li>Adding public and private chart repositories</li>
+<li>Searching for charts (<code>helm search hub</code> vs <code>helm search repo</code>)</li>
+<li>Repository management commands</li>
+</ul>
+<h3 id="-deploying-a-helm-release">🚀 Deploying a Helm Release</h3>
+<ul>
+<li>Installing a chart as a release</li>
+<li>Setting a namespace for the deployment</li>
+<li>Dry run and debug before actual deployment</li>
+</ul>
+<h3 id="-customizing-charts-with-values">⚙️ Customizing Charts with Values</h3>
+<ul>
+<li>Understanding <code>values.yaml</code></li>
+<li>Overriding values using:
+<ul>
+<li>Custom <code>values.yaml</code> files</li>
+<li><code>--set</code> CLI option</li>
+<li><code>--set-file</code> and <code>--set-string</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="-managing-helm-releases">🔁 Managing Helm Releases</h3>
+<ul>
+<li>Upgrading a release with updated values or chart versions</li>
+<li>Rolling back to a previous release version</li>
+<li>Viewing and diffing historical release versions</li>
+<li>Uninstalling a release cleanly</li>
+</ul>
+<h3 id="-multi-environment-helm-usage">🌐 Multi-Environment Helm Usage</h3>
+<ul>
+<li>Structuring values for different environments (dev, staging, prod)</li>
+<li>Folder-based environment separation</li>
+<li>Using <code>--values</code> with multiple files for environment-specific configs</li>
+</ul>
+<hr>
+<h2 id="-creating-your-own-helm-charts">🛠️ Creating Your Own Helm Charts</h2>
+<h3 id="-helm-chart-quick-start">⚡ Helm Chart Quick Start</h3>
+<ul>
+<li><code>helm create mychart</code></li>
+<li>Directory structure explained</li>
+<li>Modifying the default template</li>
+</ul>
+<h3 id="-helm-template-engine-and-syntax">🧬 Helm Template Engine and Syntax</h3>
+<ul>
+<li>How Helm renders templates</li>
+<li>Using <code>{{ .Values }}</code>, <code>{{ .Chart }}</code>, <code>{{ .Release }}</code> objects</li>
+</ul>
+<h3 id="-built-in-objects-and-functions">🏗 Built-in Objects and Functions</h3>
+<ul>
+<li>Overview of available Helm objects</li>
+<li>Useful template functions (<code>include</code>, <code>required</code>, <code>lookup</code>, <code>toYaml</code>, etc.)</li>
+<li>Best practices in chart templating</li>
+</ul>
+<h3 id="-testing-and-validating-charts">🧪 Testing and Validating Charts</h3>
+<ul>
+<li><code>helm lint</code> and template validation</li>
+<li>Using <code>helm template</code> for local rendering</li>
+<li>Unit testing templates with tools like <code>helm-unittest</code></li>
+</ul>
+<hr>
+<h2 id="-troubleshooting-and-tips">🧰 Troubleshooting and Tips</h2>
+<ul>
+<li>Debugging with <code>--debug</code> and <code>--dry-run</code></li>
+<li>Common errors and how to fix them</li>
+<li>Checking logs and Helm release history</li>
+<li>Understanding exit codes and command output</li>
+</ul>
+<hr>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1751301810";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751301810" defer></script>
+        <script src="../../js/search.js?1751301810" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/helm-tutorials/index.html"><a class="padding" href="../../helm-tutorials/index.html">Helm Tutorials</a><ul id="R-subsections-7c159af9dc38a11ec677f824b4d4d198" class="collapsible-menu">
+            <li class="active " data-nav-id="/helm-tutorials/toc/index.html"><a class="padding" href="../../helm-tutorials/toc/index.html">Helm Table of Contents</a></li>
+            <li class="" data-nav-id="/helm-tutorials/01.helm/index.html"><a class="padding" href="../../helm-tutorials/01.helm/index.html">What is Helm?</a></li>
+            <li class="" data-nav-id="/helm-tutorials/03-helm/index.html"><a class="padding" href="../../helm-tutorials/03-helm/index.html">Helm Components</a></li>
+            <li class="" data-nav-id="/helm-tutorials/04.helm/index.html"><a class="padding" href="../../helm-tutorials/04.helm/index.html">Creating Helm Charts </a></li>
+            <li class="" data-nav-id="/helm-tutorials/05.helm/index.html"><a class="padding" href="../../helm-tutorials/05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="" data-nav-id="/helm-tutorials/additional/index.html"><a class="padding" href="../../helm-tutorials/additional/index.html">Additional</a></li></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../helm-tutorials/toc/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1751301810" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751301810" defer></script>
+    <script src="../../js/theme.js?1751301810" defer></script>
+  </body>
+</html>

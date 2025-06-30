@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/toc/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/01.helm/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/03-helm/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/04.helm/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/05.helm/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/additional/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/categories/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
+  </url>
+</urlset>

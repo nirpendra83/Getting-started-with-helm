@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.4">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="🔍 Preview Manifests Before Installing To preview the rendered Kubernetes manifests from a Helm chart without installing it, use:
+helm template &lt;release-name&gt; &lt;chart-path-or-name&gt; Example: helm template my-nginx bitnami/nginx 🧪 Simulate Installation (Dry Run) To simulate an install with all validations (including custom values):
+helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug Example: helm install my-nginx bitnami/nginx --dry-run --debug 📥 Get Values from Existing Release To retrieve the custom values used in an existing Helm release:">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Additional :: Helm">
+    <meta name="twitter:description" content="🔍 Preview Manifests Before Installing To preview the rendered Kubernetes manifests from a Helm chart without installing it, use:
+helm template &lt;release-name&gt; &lt;chart-path-or-name&gt; Example: helm template my-nginx bitnami/nginx 🧪 Simulate Installation (Dry Run) To simulate an install with all validations (including custom values):
+helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug Example: helm install my-nginx bitnami/nginx --dry-run --debug 📥 Get Values from Existing Release To retrieve the custom values used in an existing Helm release:">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm-tutorials/additional/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Additional :: Helm">
+    <meta property="og:description" content="🔍 Preview Manifests Before Installing To preview the rendered Kubernetes manifests from a Helm chart without installing it, use:
+helm template &lt;release-name&gt; &lt;chart-path-or-name&gt; Example: helm template my-nginx bitnami/nginx 🧪 Simulate Installation (Dry Run) To simulate an install with all validations (including custom values):
+helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug Example: helm install my-nginx bitnami/nginx --dry-run --debug 📥 Get Values from Existing Release To retrieve the custom values used in an existing Helm release:">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Helm Tutorials">
+    <meta itemprop="name" content="Additional :: Helm">
+    <meta itemprop="description" content="🔍 Preview Manifests Before Installing To preview the rendered Kubernetes manifests from a Helm chart without installing it, use:
+helm template &lt;release-name&gt; &lt;chart-path-or-name&gt; Example: helm template my-nginx bitnami/nginx 🧪 Simulate Installation (Dry Run) To simulate an install with all validations (including custom values):
+helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug Example: helm install my-nginx bitnami/nginx --dry-run --debug 📥 Get Values from Existing Release To retrieve the custom values used in an existing Helm release:">
+    <meta itemprop="wordCount" content="396">
+    <title>Additional :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1751301810" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751301810" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751301810" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751301810" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751301810" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751301810" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751301810" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../helm-tutorials/additional/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-preview-manifests-before-installing">🔍 Preview Manifests Before Installing</a>
+      <ul>
+        <li><a href="#example">Example:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-simulate-installation-dry-run">🧪 Simulate Installation (Dry Run)</a>
+      <ul>
+        <li><a href="#example-1">Example:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-get-values-from-existing-release">📥 Get Values from Existing Release</a>
+      <ul>
+        <li><a href="#example-2">Example:</a></li>
+        <li><a href="#example-3">Example:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-get-default-valuesyaml-from-a-helm-chart">📄 Get Default <code>values.yaml</code> from a Helm Chart</a>
+      <ul>
+        <li><a href="#-example-from-a-remote-repository">📦 Example (from a remote repository):</a></li>
+        <li><a href="#-example-from-a-local-chart-directory">📁 Example (from a local chart directory):</a></li>
+        <li><a href="#-save-default-values-for-customization">💾 Save Default Values for Customization</a></li>
+      </ul>
+    </li>
+    <li><a href="#-using--f---values-and---set-in-helm">🔧 Using <code>-f</code>, <code>--values</code>, and <code>--set</code> in Helm</a>
+      <ul>
+        <li><a href="#-using--f-or---values-yaml-file">📁 Using <code>-f</code> or <code>--values</code> (YAML file)</a></li>
+        <li><a href="#-using---set-inline-values">💡 Using <code>--set</code> (Inline values)</a></li>
+        <li><a href="#-combine---set-and---values">🔄 Combine <code>--set</code> and <code>--values</code></a></li>
+        <li><a href="#-set-nestedarray-values-with---set">📝 Set Nested/Array Values with <code>--set</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../helm-tutorials/index.html"><span itemprop="name">Helm Tutorials</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Additional</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm-tutorials/05.helm/index.html" title="Hosting Helm Charts on GitHub (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable helm-tutorials" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="additional">Additional</h1>
+
+<h2 id="-preview-manifests-before-installing">🔍 Preview Manifests Before Installing</h2>
+<p>To preview the rendered Kubernetes manifests from a Helm chart <strong>without installing it</strong>, use:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm template &lt;release-name&gt; &lt;chart-path-or-name&gt;</span></span></code></pre></div>
+<h3 id="example">Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm template my-nginx bitnami/nginx</span></span></code></pre></div>
+<hr>
+<h2 id="-simulate-installation-dry-run">🧪 Simulate Installation (Dry Run)</h2>
+<p>To simulate an install with all validations (including custom values):</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug</span></span></code></pre></div>
+<h3 id="example-1">Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx --dry-run --debug</span></span></code></pre></div>
+<hr>
+<h2 id="-get-values-from-existing-release">📥 Get Values from Existing Release</h2>
+<p>To retrieve the custom values used in an existing Helm release:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm get values &lt;release-name&gt; -n &lt;namespace&gt;</span></span></code></pre></div>
+<h3 id="example-2">Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm get values my-nginx -n default</span></span></code></pre></div>
+<p>To get <strong>all values</strong> including defaults and overrides (merged output):</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm get values &lt;release-name&gt; -n &lt;namespace&gt; --all</span></span></code></pre></div>
+<h3 id="example-3">Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm get values my-nginx -n default --all</span></span></code></pre></div>
+<hr>
+<h2 id="-get-default-valuesyaml-from-a-helm-chart">📄 Get Default <code>values.yaml</code> from a Helm Chart</h2>
+<p>To get the default <code>values.yaml</code> file from a Helm chart <strong>before installing it</strong>, use:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm show values &lt;chart-name&gt;</span></span></code></pre></div>
+<h3 id="-example-from-a-remote-repository">📦 Example (from a remote repository):</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm show values bitnami/nginx</span></span></code></pre></div>
+<h3 id="-example-from-a-local-chart-directory">📁 Example (from a local chart directory):</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm show values ./mychart</span></span></code></pre></div>
+<p>This command prints all the default configuration options supported by the chart.</p>
+<hr>
+<h3 id="-save-default-values-for-customization">💾 Save Default Values for Customization</h3>
+<p>You can redirect the output to a file, edit it, and use it during installation:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm show values bitnami/nginx &gt; custom-values.yaml</span></span></code></pre></div>
+<p>Then install with:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx --values custom-values.yaml</span></span></code></pre></div>
+<p>✅ This is a best practice for controlled and repeatable deployments.</p>
+<h2 id="-using--f---values-and---set-in-helm">🔧 Using <code>-f</code>, <code>--values</code>, and <code>--set</code> in Helm</h2>
+<p>Helm allows customization of charts using:</p>
+<ul>
+<li><code>-f</code> or <code>--values</code> to supply a YAML file with configuration overrides.</li>
+<li><code>--set</code> to pass values inline via the command line.</li>
+</ul>
+<hr>
+<h3 id="-using--f-or---values-yaml-file">📁 Using <code>-f</code> or <code>--values</code> (YAML file)</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx -f custom-values.yaml</span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm upgrade my-nginx bitnami/nginx -f dev-values.yaml -n dev</span></span></code></pre></div>
+<p>You can also supply <strong>multiple files</strong> in order of precedence:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx -f base.yaml -f prod.yaml</span></span></code></pre></div>
+<blockquote>
+<p>The last file overrides values from the previous ones.</p>
+</blockquote>
+<hr>
+<h3 id="-using---set-inline-values">💡 Using <code>--set</code> (Inline values)</h3>
+<p>Set a single value inline:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx --set service.type<span style="color:#f92672">=</span>LoadBalancer</span></span></code></pre></div>
+<p>Set multiple values inline:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set replicaCount<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set image.tag<span style="color:#f92672">=</span>1.23.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set service.type<span style="color:#f92672">=</span>NodePort</span></span></code></pre></div>
+<hr>
+<h3 id="-combine---set-and---values">🔄 Combine <code>--set</code> and <code>--values</code></h3>
+<p>You can combine both options. Inline <code>--set</code> overrides the values in the file:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  -f custom-values.yaml <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set service.type<span style="color:#f92672">=</span>LoadBalancer</span></span></code></pre></div>
+<hr>
+<h3 id="-set-nestedarray-values-with---set">📝 Set Nested/Array Values with <code>--set</code></h3>
+<p>For nested keys:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set metrics.enabled<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set ingress.enabled<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  --set ingress.hostname<span style="color:#f92672">=</span>nginx.example.com</span></span></code></pre></div>
+<hr>
+<p>✅ Use <code>--values</code> for maintainable configurations,<br>
+✅ Use <code>--set</code> for quick overrides or scripting.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1751301810";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751301810" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751301810" defer></script>
+        <script src="../../js/search.js?1751301810" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/helm-tutorials/index.html"><a class="padding" href="../../helm-tutorials/index.html">Helm Tutorials</a><ul id="R-subsections-7c159af9dc38a11ec677f824b4d4d198" class="collapsible-menu">
+            <li class="" data-nav-id="/helm-tutorials/toc/index.html"><a class="padding" href="../../helm-tutorials/toc/index.html">Helm Table of Contents</a></li>
+            <li class="" data-nav-id="/helm-tutorials/01.helm/index.html"><a class="padding" href="../../helm-tutorials/01.helm/index.html">What is Helm?</a></li>
+            <li class="" data-nav-id="/helm-tutorials/03-helm/index.html"><a class="padding" href="../../helm-tutorials/03-helm/index.html">Helm Components</a></li>
+            <li class="" data-nav-id="/helm-tutorials/04.helm/index.html"><a class="padding" href="../../helm-tutorials/04.helm/index.html">Creating Helm Charts </a></li>
+            <li class="" data-nav-id="/helm-tutorials/05.helm/index.html"><a class="padding" href="../../helm-tutorials/05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="active " data-nav-id="/helm-tutorials/additional/index.html"><a class="padding" href="../../helm-tutorials/additional/index.html">Additional</a></li></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../helm-tutorials/additional/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1751301810" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751301810" defer></script>
+    <script src="../../js/theme.js?1751301810" defer></script>
+  </body>
+</html>

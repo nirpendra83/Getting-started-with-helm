@@ -1,0 +1,14 @@
+baseURL = 'https://github.com/nirpendra83/Getting-started-with-helm'
+languageCode = 'en-us'
+title = 'Helm'
+theme = 'hugo-theme-relearn'
+relativeURLs = true
+canonifyURLs = true
+ignoreLogs = ['warning-goldmark-raw-html']
+[params]
+  # Relearn theme-specific parameters
+  colorTheme = "light"
+  layout = "wide"
+
+
+
