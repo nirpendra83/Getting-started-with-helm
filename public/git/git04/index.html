@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/nirpendra83/Getting-started-with-helm/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=nirpendra83/Getting-started-with-helm/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.4">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="🧩 Git Merge Methods Explained 🔸 1. Fast-Forward Merge 📌 What: Moves the branch pointer forward because there’s no divergent history.
+🧪 Example: git checkout main git merge feature-branch ✅ If main is behind feature-branch but has no new commits, Git just moves main forward — no merge commit is created.
+📊 Result: No extra commit. Clean history. Only possible when histories are linear (no parallel commits). 🔸 2. Three-Way Merge (Default) 📌 What: Used when branches diverged — Git creates a merge commit.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Git Rebase and Merge :: Helm">
+    <meta name="twitter:description" content="🧩 Git Merge Methods Explained 🔸 1. Fast-Forward Merge 📌 What: Moves the branch pointer forward because there’s no divergent history.
+🧪 Example: git checkout main git merge feature-branch ✅ If main is behind feature-branch but has no new commits, Git just moves main forward — no merge commit is created.
+📊 Result: No extra commit. Clean history. Only possible when histories are linear (no parallel commits). 🔸 2. Three-Way Merge (Default) 📌 What: Used when branches diverged — Git creates a merge commit.">
+    <meta property="og:url" content="http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git04/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Git Rebase and Merge :: Helm">
+    <meta property="og:description" content="🧩 Git Merge Methods Explained 🔸 1. Fast-Forward Merge 📌 What: Moves the branch pointer forward because there’s no divergent history.
+🧪 Example: git checkout main git merge feature-branch ✅ If main is behind feature-branch but has no new commits, Git just moves main forward — no merge commit is created.
+📊 Result: No extra commit. Clean history. Only possible when histories are linear (no parallel commits). 🔸 2. Three-Way Merge (Default) 📌 What: Used when branches diverged — Git creates a merge commit.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="GIT Version Control System">
+    <meta itemprop="name" content="Git Rebase and Merge :: Helm">
+    <meta itemprop="description" content="🧩 Git Merge Methods Explained 🔸 1. Fast-Forward Merge 📌 What: Moves the branch pointer forward because there’s no divergent history.
+🧪 Example: git checkout main git merge feature-branch ✅ If main is behind feature-branch but has no new commits, Git just moves main forward — no merge commit is created.
+📊 Result: No extra commit. Clean history. Only possible when histories are linear (no parallel commits). 🔸 2. Three-Way Merge (Default) 📌 What: Used when branches diverged — Git creates a merge commit.">
+    <meta itemprop="wordCount" content="719">
+    <title>Git Rebase and Merge :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1751514580" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751514580" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751514580" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751514580" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751514580" rel="stylesheet">
+    <link href="../../css/theme.css?1751514580" rel="stylesheet">
+    <link href="../../css/format-html.css?1751514580" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = ``;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../git/git04/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-1-fast-forward-merge">🔸 1. Fast-Forward Merge</a>
+      <ul>
+        <li><a href="#-what">📌 What:</a></li>
+        <li><a href="#-example">🧪 Example:</a></li>
+        <li><a href="#-result">📊 Result:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-2-three-way-merge-default">🔸 2. Three-Way Merge (Default)</a>
+      <ul>
+        <li><a href="#-what-1">📌 What:</a></li>
+        <li><a href="#-example-1">🧪 Example:</a></li>
+        <li><a href="#-result-1">📊 Result:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-3-squash-merge">🔸 3. Squash Merge</a>
+      <ul>
+        <li><a href="#-what-2">📌 What:</a></li>
+        <li><a href="#-example-2">🧪 Example:</a></li>
+        <li><a href="#-result-2">📊 Result:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-4-rebase--fast-forward">🔸 4. Rebase + Fast-Forward</a>
+      <ul>
+        <li><a href="#-what-3">📌 What:</a></li>
+        <li><a href="#-example-3">🧪 Example:</a></li>
+        <li><a href="#-result-3">📊 Result:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-5-no-fast-forward-merge---no-ff">🔸 5. No-Fast-Forward Merge (<code>--no-ff</code>)</a>
+      <ul>
+        <li><a href="#-what-4">📌 What:</a></li>
+        <li><a href="#-example-4">🧪 Example:</a></li>
+        <li><a href="#-result-4">📊 Result:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-summary-table">🔍 Summary Table</a></li>
+    <li><a href="#-best-practices">🧠 Best Practices</a></li>
+    <li><a href="#-understanding-git-rebase">🔁 Understanding <code>git rebase</code></a>
+      <ul>
+        <li><a href="#-what-is-git-rebase">🔹 What is <code>git rebase</code>?</a></li>
+        <li><a href="#-syntax">🔹 Syntax</a></li>
+        <li><a href="#-common-use-case-updating-feature-branch">🔹 Common Use Case: Updating Feature Branch</a></li>
+        <li><a href="#-resolving-conflicts-during-rebase">🔹 Resolving Conflicts During Rebase</a></li>
+        <li><a href="#-interactive-rebase">🔄 Interactive Rebase</a></li>
+        <li><a href="#-rebase-vs-merge">🆚 Rebase vs Merge</a></li>
+        <li><a href="#-dont-rebase-shared-branches">🚫 Don’t Rebase Shared Branches</a></li>
+        <li><a href="#-example-clean-up-before-merge-request">🔧 Example: Clean Up Before Merge Request</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../git/index.html"><span itemprop="name">GIT Version Control System</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Git Rebase and Merge</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../git/git_tutorial/index.html" title="Git More Examples  (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><span class="topbar-control"><i class="fa-fw fas fa-chevron-right"></i></span>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable git" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="git-rebase-and-merge">Git Rebase and Merge</h1>
+
+<h1 id="-git-merge-methods-explained">🧩 Git Merge Methods Explained</h1>
+<h2 id="-1-fast-forward-merge">🔸 1. Fast-Forward Merge</h2>
+<h3 id="-what">📌 What:</h3>
+<p>Moves the branch pointer forward because there&rsquo;s no divergent history.</p>
+<h3 id="-example">🧪 Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git merge feature-branch</span></span></code></pre></div>
+<p>✅ If <code>main</code> is behind <code>feature-branch</code> but has no new commits, Git just moves <code>main</code> forward — no merge commit is created.</p>
+<h3 id="-result">📊 Result:</h3>
+<ul>
+<li>No extra commit.</li>
+<li>Clean history.</li>
+<li>Only possible when histories are linear (no parallel commits).</li>
+</ul>
+<hr>
+<h2 id="-2-three-way-merge-default">🔸 2. Three-Way Merge (Default)</h2>
+<h3 id="-what-1">📌 What:</h3>
+<p>Used when branches diverged — Git creates a merge commit.</p>
+<h3 id="-example-1">🧪 Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git merge feature-branch</span></span></code></pre></div>
+<p>🔄 If both <code>main</code> and <code>feature-branch</code> have new commits, Git creates a merge commit to tie them.</p>
+<h3 id="-result-1">📊 Result:</h3>
+<ul>
+<li>Merge commit created.</li>
+<li>Retains full history of both branches.</li>
+<li>Good for preserving commit context.</li>
+</ul>
+<hr>
+<h2 id="-3-squash-merge">🔸 3. Squash Merge</h2>
+<h3 id="-what-2">📌 What:</h3>
+<p>Combines all commits from the feature branch into a single commit on the target branch.</p>
+<h3 id="-example-2">🧪 Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git merge --squash feature-branch
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Add feature X&#34;</span></span></span></code></pre></div>
+<p>📝 All feature-branch commits are flattened into one.</p>
+<h3 id="-result-2">📊 Result:</h3>
+<ul>
+<li>Clean, single commit.</li>
+<li>Good for simplifying history.</li>
+<li>Loses detailed history of feature-branch.</li>
+</ul>
+<hr>
+<h2 id="-4-rebase--fast-forward">🔸 4. Rebase + Fast-Forward</h2>
+<h3 id="-what-3">📌 What:</h3>
+<p>Rewrites feature branch history onto base branch — keeps history linear and avoids merge commits.</p>
+<h3 id="-example-3">🧪 Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout feature-branch
+</span></span><span style="display:flex;"><span>git rebase main
+</span></span><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git merge --ff-only feature-branch</span></span></code></pre></div>
+<p>📈 Keeps history tidy and linear.</p>
+<h3 id="-result-3">📊 Result:</h3>
+<ul>
+<li>No merge commits.</li>
+<li>Linear history.</li>
+<li>Can be risky if rebasing shared branches (changes commit hashes).</li>
+</ul>
+<hr>
+<h2 id="-5-no-fast-forward-merge---no-ff">🔸 5. No-Fast-Forward Merge (<code>--no-ff</code>)</h2>
+<h3 id="-what-4">📌 What:</h3>
+<p>Forces Git to always create a merge commit, even if a fast-forward is possible.</p>
+<h3 id="-example-4">🧪 Example:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git merge --no-ff feature-branch</span></span></code></pre></div>
+<p>🔗 Use this to clearly show a branch was merged, even if no divergence.</p>
+<h3 id="-result-4">📊 Result:</h3>
+<ul>
+<li>Always a merge commit.</li>
+<li>Good for clear separation of features in history.</li>
+</ul>
+<hr>
+<h2 id="-summary-table">🔍 Summary Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Merge Method</th>
+          <th>Merge Commit</th>
+          <th>History Type</th>
+          <th>Use Case</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fast-Forward</td>
+          <td>❌ No</td>
+          <td>Linear</td>
+          <td>Simple updates</td>
+      </tr>
+      <tr>
+          <td>Three-Way Merge</td>
+          <td>✅ Yes</td>
+          <td>Diverged</td>
+          <td>Default for complex merges</td>
+      </tr>
+      <tr>
+          <td>Squash Merge</td>
+          <td>❌ One commit</td>
+          <td>Simplified</td>
+          <td>Clean history, single logical change</td>
+      </tr>
+      <tr>
+          <td>Rebase + FF</td>
+          <td>❌ No</td>
+          <td>Linear</td>
+          <td>Clean history before merge</td>
+      </tr>
+      <tr>
+          <td>No-FF</td>
+          <td>✅ Yes</td>
+          <td>Always visible</td>
+          <td>Always document a merge explicitly</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-best-practices">🧠 Best Practices</h2>
+<ul>
+<li>✅ Use <strong>squash</strong> for feature branches in solo/team projects to simplify history.</li>
+<li>✅ Use <strong>no-ff</strong> in protected/main branches for clear audit trails.</li>
+<li>✅ Use <strong>rebase</strong> to clean up local commits before merging.</li>
+</ul>
+<hr>
+<h2 id="-understanding-git-rebase">🔁 Understanding <code>git rebase</code></h2>
+<h3 id="-what-is-git-rebase">🔹 What is <code>git rebase</code>?</h3>
+<p><code>git rebase</code> is used to <strong>move or combine a sequence of commits to a new base commit</strong>. It is often used to <strong>maintain a cleaner, linear project history</strong>.</p>
+<p>Unlike <code>merge</code>, which creates a new commit, <code>rebase</code> re-applies commits on top of another branch.</p>
+<hr>
+<h3 id="-syntax">🔹 Syntax</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rebase &lt;upstream-branch&gt;</span></span></code></pre></div>
+<p>Example:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout feature
+</span></span><span style="display:flex;"><span>git rebase main</span></span></code></pre></div>
+<p>This reapplies your feature branch commits on top of the latest <code>main</code>.</p>
+<hr>
+<h3 id="-common-use-case-updating-feature-branch">🔹 Common Use Case: Updating Feature Branch</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Assume you&#39;re on feature branch</span>
+</span></span><span style="display:flex;"><span>git checkout feature/login
+</span></span><span style="display:flex;"><span>git fetch origin
+</span></span><span style="display:flex;"><span>git rebase origin/main</span></span></code></pre></div>
+<p>✅ This puts your feature branch on top of the latest main, as if it was created from it.</p>
+<hr>
+<h3 id="-resolving-conflicts-during-rebase">🔹 Resolving Conflicts During Rebase</h3>
+<p>If conflicts occur:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># After editing the file to fix conflicts</span>
+</span></span><span style="display:flex;"><span>git add &lt;resolved-file&gt;
+</span></span><span style="display:flex;"><span>git rebase --continue</span></span></code></pre></div>
+<p>To skip the current commit:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rebase --skip</span></span></code></pre></div>
+<p>To abort the rebase and return to the previous state:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rebase --abort</span></span></code></pre></div>
+<hr>
+<h3 id="-interactive-rebase">🔄 Interactive Rebase</h3>
+<p>Use this to <strong>edit, squash, or reword commits</strong>.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git rebase -i HEAD~3</span></span></code></pre></div>
+<p>Example interactive menu:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>pick 3f5e1f9 Added login form
+pick 89d2ac3 Fixed typo in login
+squash d14e7a3 Updated form styles</code></pre></div>
+<p>Change <code>pick</code> to:</p>
+<ul>
+<li><code>reword</code> — change the commit message</li>
+<li><code>squash</code> — combine commits into one</li>
+<li><code>edit</code> — pause to change code during rebase</li>
+</ul>
+<hr>
+<h3 id="-rebase-vs-merge">🆚 Rebase vs Merge</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th><code>git merge</code></th>
+          <th><code>git rebase</code></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>History</td>
+          <td>Keeps history with a merge commit</td>
+          <td>Creates a linear history</td>
+      </tr>
+      <tr>
+          <td>Commit Graph</td>
+          <td>May look like a tree</td>
+          <td>Looks like a straight line</td>
+      </tr>
+      <tr>
+          <td>Use When</td>
+          <td>You want to preserve all changes</td>
+          <td>You want a clean history</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-dont-rebase-shared-branches">🚫 Don’t Rebase Shared Branches</h3>
+<p>⚠️ Avoid using <code>git rebase</code> on branches that others are working on (i.e., already pushed/shared), unless you coordinate with your team.</p>
+<hr>
+<h3 id="-example-clean-up-before-merge-request">🔧 Example: Clean Up Before Merge Request</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout feature/payment
+</span></span><span style="display:flex;"><span>git rebase -i HEAD~5
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># squash into a single commit</span></span></span></code></pre></div>
+<p>Then:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git push -f origin feature/payment</span></span></code></pre></div>
+<hr>
+<blockquote>
+<p>💡 Tip: Use <code>git log --oneline --graph</code> before and after rebase to visualize the change.</p>
+</blockquote>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1751514580";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751514580" defer></script>
+        <script src="../../js/search.js?1751514580" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/toc/index.html"><a class="padding" href="../../toc/index.html">Helm Table of Contents</a></li>
+            <li class="" data-nav-id="/01.helm/index.html"><a class="padding" href="../../01.helm/index.html">What is Helm?</a></li>
+            <li class="" data-nav-id="/03-helm/index.html"><a class="padding" href="../../03-helm/index.html">Helm Components</a></li>
+            <li class="" data-nav-id="/04.helm/index.html"><a class="padding" href="../../04.helm/index.html">Creating Helm Charts </a></li>
+            <li class="" data-nav-id="/05.helm/index.html"><a class="padding" href="../../05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="" data-nav-id="/additional/index.html"><a class="padding" href="../../additional/index.html">Additional</a></li>
+            <li class="parent " data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="" data-nav-id="/git/git01/index.html"><a class="padding" href="../../git/git01/index.html">Git</a></li>
+            <li class="" data-nav-id="/git/git02/index.html"><a class="padding" href="../../git/git02/index.html">Git Logs</a></li>
+            <li class="" data-nav-id="/git/git_tutorial/index.html"><a class="padding" href="../../git/git_tutorial/index.html">Git More Examples </a></li>
+            <li class="active " data-nav-id="/git/git04/index.html"><a class="padding" href="../../git/git04/index.html">Git Rebase and Merge</a></li></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../git/git04/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1751514580" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751514580" defer></script>
+    <script src="../../js/theme.js?1751514580" defer></script>
+  </body>
+</html>

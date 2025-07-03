@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/toc/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/toc/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/toc/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/toc/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/01.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/01.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/01.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/01.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/03-helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/03-helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/03-helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/03-helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/04.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/04.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/04.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/04.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/05.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/05.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/05.helm/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/05.helm/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/additional/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/additional/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/additional/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/additional/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/categories/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/categories/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git01/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/index.html</loc>
+  </url>
+  <url>
+    <loc>http://localhost:1313/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
   </url>
 </urlset>

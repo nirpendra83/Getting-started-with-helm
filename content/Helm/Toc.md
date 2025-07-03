@@ -1,9 +1,7 @@
 +++
-title = "Helm Table of Contents"
+title = "Helm Contents"
 weight = 1
 +++
-
-## Table of Contents
 
 ## 📌 Introduction to Helm
 

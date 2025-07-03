@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head><script src="/nirpendra83/Getting-started-with-helm/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=nirpendra83/Getting-started-with-helm/livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.4">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 📌 What is Git? 🧰 Installing Git For Linux: For macOS: For Windows: ⚙️ Git Configuration 🔄 Basic Git Workflow 🧬 Cloning a Repository ✍️ Making Changes &amp; Committing 🌿 Branching and Merging 🔄 Real-Time Example: Feature Branch Workflow 📦 Stashing Changes 🌐 Working with Remotes 📜 Git Log and History 🔙 Undoing Things 🚫 .gitignore File 🏷️ Git Tags ✅ Conclusion 📌 What is Git? Git is a distributed version control system. Tracks changes in source code during software development. Helps teams collaborate on code. 🧰 Installing Git For Linux: sudo apt update sudo apt install git For macOS: brew install git For Windows: Download from: https://git-scm.com/downloads ⚙️ Git Configuration git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@example.com&#34; git config --list # verify settings 🔄 Basic Git Workflow git init # Initialize a Git repository git status # Check current status git add file.txt # Stage a file git commit -m &#34;Added file&#34; # Commit with message 🧬 Cloning a Repository git clone https://github.com/yourusername/project.git ✍️ Making Changes &amp; Committing echo &#34;Hello Git&#34; &gt; hello.txt git add hello.txt git commit -m &#34;Added hello.txt file&#34; 🌿 Branching and Merging git branch # List branches git branch feature-x # Create a new branch git checkout feature-x # Switch to branch # Make changes and commit git checkout main git merge feature-x # Merge branch into main 🔄 Real-Time Example: Feature Branch Workflow Scenario: You are adding a login feature.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Git :: Helm">
+    <meta name="twitter:description" content="🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 📌 What is Git? 🧰 Installing Git For Linux: For macOS: For Windows: ⚙️ Git Configuration 🔄 Basic Git Workflow 🧬 Cloning a Repository ✍️ Making Changes &amp; Committing 🌿 Branching and Merging 🔄 Real-Time Example: Feature Branch Workflow 📦 Stashing Changes 🌐 Working with Remotes 📜 Git Log and History 🔙 Undoing Things 🚫 .gitignore File 🏷️ Git Tags ✅ Conclusion 📌 What is Git? Git is a distributed version control system. Tracks changes in source code during software development. Helps teams collaborate on code. 🧰 Installing Git For Linux: sudo apt update sudo apt install git For macOS: brew install git For Windows: Download from: https://git-scm.com/downloads ⚙️ Git Configuration git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@example.com&#34; git config --list # verify settings 🔄 Basic Git Workflow git init # Initialize a Git repository git status # Check current status git add file.txt # Stage a file git commit -m &#34;Added file&#34; # Commit with message 🧬 Cloning a Repository git clone https://github.com/yourusername/project.git ✍️ Making Changes &amp; Committing echo &#34;Hello Git&#34; &gt; hello.txt git add hello.txt git commit -m &#34;Added hello.txt file&#34; 🌿 Branching and Merging git branch # List branches git branch feature-x # Create a new branch git checkout feature-x # Switch to branch # Make changes and commit git checkout main git merge feature-x # Merge branch into main 🔄 Real-Time Example: Feature Branch Workflow Scenario: You are adding a login feature.">
+    <meta property="og:url" content="http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git01/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Git :: Helm">
+    <meta property="og:description" content="🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 📌 What is Git? 🧰 Installing Git For Linux: For macOS: For Windows: ⚙️ Git Configuration 🔄 Basic Git Workflow 🧬 Cloning a Repository ✍️ Making Changes &amp; Committing 🌿 Branching and Merging 🔄 Real-Time Example: Feature Branch Workflow 📦 Stashing Changes 🌐 Working with Remotes 📜 Git Log and History 🔙 Undoing Things 🚫 .gitignore File 🏷️ Git Tags ✅ Conclusion 📌 What is Git? Git is a distributed version control system. Tracks changes in source code during software development. Helps teams collaborate on code. 🧰 Installing Git For Linux: sudo apt update sudo apt install git For macOS: brew install git For Windows: Download from: https://git-scm.com/downloads ⚙️ Git Configuration git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@example.com&#34; git config --list # verify settings 🔄 Basic Git Workflow git init # Initialize a Git repository git status # Check current status git add file.txt # Stage a file git commit -m &#34;Added file&#34; # Commit with message 🧬 Cloning a Repository git clone https://github.com/yourusername/project.git ✍️ Making Changes &amp; Committing echo &#34;Hello Git&#34; &gt; hello.txt git add hello.txt git commit -m &#34;Added hello.txt file&#34; 🌿 Branching and Merging git branch # List branches git branch feature-x # Create a new branch git checkout feature-x # Switch to branch # Make changes and commit git checkout main git merge feature-x # Merge branch into main 🔄 Real-Time Example: Feature Branch Workflow Scenario: You are adding a login feature.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="GIT Version Control System">
+    <meta itemprop="name" content="Git :: Helm">
+    <meta itemprop="description" content="🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 📌 What is Git? 🧰 Installing Git For Linux: For macOS: For Windows: ⚙️ Git Configuration 🔄 Basic Git Workflow 🧬 Cloning a Repository ✍️ Making Changes &amp; Committing 🌿 Branching and Merging 🔄 Real-Time Example: Feature Branch Workflow 📦 Stashing Changes 🌐 Working with Remotes 📜 Git Log and History 🔙 Undoing Things 🚫 .gitignore File 🏷️ Git Tags ✅ Conclusion 📌 What is Git? Git is a distributed version control system. Tracks changes in source code during software development. Helps teams collaborate on code. 🧰 Installing Git For Linux: sudo apt update sudo apt install git For macOS: brew install git For Windows: Download from: https://git-scm.com/downloads ⚙️ Git Configuration git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@example.com&#34; git config --list # verify settings 🔄 Basic Git Workflow git init # Initialize a Git repository git status # Check current status git add file.txt # Stage a file git commit -m &#34;Added file&#34; # Commit with message 🧬 Cloning a Repository git clone https://github.com/yourusername/project.git ✍️ Making Changes &amp; Committing echo &#34;Hello Git&#34; &gt; hello.txt git add hello.txt git commit -m &#34;Added hello.txt file&#34; 🌿 Branching and Merging git branch # List branches git branch feature-x # Create a new branch git checkout feature-x # Switch to branch # Make changes and commit git checkout main git merge feature-x # Merge branch into main 🔄 Real-Time Example: Feature Branch Workflow Scenario: You are adding a login feature.">
+    <meta itemprop="wordCount" content="514">
+    <title>Git :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1751514580" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751514580" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751514580" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751514580" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751514580" rel="stylesheet">
+    <link href="../../css/theme.css?1751514580" rel="stylesheet">
+    <link href="../../css/format-html.css?1751514580" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='http:\/\/localhost:1313\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = ``;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../git/git01/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-git-tutorial-from-start--with-real-time-examples">🚀 Git Tutorial from Start — With Real-Time Examples</a></li>
+    <li><a href="#-table-of-contents">📘 Table of Contents</a></li>
+    <li><a href="#-what-is-git">📌 What is Git?</a></li>
+    <li><a href="#-installing-git">🧰 Installing Git</a>
+      <ul>
+        <li><a href="#for-linux">For Linux:</a></li>
+        <li><a href="#for-macos">For macOS:</a></li>
+        <li><a href="#for-windows">For Windows:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-git-configuration">⚙️ Git Configuration</a></li>
+    <li><a href="#-basic-git-workflow">🔄 Basic Git Workflow</a></li>
+    <li><a href="#-cloning-a-repository">🧬 Cloning a Repository</a></li>
+    <li><a href="#-making-changes--committing">✍️ Making Changes &amp; Committing</a></li>
+    <li><a href="#-branching-and-merging">🌿 Branching and Merging</a></li>
+    <li><a href="#-real-time-example-feature-branch-workflow">🔄 Real-Time Example: Feature Branch Workflow</a></li>
+    <li><a href="#-stashing-changes">📦 Stashing Changes</a></li>
+    <li><a href="#-working-with-remotes">🌐 Working with Remotes</a></li>
+    <li><a href="#-git-log-and-history">📜 Git Log and History</a></li>
+    <li><a href="#-undoing-things">🔙 Undoing Things</a></li>
+    <li><a href="#-gitignore-file">🚫 .gitignore File</a></li>
+    <li><a href="#-git-tags">🏷️ Git Tags</a></li>
+    <li><a href="#-conclusion">✅ Conclusion</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../git/index.html"><span itemprop="name">GIT Version Control System</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Git</span><meta itemprop="position" content="2"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../git/index.html" title="GIT Version Control System (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../git/git02/index.html" title="Git Logs (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable git" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="git">Git</h1>
+
+<h2 id="-git-tutorial-from-start--with-real-time-examples">🚀 Git Tutorial from Start — With Real-Time Examples</h2>
+<h2 id="-table-of-contents">📘 Table of Contents</h2>
+<ul>
+<li><a href="../../git/git01/index.html#-git-tutorial-from-start--with-real-time-examples">🚀 Git Tutorial from Start — With Real-Time Examples</a></li>
+<li><a href="../../git/git01/index.html#-table-of-contents">📘 Table of Contents</a></li>
+<li><a href="../../git/git01/index.html#-what-is-git">📌 What is Git?</a></li>
+<li><a href="../../git/git01/index.html#-installing-git">🧰 Installing Git</a>
+<ul>
+<li><a href="../../git/git01/index.html#for-linux">For Linux:</a></li>
+<li><a href="../../git/git01/index.html#for-macos">For macOS:</a></li>
+<li><a href="../../git/git01/index.html#for-windows">For Windows:</a></li>
+</ul>
+</li>
+<li><a href="../../git/git01/index.html#️-git-configuration">⚙️ Git Configuration</a></li>
+<li><a href="../../git/git01/index.html#-basic-git-workflow">🔄 Basic Git Workflow</a></li>
+<li><a href="../../git/git01/index.html#-cloning-a-repository">🧬 Cloning a Repository</a></li>
+<li><a href="../../git/git01/index.html#️-making-changes--committing">✍️ Making Changes &amp; Committing</a></li>
+<li><a href="../../git/git01/index.html#-branching-and-merging">🌿 Branching and Merging</a></li>
+<li><a href="../../git/git01/index.html#-real-time-example-feature-branch-workflow">🔄 Real-Time Example: Feature Branch Workflow</a></li>
+<li><a href="../../git/git01/index.html#-stashing-changes">📦 Stashing Changes</a></li>
+<li><a href="../../git/git01/index.html#-working-with-remotes">🌐 Working with Remotes</a></li>
+<li><a href="../../git/git01/index.html#-git-log-and-history">📜 Git Log and History</a></li>
+<li><a href="../../git/git01/index.html#-undoing-things">🔙 Undoing Things</a></li>
+<li><a href="../../git/git01/index.html#-gitignore-file">🚫 .gitignore File</a></li>
+<li><a href="../../git/git01/index.html#️-git-tags">🏷️ Git Tags</a></li>
+<li><a href="../../git/git01/index.html#-conclusion">✅ Conclusion</a></li>
+</ul>
+<hr>
+<h2 id="-what-is-git">📌 What is Git?</h2>
+<ul>
+<li>Git is a <strong>distributed version control system</strong>.</li>
+<li>Tracks changes in source code during software development.</li>
+<li>Helps teams collaborate on code.</li>
+</ul>
+<hr>
+<h2 id="-installing-git">🧰 Installing Git</h2>
+<h3 id="for-linux">For Linux:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install git</span></span></code></pre></div>
+<h3 id="for-macos">For macOS:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install git</span></span></code></pre></div>
+<h3 id="for-windows">For Windows:</h3>
+<ul>
+<li>Download from: <a href="https://git-scm.com/downloads" rel="external" target="_blank">https://git-scm.com/downloads</a></li>
+</ul>
+<hr>
+<h2 id="-git-configuration">⚙️ Git Configuration</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git config --global user.name <span style="color:#e6db74">&#34;Your Name&#34;</span>
+</span></span><span style="display:flex;"><span>git config --global user.email <span style="color:#e6db74">&#34;you@example.com&#34;</span>
+</span></span><span style="display:flex;"><span>git config --list  <span style="color:#75715e"># verify settings</span></span></span></code></pre></div>
+<hr>
+<h2 id="-basic-git-workflow">🔄 Basic Git Workflow</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git init                     <span style="color:#75715e"># Initialize a Git repository</span>
+</span></span><span style="display:flex;"><span>git status                   <span style="color:#75715e"># Check current status</span>
+</span></span><span style="display:flex;"><span>git add file.txt             <span style="color:#75715e"># Stage a file</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Added file&#34;</span>   <span style="color:#75715e"># Commit with message</span></span></span></code></pre></div>
+<hr>
+<h2 id="-cloning-a-repository">🧬 Cloning a Repository</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/yourusername/project.git</span></span></code></pre></div>
+<hr>
+<h2 id="-making-changes--committing">✍️ Making Changes &amp; Committing</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hello Git&#34;</span> &gt; hello.txt
+</span></span><span style="display:flex;"><span>git add hello.txt
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Added hello.txt file&#34;</span></span></span></code></pre></div>
+<hr>
+<h2 id="-branching-and-merging">🌿 Branching and Merging</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git branch                  <span style="color:#75715e"># List branches</span>
+</span></span><span style="display:flex;"><span>git branch feature-x        <span style="color:#75715e"># Create a new branch</span>
+</span></span><span style="display:flex;"><span>git checkout feature-x      <span style="color:#75715e"># Switch to branch</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Make changes and commit</span>
+</span></span><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git merge feature-x         <span style="color:#75715e"># Merge branch into main</span></span></span></code></pre></div>
+<hr>
+<h2 id="-real-time-example-feature-branch-workflow">🔄 Real-Time Example: Feature Branch Workflow</h2>
+<p><strong>Scenario</strong>: You are adding a login feature.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout -b feature/login
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add login logic to login.js</span>
+</span></span><span style="display:flex;"><span>git add login.js
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Add login feature&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin feature/login
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Open a Merge Request (MR) on GitLab/GitHub</span></span></span></code></pre></div>
+<p>After MR approval:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout main
+</span></span><span style="display:flex;"><span>git pull origin main
+</span></span><span style="display:flex;"><span>git merge feature/login
+</span></span><span style="display:flex;"><span>git push origin main</span></span></code></pre></div>
+<hr>
+<h2 id="-stashing-changes">📦 Stashing Changes</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git stash           <span style="color:#75715e"># Save uncommitted changes</span>
+</span></span><span style="display:flex;"><span>git pull origin main
+</span></span><span style="display:flex;"><span>git stash pop       <span style="color:#75715e"># Apply stashed changes</span></span></span></code></pre></div>
+<hr>
+<h2 id="-working-with-remotes">🌐 Working with Remotes</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git remote -v                          <span style="color:#75715e"># Show configured remotes</span>
+</span></span><span style="display:flex;"><span>git remote add origin &lt;repo-url&gt;      <span style="color:#75715e"># Add remote repository</span>
+</span></span><span style="display:flex;"><span>git push -u origin main               <span style="color:#75715e"># Push code to remote</span>
+</span></span><span style="display:flex;"><span>git pull origin main                  <span style="color:#75715e"># Pull latest changes</span></span></span></code></pre></div>
+<hr>
+<h2 id="-git-log-and-history">📜 Git Log and History</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git log                                <span style="color:#75715e"># View commit logs</span>
+</span></span><span style="display:flex;"><span>git log --oneline --graph --all        <span style="color:#75715e"># Pretty graph format</span></span></span></code></pre></div>
+<hr>
+<h2 id="-undoing-things">🔙 Undoing Things</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git checkout -- file.txt       <span style="color:#75715e"># Discard uncommitted changes</span>
+</span></span><span style="display:flex;"><span>git reset HEAD~1               <span style="color:#75715e"># Undo last commit (keep changes)</span>
+</span></span><span style="display:flex;"><span>git revert &lt;commit-id&gt;         <span style="color:#75715e"># Revert a specific commit</span></span></span></code></pre></div>
+<hr>
+<h2 id="-gitignore-file">🚫 .gitignore File</h2>
+<p>Create a <code>.gitignore</code> file in the project root to ignore files/folders.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># .gitignore example
+</span></span><span style="display:flex;"><span>*.log
+</span></span><span style="display:flex;"><span>node_modules/
+</span></span><span style="display:flex;"><span>.env
+</span></span><span style="display:flex;"><span>.idea/
+</span></span><span style="display:flex;"><span>.DS_Store</span></span></code></pre></div>
+<hr>
+<h2 id="-git-tags">🏷️ Git Tags</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git tag v1.0                         <span style="color:#75715e"># Lightweight tag</span>
+</span></span><span style="display:flex;"><span>git tag -a v1.1 -m <span style="color:#e6db74">&#34;Release v1.1&#34;</span>    <span style="color:#75715e"># Annotated tag</span>
+</span></span><span style="display:flex;"><span>git push origin --tags               <span style="color:#75715e"># Push tags to remote</span></span></span></code></pre></div>
+<hr>
+<h2 id="-conclusion">✅ Conclusion</h2>
+<ul>
+<li>Git is essential for modern development workflows.</li>
+<li>Use branches and MRs for cleaner collaboration.</li>
+<li>Practice using <code>add</code>, <code>commit</code>, <code>push</code>, and <code>pull</code> regularly.</li>
+<li>Use <code>git status</code> and <code>git log</code> to understand project state.</li>
+</ul>
+<hr>
+<blockquote>
+<p>🙌 <em>Happy Coding with Git! Keep committing and stay versioned!</em></p>
+</blockquote>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1751514580";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751514580" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751514580" defer></script>
+        <script src="../../js/search.js?1751514580" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/toc/index.html"><a class="padding" href="../../toc/index.html">Helm Table of Contents</a></li>
+            <li class="" data-nav-id="/01.helm/index.html"><a class="padding" href="../../01.helm/index.html">What is Helm?</a></li>
+            <li class="" data-nav-id="/03-helm/index.html"><a class="padding" href="../../03-helm/index.html">Helm Components</a></li>
+            <li class="" data-nav-id="/04.helm/index.html"><a class="padding" href="../../04.helm/index.html">Creating Helm Charts </a></li>
+            <li class="" data-nav-id="/05.helm/index.html"><a class="padding" href="../../05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="" data-nav-id="/additional/index.html"><a class="padding" href="../../additional/index.html">Additional</a></li>
+            <li class="parent " data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
+            <li class="active " data-nav-id="/git/git01/index.html"><a class="padding" href="../../git/git01/index.html">Git</a></li>
+            <li class="" data-nav-id="/git/git02/index.html"><a class="padding" href="../../git/git02/index.html">Git Logs</a></li>
+            <li class="" data-nav-id="/git/git_tutorial/index.html"><a class="padding" href="../../git/git_tutorial/index.html">Git More Examples </a></li>
+            <li class="" data-nav-id="/git/git04/index.html"><a class="padding" href="../../git/git04/index.html">Git Rebase and Merge</a></li></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../git/git01/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1751514580" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751514580" defer></script>
+    <script src="../../js/theme.js?1751514580" defer></script>
+  </body>
+</html>

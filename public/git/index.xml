@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GIT Version Control System :: Helm</title>
+    <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/index.html</link>
+    <description>🧾 What is Git? Git is a free, open-source, and distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&#xA;🔧 In Simple Terms Git helps track changes in your code (or any files), collaborate with others, and go back in time to previous versions.&#xA;🧠 Key Features of Git Feature Description ✅ Distributed Every developer has a full copy of the repository. ⏳ Version Tracking Keeps a history of every change (who, what, when, and why). 🧪 Branching &amp; Merging Create isolated environments (branches), and combine them when ready. ⚡ Fast &amp; Efficient Designed to be fast — especially for large projects. 🔐 Secure Uses checksums (SHA-1) to ensure data integrity. 📦 Git vs GitHub Git GitHub Version control tool (CLI) Web-based platform for Git repositories Works locally Requires internet/browser for collaboration Can be used independently Built on top of Git 📂 Real-World Analogy Imagine writing a book:</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/nirpendra83/Getting-started-with-helm/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git</title>
+      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git01/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git01/index.html</guid>
+      <description>🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 🚀 Git Tutorial from Start — With Real-Time Examples 📘 Table of Contents 📌 What is Git? 🧰 Installing Git For Linux: For macOS: For Windows: ⚙️ Git Configuration 🔄 Basic Git Workflow 🧬 Cloning a Repository ✍️ Making Changes &amp; Committing 🌿 Branching and Merging 🔄 Real-Time Example: Feature Branch Workflow 📦 Stashing Changes 🌐 Working with Remotes 📜 Git Log and History 🔙 Undoing Things 🚫 .gitignore File 🏷️ Git Tags ✅ Conclusion 📌 What is Git? Git is a distributed version control system. Tracks changes in source code during software development. Helps teams collaborate on code. 🧰 Installing Git For Linux: sudo apt update sudo apt install git For macOS: brew install git For Windows: Download from: https://git-scm.com/downloads ⚙️ Git Configuration git config --global user.name &#34;Your Name&#34; git config --global user.email &#34;you@example.com&#34; git config --list # verify settings 🔄 Basic Git Workflow git init # Initialize a Git repository git status # Check current status git add file.txt # Stage a file git commit -m &#34;Added file&#34; # Commit with message 🧬 Cloning a Repository git clone https://github.com/yourusername/project.git ✍️ Making Changes &amp; Committing echo &#34;Hello Git&#34; &gt; hello.txt git add hello.txt git commit -m &#34;Added hello.txt file&#34; 🌿 Branching and Merging git branch # List branches git branch feature-x # Create a new branch git checkout feature-x # Switch to branch # Make changes and commit git checkout main git merge feature-x # Merge branch into main 🔄 Real-Time Example: Feature Branch Workflow Scenario: You are adding a login feature.</description>
+    </item>
+    <item>
+      <title>Git Logs</title>
+      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git02/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git02/index.html</guid>
+      <description>🔍 Advanced git log Examples git log is highly customizable. Here are real-world examples:&#xA;📦 Basic Commit Log git log Shows full commit history with author, date, and message.&#xA;🧵 One-line Log (Condensed View) git log --oneline Shows each commit as a single line: useful for quick scanning.&#xA;🌲 Visual Branch Graph git log --oneline --graph --all Displays commit history as a branch graph across all branches.</description>
+    </item>
+    <item>
+      <title>Git More Examples </title>
+      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git_tutorial/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git_tutorial/index.html</guid>
+      <description>📜 Git Log and History git log git log --oneline git log --oneline --graph --all 🔙 Undoing Things git checkout -- file git revert &lt;commit&gt; 🧠 Understanding git reset git reset --soft HEAD~1 # Keep changes staged git reset --mixed HEAD~1 # Keep changes, unstage git reset --hard HEAD~1 # Discard changes 🔍 Advanced git log Examples git log # Full history git log --oneline # Short view git log --graph --oneline # Tree view git log --author=&#34;name&#34; git log --since=&#34;7 days ago&#34; git log -p # Show diffs git log --stat # File changes git log -1 --name-only # Files in last commit git log --merges # Only merge commits 🚫 .gitignore File *.log .env node_modules/ .idea/ 🏷️ Git Tags git tag v1.0 git tag -a v1.1 -m &#34;Release v1.1&#34; git push origin --tags ✅ Conclusion Use Git daily. Learn branching, logs, reset, and collaboration with remotes. Practice makes perfect!</description>
+    </item>
+    <item>
+      <title>Git Rebase and Merge</title>
+      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git04/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/git04/index.html</guid>
+      <description>🧩 Git Merge Methods Explained 🔸 1. Fast-Forward Merge 📌 What: Moves the branch pointer forward because there’s no divergent history.&#xA;🧪 Example: git checkout main git merge feature-branch ✅ If main is behind feature-branch but has no new commits, Git just moves main forward — no merge commit is created.&#xA;📊 Result: No extra commit. Clean history. Only possible when histories are linear (no parallel commits). 🔸 2. Three-Way Merge (Default) 📌 What: Used when branches diverged — Git creates a merge commit.</description>
+    </item>
+  </channel>
+</rss>
