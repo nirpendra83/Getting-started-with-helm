@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Helm</title>
-    <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/index.html</link>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/index.html</link>
     <description>Table of Contents What is helm ? Walk through helm official Docs Using exisiting helm charts Know Repo Release Values files using command -set option Update the exisitng release rollback the release to previous version Getting the exisitng values files Using multiple environment using helm Debug and dry run Helm Chart Creation Quick Start Guide Helm templates Built in Objects Prerequisites Basic understanding of Kubernetes Familiarity with Linux commands Required Tools Visual Studio Code (VSCode) kubectl command-line tool Helm CLI Hands-On Demos Deploy applications using existing Helm charts Create custom Helm charts from scratch Explore and practice key Helm commands</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/nirpendra83/Getting-started-with-helm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Helm Table of Contents</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/toc/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/toc/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/toc/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/toc/index.html</guid>
       <description>Table of Contents 📌 Introduction to Helm What is Helm? Why use Helm for Kubernetes application deployment? Key components: Charts, Repositories, Releases 📚 Exploring the Official Helm Documentation Navigating helm.sh/docs Installation and prerequisites Understanding the Helm CLI and commands Helm 3 vs Helm 2 (brief overview) 🧩 Working with Existing Helm Charts 🔍 Discovering and Using Helm Repositories Adding public and private chart repositories Searching for charts (helm search hub vs helm search repo) Repository management commands 🚀 Deploying a Helm Release Installing a chart as a release Setting a namespace for the deployment Dry run and debug before actual deployment ⚙️ Customizing Charts with Values Understanding values.yaml Overriding values using: Custom values.yaml files --set CLI option --set-file and --set-string 🔁 Managing Helm Releases Upgrading a release with updated values or chart versions Rolling back to a previous release version Viewing and diffing historical release versions Uninstalling a release cleanly 🌐 Multi-Environment Helm Usage Structuring values for different environments (dev, staging, prod) Folder-based environment separation Using --values with multiple files for environment-specific configs 🛠️ Creating Your Own Helm Charts ⚡ Helm Chart Quick Start helm create mychart Directory structure explained Modifying the default template 🧬 Helm Template Engine and Syntax How Helm renders templates Using {{ .Values }}, {{ .Chart }}, {{ .Release }} objects 🏗 Built-in Objects and Functions Overview of available Helm objects Useful template functions (include, required, lookup, toYaml, etc.) Best practices in chart templating 🧪 Testing and Validating Charts helm lint and template validation Using helm template for local rendering Unit testing templates with tools like helm-unittest 🧰 Troubleshooting and Tips Debugging with --debug and --dry-run Common errors and how to fix them Checking logs and Helm release history Understanding exit codes and command output</description>
     </item>
     <item>
       <title>What is Helm?</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/01.helm/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/01.helm/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/01.helm/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/01.helm/index.html</guid>
       <description>📦 What is Helm? Helm is a package manager for Kubernetes that helps you define, install, and manage applications in your Kubernetes clusters.&#xA;It simplifies the deployment process by using reusable, shareable packages called charts — which bundle together YAML configurations for Kubernetes resources.&#xA;Helm makes it easy to install and manage apps on Kubernetes. Instead of writing many config files, Helm bundles them so you can install apps with just one command. It helps you upgrade or roll back apps easily if something goes wrong. You can customize apps by changing simple settings instead of editing complex files. Helm has lots of ready-made app packages (called charts) that you can use and share. It keeps track of what you installed, so managing your apps is simpler. 🧰 Helm: APT or YUM for Kubernetes Just like APT on Debian-based systems or YUM on Red Hat-based systems manages Linux packages, Helm manages Kubernetes applications.</description>
     </item>
     <item>
       <title>Helm Components</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/03-helm/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/03-helm/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/03-helm/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/03-helm/index.html</guid>
       <description>Helm Chart Helm Repository Helm CLI Helm Release 🧱 Helm Charts A Helm chart is a packaged collection of Kubernetes resource definitions required to deploy applications. Think of it like a .deb or .rpm package in Linux — reusable, shareable, and version-controlled.&#xA;📦 Chart Structure mychart/ ├── Chart.yaml # Metadata about the chart (name, version, description) ├── values.yaml # Default config values for templates ├── charts/ # Optional: subcharts (dependencies) ├── templates/ # Kubernetes manifest templates │ ├── deployment.yaml │ ├── service.yaml │ ├── _helpers.tpl # Reusable template snippets │ └── ... └── README.md # Optional: chart documentation 📄 Key Files Chart.yaml – Metadata about the chart (name, version, description) values.yaml – Default configuration values; can be overridden at install/upgrade templates/ – Kubernetes manifests rendered with Go templating charts/ – Subcharts or dependencies README.md – Optional documentation 🛠️ Create a New Chart helm create myapp This generates a scaffolded chart directory under myapp/.</description>
     </item>
     <item>
       <title>Creating Helm Charts </title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/04.helm/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/04.helm/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/04.helm/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/04.helm/index.html</guid>
       <description>Please visit official doc helm charts development&#xA;🧪 Example: Custom NGINX Helm Chart Structure Create a new Helm chart:&#xA;helm create nginx-demo cd nginx-demo Then modify or replace the following files:&#xA;📁 Chart.yaml apiVersion: v2 name: nginx-demo description: A Helm chart for deploying NGINX type: application version: 0.1.0 appVersion: &#34;1.25.2&#34; 📄 values.yaml replicaCount: 2 image: repository: nginx pullPolicy: IfNotPresent tag: &#34;1.25.2&#34; service: type: ClusterIP port: 80 ingress: enabled: false resources: {} nodeSelector: {} tolerations: [] affinity: {} ⚙️ templates/deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: replicas: {{ .Values.replicaCount }} selector: matchLabels: app: {{ include &#34;nginx-demo.name&#34; . }} template: metadata: labels: app: {{ include &#34;nginx-demo.name&#34; . }} spec: containers: - name: nginx image: &#34;{{ .Values.image.repository }}:{{ .Values.image.tag }}&#34; imagePullPolicy: {{ .Values.image.pullPolicy }} ports: - containerPort: 80 🔗 templates/service.yaml apiVersion: v1 kind: Service metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: type: {{ .Values.service.type }} ports: - port: {{ .Values.service.port }} targetPort: 80 protocol: TCP name: http selector: app: {{ include &#34;nginx-demo.name&#34; . }} 🧠 templates/_helpers.tpl {{- define &#34;nginx-demo.name&#34; -}} nginx {{- end }} {{- define &#34;nginx-demo.fullname&#34; -}} {{ .Release.Name }}-nginx {{- end }} {{- define &#34;nginx-demo.labels&#34; -}} app.kubernetes.io/name: {{ include &#34;nginx-demo.name&#34; . }} helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} app.kubernetes.io/instance: {{ .Release.Name }} app.kubernetes.io/managed-by: {{ .Release.Service }} {{- end }} 📝 templates/notes.txt NGINX has been deployed successfully! You can access it within the cluster using: kubectl port-forward svc/{{ include &#34;nginx-demo.fullname&#34; . }} 8080:{{ .Values.service.port }} Then open your browser at: http://localhost:8080/ ✅ templates/tests/test-connection.yaml apiVersion: v1 kind: Pod metadata: name: &#34;{{ include &#34;nginx-demo.fullname&#34; . }}-test&#34; labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} annotations: &#34;helm.sh/hook&#34;: test spec: containers: - name: wget image: busybox command: [&#39;wget&#39;] args: [&#39;{{ include &#34;nginx-demo.fullname&#34; . }}:{{ .Values.service.port }}&#39;] restartPolicy: Never 🚀 Deploy the Chart helm install my-nginx ./nginx-demo 🧪 Run Helm Tests helm test my-nginx This complete example gives you a production-grade Helm chart foundation for deploying NGINX, including best practices like helpers, notes, and tests.</description>
     </item>
     <item>
       <title>Hosting Helm Charts on GitHub</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/05.helm/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/05.helm/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/05.helm/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/05.helm/index.html</guid>
       <description>🎯 Objective Learn how to create, package, and host Helm charts for two microservices — Order and Delivery — in a GitHub-based Helm repository using busybox as a placeholder image.&#xA;🔧 Prerequisites Helm installed on your local machine A configured Kubernetes cluster A GitHub account to host your Helm repository kubectl CLI configured for your cluster 🏗️ Step 1: Create the Helm Charts Set up project structure:&#xA;mkdir -p helm-registry/{order,delivery} cd helm-registry Create Helm charts:</description>
     </item>
     <item>
       <title>Additional</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/additional/index.html</link>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/additional/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/additional/index.html</guid>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/additional/index.html</guid>
       <description>🔍 Preview Manifests Before Installing To preview the rendered Kubernetes manifests from a Helm chart without installing it, use:&#xA;helm template &lt;release-name&gt; &lt;chart-path-or-name&gt; Example: helm template my-nginx bitnami/nginx 🧪 Simulate Installation (Dry Run) To simulate an install with all validations (including custom values):&#xA;helm install &lt;release-name&gt; &lt;chart-path-or-name&gt; --dry-run --debug Example: helm install my-nginx bitnami/nginx --dry-run --debug 📥 Get Values from Existing Release To retrieve the custom values used in an existing Helm release:</description>
     </item>
     <item>
-      <title>Gits</title>
-      <link>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/index.html</link>
+      <title>GIT Version Control System</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/git/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/nirpendra83/Getting-started-with-helm/git/index.html</guid>
-      <description></description>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/git/index.html</guid>
+      <description>🧾 What is Git? Git is a free, open-source, and distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&#xA;🔧 In Simple Terms Git helps track changes in your code (or any files), collaborate with others, and go back in time to previous versions.&#xA;🧠 Key Features of Git Feature Description ✅ Distributed Every developer has a full copy of the repository. ⏳ Version Tracking Keeps a history of every change (who, what, when, and why). 🧪 Branching &amp; Merging Create isolated environments (branches), and combine them when ready. ⚡ Fast &amp; Efficient Designed to be fast — especially for large projects. 🔐 Secure Uses checksums (SHA-1) to ensure data integrity. 📦 Git vs GitHub Git GitHub Version control tool (CLI) Web-based platform for Git repositories Works locally Requires internet/browser for collaboration Can be used independently Built on top of Git 📂 Real-World Analogy Imagine writing a book:</description>
     </item>
   </channel>
 </rss>
