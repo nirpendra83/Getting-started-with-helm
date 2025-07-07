@@ -7,12 +7,5 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>GIT Version Control System</title>
-      <link>https://github.com/nirpendra83/Getting-started-with-helm/git/index.html</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://github.com/nirpendra83/Getting-started-with-helm/git/index.html</guid>
-      <description>🧾 What is Git? Git is a free, open-source, and distributed version control system designed to handle everything from small to very large projects with speed and efficiency.&#xA;🔧 In Simple Terms Git helps track changes in your code (or any files), collaborate with others, and go back in time to previous versions.&#xA;🧠 Key Features of Git Feature Description ✅ Distributed Every developer has a full copy of the repository. ⏳ Version Tracking Keeps a history of every change (who, what, when, and why). 🧪 Branching &amp; Merging Create isolated environments (branches), and combine them when ready. ⚡ Fast &amp; Efficient Designed to be fast — especially for large projects. 🔐 Secure Uses checksums (SHA-1) to ensure data integrity. 📦 Git vs GitHub Git GitHub Version control tool (CLI) Web-based platform for Git repositories Works locally Requires internet/browser for collaboration Can be used independently Built on top of Git 📂 Real-World Analogy Imagine writing a book:</description>
-    </item>
   </channel>
 </rss>
