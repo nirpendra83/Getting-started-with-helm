@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head><script src="/nirpendra83/Getting-started-with-helm/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=nirpendra83/Getting-started-with-helm/livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.4">
@@ -16,7 +16,7 @@ helm create nginx-demo cd nginx-demo Then modify or replace the following files:
 🧪 Example: Custom NGINX Helm Chart Structure Create a new Helm chart:
 helm create nginx-demo cd nginx-demo Then modify or replace the following files:
 📁 Chart.yaml apiVersion: v2 name: nginx-demo description: A Helm chart for deploying NGINX type: application version: 0.1.0 appVersion: &#34;1.25.2&#34; 📄 values.yaml replicaCount: 2 image: repository: nginx pullPolicy: IfNotPresent tag: &#34;1.25.2&#34; service: type: ClusterIP port: 80 ingress: enabled: false resources: {} nodeSelector: {} tolerations: [] affinity: {} ⚙️ templates/deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: replicas: {{ .Values.replicaCount }} selector: matchLabels: app: {{ include &#34;nginx-demo.name&#34; . }} template: metadata: labels: app: {{ include &#34;nginx-demo.name&#34; . }} spec: containers: - name: nginx image: &#34;{{ .Values.image.repository }}:{{ .Values.image.tag }}&#34; imagePullPolicy: {{ .Values.image.pullPolicy }} ports: - containerPort: 80 🔗 templates/service.yaml apiVersion: v1 kind: Service metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: type: {{ .Values.service.type }} ports: - port: {{ .Values.service.port }} targetPort: 80 protocol: TCP name: http selector: app: {{ include &#34;nginx-demo.name&#34; . }} 🧠 templates/_helpers.tpl {{- define &#34;nginx-demo.name&#34; -}} nginx {{- end }} {{- define &#34;nginx-demo.fullname&#34; -}} {{ .Release.Name }}-nginx {{- end }} {{- define &#34;nginx-demo.labels&#34; -}} app.kubernetes.io/name: {{ include &#34;nginx-demo.name&#34; . }} helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} app.kubernetes.io/instance: {{ .Release.Name }} app.kubernetes.io/managed-by: {{ .Release.Service }} {{- end }} 📝 templates/notes.txt NGINX has been deployed successfully! You can access it within the cluster using: kubectl port-forward svc/{{ include &#34;nginx-demo.fullname&#34; . }} 8080:{{ .Values.service.port }} Then open your browser at: http://localhost:8080/ ✅ templates/tests/test-connection.yaml apiVersion: v1 kind: Pod metadata: name: &#34;{{ include &#34;nginx-demo.fullname&#34; . }}-test&#34; labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} annotations: &#34;helm.sh/hook&#34;: test spec: containers: - name: wget image: busybox command: [&#39;wget&#39;] args: [&#39;{{ include &#34;nginx-demo.fullname&#34; . }}:{{ .Values.service.port }}&#39;] restartPolicy: Never 🚀 Deploy the Chart helm install my-nginx ./nginx-demo 🧪 Run Helm Tests helm test my-nginx This complete example gives you a production-grade Helm chart foundation for deploying NGINX, including best practices like helpers, notes, and tests.">
-    <meta property="og:url" content="http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/04.helm/index.html">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/04.helm/index.html">
     <meta property="og:site_name" content="Helm">
     <meta property="og:title" content="Creating Helm Charts  :: Helm">
     <meta property="og:description" content="Please visit official doc helm charts development
@@ -33,17 +33,17 @@ helm create nginx-demo cd nginx-demo Then modify or replace the following files:
 📁 Chart.yaml apiVersion: v2 name: nginx-demo description: A Helm chart for deploying NGINX type: application version: 0.1.0 appVersion: &#34;1.25.2&#34; 📄 values.yaml replicaCount: 2 image: repository: nginx pullPolicy: IfNotPresent tag: &#34;1.25.2&#34; service: type: ClusterIP port: 80 ingress: enabled: false resources: {} nodeSelector: {} tolerations: [] affinity: {} ⚙️ templates/deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: replicas: {{ .Values.replicaCount }} selector: matchLabels: app: {{ include &#34;nginx-demo.name&#34; . }} template: metadata: labels: app: {{ include &#34;nginx-demo.name&#34; . }} spec: containers: - name: nginx image: &#34;{{ .Values.image.repository }}:{{ .Values.image.tag }}&#34; imagePullPolicy: {{ .Values.image.pullPolicy }} ports: - containerPort: 80 🔗 templates/service.yaml apiVersion: v1 kind: Service metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: type: {{ .Values.service.type }} ports: - port: {{ .Values.service.port }} targetPort: 80 protocol: TCP name: http selector: app: {{ include &#34;nginx-demo.name&#34; . }} 🧠 templates/_helpers.tpl {{- define &#34;nginx-demo.name&#34; -}} nginx {{- end }} {{- define &#34;nginx-demo.fullname&#34; -}} {{ .Release.Name }}-nginx {{- end }} {{- define &#34;nginx-demo.labels&#34; -}} app.kubernetes.io/name: {{ include &#34;nginx-demo.name&#34; . }} helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} app.kubernetes.io/instance: {{ .Release.Name }} app.kubernetes.io/managed-by: {{ .Release.Service }} {{- end }} 📝 templates/notes.txt NGINX has been deployed successfully! You can access it within the cluster using: kubectl port-forward svc/{{ include &#34;nginx-demo.fullname&#34; . }} 8080:{{ .Values.service.port }} Then open your browser at: http://localhost:8080/ ✅ templates/tests/test-connection.yaml apiVersion: v1 kind: Pod metadata: name: &#34;{{ include &#34;nginx-demo.fullname&#34; . }}-test&#34; labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} annotations: &#34;helm.sh/hook&#34;: test spec: containers: - name: wget image: busybox command: [&#39;wget&#39;] args: [&#39;{{ include &#34;nginx-demo.fullname&#34; . }}:{{ .Values.service.port }}&#39;] restartPolicy: Never 🚀 Deploy the Chart helm install my-nginx ./nginx-demo 🧪 Run Helm Tests helm test my-nginx This complete example gives you a production-grade Helm chart foundation for deploying NGINX, including best practices like helpers, notes, and tests.">
     <meta itemprop="wordCount" content="357">
     <title>Creating Helm Charts  :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1751879046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751879046" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1751879046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751879046" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1751879046" rel="stylesheet">
-    <link href="../../css/theme.css?1751879046" rel="stylesheet">
-    <link href="../../css/format-html.css?1751879046" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1751879078" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751879078" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751879078" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751879078" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751879078" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751879078" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751879078" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='http:\/\/localhost:1313\/nirpendra83\/Getting-started-with-helm';
-      window.relearn.min = ``;
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -292,7 +292,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1751879046";
+          window.index_js_url="../../searchindex.en.js?1751879078";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -305,12 +305,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1751879046" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1751879046" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751879046" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1751879046" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1751879046" defer></script>
-        <script src="../../js/search.js?1751879046" defer></script>
+        <script src="../../js/auto-complete.js?1751879078" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751879078" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751879078" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751879078" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751879078" defer></script>
+        <script src="../../js/search.js?1751879078" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -381,8 +381,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1751879046" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1751879046" defer></script>
-    <script src="../../js/theme.js?1751879046" defer></script>
+    <script src="../../js/clipboard.min.js?1751879078" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751879078" defer></script>
+    <script src="../../js/theme.js?1751879078" defer></script>
   </body>
 </html>
