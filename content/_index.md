@@ -1,6 +1,5 @@
 +++
 title = "Introduction to Helm"
-type = "Home"
 +++
 
 ![ocp01](/images/helm.png)

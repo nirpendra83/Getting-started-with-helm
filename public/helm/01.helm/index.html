@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head>
+  <head><script src="/nirpendra83/Getting-started-with-helm/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=nirpendra83/Getting-started-with-helm/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.4">
@@ -14,7 +14,7 @@ Helm makes it easy to install and manage apps on Kubernetes. Instead of writing 
     <meta name="twitter:description" content="📦 What is Helm? Helm is a package manager for Kubernetes that helps you define, install, and manage applications in your Kubernetes clusters.
 It simplifies the deployment process by using reusable, shareable packages called charts — which bundle together YAML configurations for Kubernetes resources.
 Helm makes it easy to install and manage apps on Kubernetes. Instead of writing many config files, Helm bundles them so you can install apps with just one command. It helps you upgrade or roll back apps easily if something goes wrong. You can customize apps by changing simple settings instead of editing complex files. Helm has lots of ready-made app packages (called charts) that you can use and share. It keeps track of what you installed, so managing your apps is simpler. 🧰 Helm: APT or YUM for Kubernetes Just like APT on Debian-based systems or YUM on Red Hat-based systems manages Linux packages, Helm manages Kubernetes applications.">
-    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/01.helm/index.html">
+    <meta property="og:url" content="http://localhost:1313/nirpendra83/Getting-started-with-helm/helm/01.helm/index.html">
     <meta property="og:site_name" content="Helm">
     <meta property="og:title" content="What is Helm? :: Helm">
     <meta property="og:description" content="📦 What is Helm? Helm is a package manager for Kubernetes that helps you define, install, and manage applications in your Kubernetes clusters.
@@ -22,24 +22,24 @@ It simplifies the deployment process by using reusable, shareable packages calle
 Helm makes it easy to install and manage apps on Kubernetes. Instead of writing many config files, Helm bundles them so you can install apps with just one command. It helps you upgrade or roll back apps easily if something goes wrong. You can customize apps by changing simple settings instead of editing complex files. Helm has lots of ready-made app packages (called charts) that you can use and share. It keeps track of what you installed, so managing your apps is simpler. 🧰 Helm: APT or YUM for Kubernetes Just like APT on Debian-based systems or YUM on Red Hat-based systems manages Linux packages, Helm manages Kubernetes applications.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
-    <meta property="article:section" content="">
+    <meta property="article:section" content="Helms">
     <meta itemprop="name" content="What is Helm? :: Helm">
     <meta itemprop="description" content="📦 What is Helm? Helm is a package manager for Kubernetes that helps you define, install, and manage applications in your Kubernetes clusters.
 It simplifies the deployment process by using reusable, shareable packages called charts — which bundle together YAML configurations for Kubernetes resources.
 Helm makes it easy to install and manage apps on Kubernetes. Instead of writing many config files, Helm bundles them so you can install apps with just one command. It helps you upgrade or roll back apps easily if something goes wrong. You can customize apps by changing simple settings instead of editing complex files. Helm has lots of ready-made app packages (called charts) that you can use and share. It keeps track of what you installed, so managing your apps is simpler. 🧰 Helm: APT or YUM for Kubernetes Just like APT on Debian-based systems or YUM on Red Hat-based systems manages Linux packages, Helm manages Kubernetes applications.">
     <meta itemprop="wordCount" content="414">
     <title>What is Helm? :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1751878673" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751878673" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1751878673" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751878673" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1751878673" rel="stylesheet">
-    <link href="../../css/theme.min.css?1751878673" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1751878673" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1751879046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751879046" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751879046" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751879046" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751879046" rel="stylesheet">
+    <link href="../../css/theme.css?1751879046" rel="stylesheet">
+    <link href="../../css/format-html.css?1751879046" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
-      window.relearn.min = `.min`;
+      window.relearn.absBaseUri='http:\/\/localhost:1313\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = ``;
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -119,7 +119,8 @@ Helm makes it easy to install and manage apps on Kubernetes. Instead of writing 
           </div>
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
             itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">What is Helm?</span><meta itemprop="position" content="2"></li>
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../helm/index.html"><span itemprop="name">Helms</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">What is Helm?</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm/toc/index.html" title="Helm Contents (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -219,7 +220,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1751878673";
+          window.index_js_url="../../searchindex.en.js?1751879046";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -232,12 +233,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1751878673" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1751878673" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751878673" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1751878673" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1751878673" defer></script>
-        <script src="../../js/search.js?1751878673" defer></script>
+        <script src="../../js/auto-complete.js?1751879046" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751879046" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751879046" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751879046" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751879046" defer></script>
+        <script src="../../js/search.js?1751879046" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -248,7 +249,7 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="parent hidden " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html"></a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
+            <li class="parent " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Helms</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
             <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../../helm/toc/index.html">Helm Contents</a></li>
             <li class="active " data-nav-id="/helm/01.helm/index.html"><a class="padding" href="../../helm/01.helm/index.html">What is Helm?</a></li>
             <li class="" data-nav-id="/helm/03-helm/index.html"><a class="padding" href="../../helm/03-helm/index.html">Helm Components</a></li>
@@ -308,8 +309,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1751878673" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1751878673" defer></script>
-    <script src="../../js/theme.js?1751878673" defer></script>
+    <script src="../../js/clipboard.min.js?1751879046" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751879046" defer></script>
+    <script src="../../js/theme.js?1751879046" defer></script>
   </body>
 </html>
