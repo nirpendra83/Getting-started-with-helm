@@ -7,6 +7,9 @@
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/toc/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/vmware/vmware01/index.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/01.helm/index.html</loc>
   </url>
   <url>
@@ -56,5 +59,8 @@
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/vmware/index.html</loc>
   </url>
 </urlset>
