@@ -21,11 +21,11 @@
     <meta itemprop="description" content="📜 Git Log and History git log git log --oneline git log --oneline --graph --all 🔙 Undoing Things git checkout -- file git revert &lt;commit&gt; 🧠 Understanding git reset git reset --soft HEAD~1 # Keep changes staged git reset --mixed HEAD~1 # Keep changes, unstage git reset --hard HEAD~1 # Discard changes 🔍 Advanced git log Examples git log # Full history git log --oneline # Short view git log --graph --oneline # Tree view git log --author=&#34;name&#34; git log --since=&#34;7 days ago&#34; git log -p # Show diffs git log --stat # File changes git log -1 --name-only # Files in last commit git log --merges # Only merge commits 🚫 .gitignore File *.log .env node_modules/ .idea/ 🏷️ Git Tags git tag v1.0 git tag -a v1.1 -m &#34;Release v1.1&#34; git push origin --tags ✅ Conclusion Use Git daily. Learn branching, logs, reset, and collaboration with remotes. Practice makes perfect!">
     <meta itemprop="wordCount" content="156">
     <title>Git More Examples  :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/theme.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1751872457" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1751873794" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751873794" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751873794" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751873794" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751873794" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751873794" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751873794" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -102,8 +102,9 @@
             </div>
           </div>
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../git/index.html"><span itemprop="name">GIT Version Control System</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Git More Examples </span><meta itemprop="position" content="2"></li>
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../git/index.html"><span itemprop="name">GIT Version Control System</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Git More Examples </span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../git/git02/index.html" title="Git Logs (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -187,7 +188,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1751872457";
+          window.index_js_url="../../searchindex.en.js?1751873794";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -200,12 +201,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1751872457" defer></script>
-        <script src="../../js/search.js?1751872457" defer></script>
+        <script src="../../js/auto-complete.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751873794" defer></script>
+        <script src="../../js/search.js?1751873794" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -216,18 +217,11 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/toc/index.html"><a class="padding" href="../../toc/index.html">Helm Table of Contents</a></li>
-            <li class="" data-nav-id="/01.helm/index.html"><a class="padding" href="../../01.helm/index.html">What is Helm?</a></li>
-            <li class="" data-nav-id="/03-helm/index.html"><a class="padding" href="../../03-helm/index.html">Helm Components</a></li>
-            <li class="" data-nav-id="/04.helm/index.html"><a class="padding" href="../../04.helm/index.html">Creating Helm Charts </a></li>
-            <li class="" data-nav-id="/05.helm/index.html"><a class="padding" href="../../05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
-            <li class="" data-nav-id="/additional/index.html"><a class="padding" href="../../additional/index.html">Additional</a></li>
             <li class="parent " data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu">
             <li class="" data-nav-id="/git/git01/index.html"><a class="padding" href="../../git/git01/index.html">Git</a></li>
             <li class="" data-nav-id="/git/git02/index.html"><a class="padding" href="../../git/git02/index.html">Git Logs</a></li>
             <li class="active " data-nav-id="/git/git_tutorial/index.html"><a class="padding" href="../../git/git_tutorial/index.html">Git More Examples </a></li>
             <li class="" data-nav-id="/git/git04/index.html"><a class="padding" href="../../git/git04/index.html">Git Rebase and Merge</a></li></ul></li>
-            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmwares</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
           </ul>
         </div>
     
@@ -281,8 +275,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1751872457" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1751872457" defer></script>
-    <script src="../../js/theme.js?1751872457" defer></script>
+    <script src="../../js/clipboard.min.js?1751873794" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751873794" defer></script>
+    <script src="../../js/theme.js?1751873794" defer></script>
   </body>
 </html>

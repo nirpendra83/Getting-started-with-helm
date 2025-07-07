@@ -33,11 +33,11 @@ helm create nginx-demo cd nginx-demo Then modify or replace the following files:
 📁 Chart.yaml apiVersion: v2 name: nginx-demo description: A Helm chart for deploying NGINX type: application version: 0.1.0 appVersion: &#34;1.25.2&#34; 📄 values.yaml replicaCount: 2 image: repository: nginx pullPolicy: IfNotPresent tag: &#34;1.25.2&#34; service: type: ClusterIP port: 80 ingress: enabled: false resources: {} nodeSelector: {} tolerations: [] affinity: {} ⚙️ templates/deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: replicas: {{ .Values.replicaCount }} selector: matchLabels: app: {{ include &#34;nginx-demo.name&#34; . }} template: metadata: labels: app: {{ include &#34;nginx-demo.name&#34; . }} spec: containers: - name: nginx image: &#34;{{ .Values.image.repository }}:{{ .Values.image.tag }}&#34; imagePullPolicy: {{ .Values.image.pullPolicy }} ports: - containerPort: 80 🔗 templates/service.yaml apiVersion: v1 kind: Service metadata: name: {{ include &#34;nginx-demo.fullname&#34; . }} labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} spec: type: {{ .Values.service.type }} ports: - port: {{ .Values.service.port }} targetPort: 80 protocol: TCP name: http selector: app: {{ include &#34;nginx-demo.name&#34; . }} 🧠 templates/_helpers.tpl {{- define &#34;nginx-demo.name&#34; -}} nginx {{- end }} {{- define &#34;nginx-demo.fullname&#34; -}} {{ .Release.Name }}-nginx {{- end }} {{- define &#34;nginx-demo.labels&#34; -}} app.kubernetes.io/name: {{ include &#34;nginx-demo.name&#34; . }} helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }} app.kubernetes.io/instance: {{ .Release.Name }} app.kubernetes.io/managed-by: {{ .Release.Service }} {{- end }} 📝 templates/notes.txt NGINX has been deployed successfully! You can access it within the cluster using: kubectl port-forward svc/{{ include &#34;nginx-demo.fullname&#34; . }} 8080:{{ .Values.service.port }} Then open your browser at: http://localhost:8080/ ✅ templates/tests/test-connection.yaml apiVersion: v1 kind: Pod metadata: name: &#34;{{ include &#34;nginx-demo.fullname&#34; . }}-test&#34; labels: {{- include &#34;nginx-demo.labels&#34; . | nindent 4 }} annotations: &#34;helm.sh/hook&#34;: test spec: containers: - name: wget image: busybox command: [&#39;wget&#39;] args: [&#39;{{ include &#34;nginx-demo.fullname&#34; . }}:{{ .Values.service.port }}&#39;] restartPolicy: Never 🚀 Deploy the Chart helm install my-nginx ./nginx-demo 🧪 Run Helm Tests helm test my-nginx This complete example gives you a production-grade Helm chart foundation for deploying NGINX, including best practices like helpers, notes, and tests.">
     <meta itemprop="wordCount" content="357">
     <title>Creating Helm Charts  :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/theme.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1751872457" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1751873794" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751873794" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751873794" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751873794" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751873794" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751873794" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751873794" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -120,7 +120,8 @@ helm create nginx-demo cd nginx-demo Then modify or replace the following files:
             </div>
           </div>
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Creating Helm Charts </span><meta itemprop="position" content="1"></li>
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Creating Helm Charts </span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm/03-helm/index.html" title="Helm Components (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -290,7 +291,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1751872457";
+          window.index_js_url="../../searchindex.en.js?1751873794";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -303,12 +304,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1751872457" defer></script>
-        <script src="../../js/search.js?1751872457" defer></script>
+        <script src="../../js/auto-complete.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751873794" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751873794" defer></script>
+        <script src="../../js/search.js?1751873794" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -319,12 +320,6 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/toc/index.html"><a class="padding" href="../../toc/index.html">Helm Table of Contents</a></li>
-            <li class="" data-nav-id="/01.helm/index.html"><a class="padding" href="../../01.helm/index.html">What is Helm?</a></li>
-            <li class="" data-nav-id="/03-helm/index.html"><a class="padding" href="../../03-helm/index.html">Helm Components</a></li>
-            <li class="" data-nav-id="/04.helm/index.html"><a class="padding" href="../../04.helm/index.html">Creating Helm Charts </a></li>
-            <li class="" data-nav-id="/05.helm/index.html"><a class="padding" href="../../05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
-            <li class="" data-nav-id="/additional/index.html"><a class="padding" href="../../additional/index.html">Additional</a></li>
             <li class="parent hidden " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html"></a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
             <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../../helm/toc/index.html">Helm Contents</a></li>
             <li class="" data-nav-id="/helm/01.helm/index.html"><a class="padding" href="../../helm/01.helm/index.html">What is Helm?</a></li>
@@ -333,7 +328,6 @@ Helm
             <li class="" data-nav-id="/helm/05.helm/index.html"><a class="padding" href="../../helm/05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
             <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../../helm/additional/index.html">Additional</a></li></ul></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
-            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmwares</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
           </ul>
         </div>
     
@@ -387,8 +381,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1751872457" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1751872457" defer></script>
-    <script src="../../js/theme.js?1751872457" defer></script>
+    <script src="../../js/clipboard.min.js?1751873794" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751873794" defer></script>
+    <script src="../../js/theme.js?1751873794" defer></script>
   </body>
 </html>

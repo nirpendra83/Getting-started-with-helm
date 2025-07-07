@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
-  <head>
+  <head><script src="/nirpendra83/Getting-started-with-helm/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=nirpendra83/Getting-started-with-helm/livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.4">
@@ -12,7 +12,7 @@
     <meta name="twitter:title" content="VMware DRS vs HA, vMotion vs Storage vMotion :: Helm">
     <meta name="twitter:description" content="🧠 VMware Concepts: DRS vs HA, vMotion vs sMotion This document outlines the differences between VMware DRS, HA, vMotion, and Storage vMotion, which are key features of vSphere for availability, load balancing, and live migration.
 🔀 DRS (Distributed Resource Scheduler) Feature Description Purpose Automatically balances workloads across hosts based on CPU/RAM usage Type Load balancing and resource management Requires vCenter, shared storage, vMotion enabled Use Case Avoid resource contention, optimize performance ✅ Example: VM is consuming high CPU on Host A → DRS moves it to Host B (less loaded) using vMotion. ⚡ HA (High Availability) Feature Description Purpose Restarts VMs on other hosts if a host fails Type Availability and failover mechanism Requires vCenter, shared storage (for VM files), ESXi hosts in cluster Use Case Minimize downtime from host hardware failure ✅ Example: Host A fails → HA restarts its VMs automatically on Host B. 🔄 vMotion Feature Description Purpose Live migrate a running VM from one ESXi host to another without downtime Migrates VM’s memory and CPU state, not disk Requires Shared storage (e.g., NFS, iSCSI, VMFS) and vMotion network Use Case Maintenance, Load Balancing (via DRS), zero-downtime migration ✅ Example: Move a VM from Host A to Host B while it’s running, with no downtime. 💽 Storage vMotion (sMotion) Feature Description Purpose Move a VM’s virtual disk files (VMDKs) between datastores, live Migrates Only storage, not the compute/CPU/memory Requires Datastores accessible to the host Use Case Balance storage, move to faster/larger datastore, maintenance of old storage ✅ Example: VM stays on Host A, but its VMDK is moved from Datastore1 to Datastore2. 🧩 Summary Table Feature Function What It Moves Downtime? Use Case DRS Load balancing VMs between hosts (uses vMotion) ❌ No Optimize performance HA Failover recovery Restarts VMs ✅ Brief Host failure recovery vMotion Live VM migration Memory &amp; CPU state ❌ No Zero-downtime maintenance Storage vMotion Live storage migration VMDK files ❌ No Migrate to better/faster storage 📝 Notes vMotion and sMotion can be combined to move both compute and storage (called Enhanced vMotion). DRS uses vMotion under the hood to move VMs. HA is reactive (after failure), DRS is proactive (performance/load-based). ✅ These features are essential for maintaining high availability, flexibility, and performance in VMware environments.">
-    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/vmware/vmware01/index.html">
+    <meta property="og:url" content="http://localhost:1313/nirpendra83/Getting-started-with-helm/vmware/vmware01/index.html">
     <meta property="og:site_name" content="Helm">
     <meta property="og:title" content="VMware DRS vs HA, vMotion vs Storage vMotion :: Helm">
     <meta property="og:description" content="🧠 VMware Concepts: DRS vs HA, vMotion vs sMotion This document outlines the differences between VMware DRS, HA, vMotion, and Storage vMotion, which are key features of vSphere for availability, load balancing, and live migration.
@@ -25,17 +25,17 @@
 🔀 DRS (Distributed Resource Scheduler) Feature Description Purpose Automatically balances workloads across hosts based on CPU/RAM usage Type Load balancing and resource management Requires vCenter, shared storage, vMotion enabled Use Case Avoid resource contention, optimize performance ✅ Example: VM is consuming high CPU on Host A → DRS moves it to Host B (less loaded) using vMotion. ⚡ HA (High Availability) Feature Description Purpose Restarts VMs on other hosts if a host fails Type Availability and failover mechanism Requires vCenter, shared storage (for VM files), ESXi hosts in cluster Use Case Minimize downtime from host hardware failure ✅ Example: Host A fails → HA restarts its VMs automatically on Host B. 🔄 vMotion Feature Description Purpose Live migrate a running VM from one ESXi host to another without downtime Migrates VM’s memory and CPU state, not disk Requires Shared storage (e.g., NFS, iSCSI, VMFS) and vMotion network Use Case Maintenance, Load Balancing (via DRS), zero-downtime migration ✅ Example: Move a VM from Host A to Host B while it’s running, with no downtime. 💽 Storage vMotion (sMotion) Feature Description Purpose Move a VM’s virtual disk files (VMDKs) between datastores, live Migrates Only storage, not the compute/CPU/memory Requires Datastores accessible to the host Use Case Balance storage, move to faster/larger datastore, maintenance of old storage ✅ Example: VM stays on Host A, but its VMDK is moved from Datastore1 to Datastore2. 🧩 Summary Table Feature Function What It Moves Downtime? Use Case DRS Load balancing VMs between hosts (uses vMotion) ❌ No Optimize performance HA Failover recovery Restarts VMs ✅ Brief Host failure recovery vMotion Live VM migration Memory &amp; CPU state ❌ No Zero-downtime maintenance Storage vMotion Live storage migration VMDK files ❌ No Migrate to better/faster storage 📝 Notes vMotion and sMotion can be combined to move both compute and storage (called Enhanced vMotion). DRS uses vMotion under the hood to move VMs. HA is reactive (after failure), DRS is proactive (performance/load-based). ✅ These features are essential for maintaining high availability, flexibility, and performance in VMware environments.">
     <meta itemprop="wordCount" content="373">
     <title>VMware DRS vs HA, vMotion vs Storage vMotion :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1751872457" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751872457" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/theme.min.css?1751872457" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1751872457" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1751872864" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751872864" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751872864" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751872864" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751872864" rel="stylesheet">
+    <link href="../../css/theme.css?1751872864" rel="stylesheet">
+    <link href="../../css/format-html.css?1751872864" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
       window.relearn.relBaseUri='..\/..';
-      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
-      window.relearn.min = `.min`;
+      window.relearn.absBaseUri='http:\/\/localhost:1313\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = ``;
       window.relearn.disableAnchorCopy=false;
       window.relearn.disableAnchorScrolling=false;
       // variant stuff
@@ -350,7 +350,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1751872457";
+          window.index_js_url="../../searchindex.en.js?1751872864";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -363,12 +363,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1751872457" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1751872457" defer></script>
-        <script src="../../js/search.js?1751872457" defer></script>
+        <script src="../../js/auto-complete.js?1751872864" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751872864" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751872864" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751872864" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751872864" defer></script>
+        <script src="../../js/search.js?1751872864" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -379,12 +379,6 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="" data-nav-id="/toc/index.html"><a class="padding" href="../../toc/index.html">Helm Table of Contents</a></li>
-            <li class="" data-nav-id="/01.helm/index.html"><a class="padding" href="../../01.helm/index.html">What is Helm?</a></li>
-            <li class="" data-nav-id="/03-helm/index.html"><a class="padding" href="../../03-helm/index.html">Helm Components</a></li>
-            <li class="" data-nav-id="/04.helm/index.html"><a class="padding" href="../../04.helm/index.html">Creating Helm Charts </a></li>
-            <li class="" data-nav-id="/05.helm/index.html"><a class="padding" href="../../05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
-            <li class="" data-nav-id="/additional/index.html"><a class="padding" href="../../additional/index.html">Additional</a></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
             <li class="parent " data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmwares</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu">
             <li class="active " data-nav-id="/vmware/vmware01/index.html"><a class="padding" href="../../vmware/vmware01/index.html">VMware DRS vs HA, vMotion vs Storage vMotion</a></li></ul></li>
@@ -441,8 +435,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1751872457" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1751872457" defer></script>
-    <script src="../../js/theme.js?1751872457" defer></script>
+    <script src="../../js/clipboard.min.js?1751872864" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751872864" defer></script>
+    <script src="../../js/theme.js?1751872864" defer></script>
   </body>
 </html>
