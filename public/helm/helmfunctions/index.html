@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.4">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Template Functions and Pipelines
+🧭 Helm Template Functions Cheat Sheet with Examples This document provides a comprehensive list of Helm template functions used in Helm charts, with real-world examples using .Values, .Chart, and .Release.
+🔧 Commonly Used Functions 🗝️ default – Provide a fallback value replicaCount: {{ .Values.replicaCount | default 3 }} If .Values.replicaCount is not set in values.yaml, it defaults to 3.
+❗ required – Make a value mandatory apiVersion: v1 kind: Secret metadata: name: my-secret data: password: {{ required &#34;A password is required!&#34; .Values.password | b64enc }} apiVersion: v1 kind: Secret metadata: name: my-secret data: {{- if .Values.password }} password: {{ .Values.password | b64enc | quote }} {{- else }} password: &#34;&#34; {{- end }} Will throw an error at install/upgrade if password is not provided.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Helm unctions :: Helm">
+    <meta name="twitter:description" content="Template Functions and Pipelines
+🧭 Helm Template Functions Cheat Sheet with Examples This document provides a comprehensive list of Helm template functions used in Helm charts, with real-world examples using .Values, .Chart, and .Release.
+🔧 Commonly Used Functions 🗝️ default – Provide a fallback value replicaCount: {{ .Values.replicaCount | default 3 }} If .Values.replicaCount is not set in values.yaml, it defaults to 3.
+❗ required – Make a value mandatory apiVersion: v1 kind: Secret metadata: name: my-secret data: password: {{ required &#34;A password is required!&#34; .Values.password | b64enc }} apiVersion: v1 kind: Secret metadata: name: my-secret data: {{- if .Values.password }} password: {{ .Values.password | b64enc | quote }} {{- else }} password: &#34;&#34; {{- end }} Will throw an error at install/upgrade if password is not provided.">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/helmfunctions/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Helm unctions :: Helm">
+    <meta property="og:description" content="Template Functions and Pipelines
+🧭 Helm Template Functions Cheat Sheet with Examples This document provides a comprehensive list of Helm template functions used in Helm charts, with real-world examples using .Values, .Chart, and .Release.
+🔧 Commonly Used Functions 🗝️ default – Provide a fallback value replicaCount: {{ .Values.replicaCount | default 3 }} If .Values.replicaCount is not set in values.yaml, it defaults to 3.
+❗ required – Make a value mandatory apiVersion: v1 kind: Secret metadata: name: my-secret data: password: {{ required &#34;A password is required!&#34; .Values.password | b64enc }} apiVersion: v1 kind: Secret metadata: name: my-secret data: {{- if .Values.password }} password: {{ .Values.password | b64enc | quote }} {{- else }} password: &#34;&#34; {{- end }} Will throw an error at install/upgrade if password is not provided.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Introduction to Helm">
+    <meta itemprop="name" content="Helm unctions :: Helm">
+    <meta itemprop="description" content="Template Functions and Pipelines
+🧭 Helm Template Functions Cheat Sheet with Examples This document provides a comprehensive list of Helm template functions used in Helm charts, with real-world examples using .Values, .Chart, and .Release.
+🔧 Commonly Used Functions 🗝️ default – Provide a fallback value replicaCount: {{ .Values.replicaCount | default 3 }} If .Values.replicaCount is not set in values.yaml, it defaults to 3.
+❗ required – Make a value mandatory apiVersion: v1 kind: Secret metadata: name: my-secret data: password: {{ required &#34;A password is required!&#34; .Values.password | b64enc }} apiVersion: v1 kind: Secret metadata: name: my-secret data: {{- if .Values.password }} password: {{ .Values.password | b64enc | quote }} {{- else }} password: &#34;&#34; {{- end }} Will throw an error at install/upgrade if password is not provided.">
+    <meta itemprop="wordCount" content="587">
+    <title>Helm unctions :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1751961963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1751961963" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1751961963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1751961963" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1751961963" rel="stylesheet">
+    <link href="../../css/theme.min.css?1751961963" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1751961963" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../helm/helmfunctions/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-helm-template-functions-cheat-sheet-with-examples">🧭 Helm Template Functions Cheat Sheet with Examples</a></li>
+    <li><a href="#-commonly-used-functions">🔧 Commonly Used Functions</a>
+      <ul>
+        <li><a href="#-default--provide-a-fallback-value">🗝️ <code>default</code> – Provide a fallback value</a></li>
+        <li><a href="#-required--make-a-value-mandatory">❗ <code>required</code> – Make a value mandatory</a></li>
+      </ul>
+    </li>
+    <li><a href="#how-to-render-yaml-files-from-new-charts">How to render yaml files from new charts</a></li>
+    <li><a href="#-string-functions">🔤 String Functions</a>
+      <ul>
+        <li><a href="#upper-lower-title-trim-replace"><code>upper</code>, <code>lower</code>, <code>title</code>, <code>trim</code>, <code>replace</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#-number-functions">🔢 Number Functions</a>
+      <ul>
+        <li><a href="#add-sub-mul-div-mod"><code>add</code>, <code>sub</code>, <code>mul</code>, <code>div</code>, <code>mod</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#-list-functions">📃 List Functions</a>
+      <ul>
+        <li><a href="#list-join-first-last-uniq-range"><code>list</code>, <code>join</code>, <code>first</code>, <code>last</code>, <code>uniq</code>, <code>range</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#-dictionaryobject-functions">🗂️ Dictionary/Object Functions</a>
+      <ul>
+        <li><a href="#dict-haskey-pluck-keys"><code>dict</code>, <code>hasKey</code>, <code>pluck</code>, <code>keys</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#-flow-control">🔁 Flow Control</a>
+      <ul>
+        <li><a href="#if-else-range-with"><code>if</code>, <code>else</code>, <code>range</code>, <code>with</code></a></li>
+        <li><a href="#in-valuesyaml">in Values.yaml</a></li>
+        <li><a href="#in-valuesyaml-1">in Values.yaml</a></li>
+      </ul>
+    </li>
+    <li><a href="#-crypto--encoding">🔐 Crypto &amp; Encoding</a>
+      <ul>
+        <li><a href="#b64enc-b64dec-sha256sum"><code>b64enc</code>, <code>b64dec</code>, <code>sha256sum</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#-date--time-limited">🕒 Date &amp; Time (Limited)</a></li>
+    <li><a href="#-example-valuesyaml">🧪 Example <code>values.yaml</code></a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../helm/index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Helm unctions</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm/session02/index.html" title="Session 2: Creating and Hosting Custom Helm Charts (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm/additional/index.html" title="Additional (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable helm" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="helm-unctions">Helm unctions</h1>
+
+<p><a href="https://helm.sh/docs/chart_template_guide/functions_and_pipelines/" rel="external" target="_blank">Template Functions and Pipelines</a></p>
+<h2 id="-helm-template-functions-cheat-sheet-with-examples">🧭 Helm Template Functions Cheat Sheet with Examples</h2>
+<p>This document provides a comprehensive list of Helm template functions used in Helm charts, with real-world examples using <code>.Values</code>, <code>.Chart</code>, and <code>.Release</code>.</p>
+<hr>
+<h2 id="-commonly-used-functions">🔧 Commonly Used Functions</h2>
+<h3 id="-default--provide-a-fallback-value">🗝️ <code>default</code> – Provide a fallback value</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>: {{ <span style="color:#ae81ff">.Values.replicaCount | default 3 }}</span></span></span></code></pre></div>
+<blockquote>
+<p>If <code>.Values.replicaCount</code> is not set in <code>values.yaml</code>, it defaults to <code>3</code>.</p>
+</blockquote>
+<hr>
+<h3 id="-required--make-a-value-mandatory">❗ <code>required</code> – Make a value mandatory</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: {{ <span style="color:#ae81ff">required &#34;A password is required!&#34; .Values.password | b64enc }}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-secret</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">if .Values.password }}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: {{ <span style="color:#ae81ff">.Values.password | b64enc | quote }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">else }}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Will throw an error at install/upgrade if <code>password</code> is not provided.</p>
+</blockquote>
+<hr>
+<h2 id="how-to-render-yaml-files-from-new-charts">How to render yaml files from new charts</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#ae81ff">helm template my-nginx01 ./nginx-demo -n helm-test --debug</span></span></span></code></pre></div>
+<h2 id="-string-functions">🔤 String Functions</h2>
+<h3 id="upper-lower-title-trim-replace"><code>upper</code>, <code>lower</code>, <code>title</code>, <code>trim</code>, <code>replace</code></h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: {{ <span style="color:#ae81ff">.Chart.Name | upper }}-{{ .Release.Name | lower }}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">summary</span>: {{ <span style="color:#ae81ff">.Values.summary | title | quote }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Transforms strings:</p>
+<ul>
+<li><code>helm</code> → <code>HELM</code></li>
+<li><code>release-name</code> → <code>release-name</code></li>
+<li><code>some text</code> → <code>Some Text</code></li>
+</ul>
+</blockquote>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">clean-name</span>: {{ <span style="color:#ae81ff">replace .Chart.Name &#34;-&#34; &#34;_&#34; }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Replaces hyphens (<code>-</code>) with underscores (<code>_</code>) in the chart name.<br>
+Useful for making label-safe names.</p>
+</blockquote>
+<hr>
+<h2 id="-number-functions">🔢 Number Functions</h2>
+<h3 id="add-sub-mul-div-mod"><code>add</code>, <code>sub</code>, <code>mul</code>, <code>div</code>, <code>mod</code></h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">limits</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cpu</span>: {{ <span style="color:#ae81ff">mul .Values.cpuBase .Values.cpuFactor }}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>: {{ <span style="color:#f92672">add 2 3 }}  # Output</span>: <span style="color:#ae81ff">5</span></span></span></code></pre></div>
+<blockquote>
+<p>Perform arithmetic using Helm values.</p>
+</blockquote>
+<hr>
+<h2 id="-list-functions">📃 List Functions</h2>
+<h3 id="list-join-first-last-uniq-range"><code>list</code>, <code>join</code>, <code>first</code>, <code>last</code>, <code>uniq</code>, <code>range</code></h3>
+<h4 id="-example-looping-with-range-and-list">✅ Example: Looping with <code>range</code> and <code>list</code></h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">range $env := list &#34;STAGING&#34; &#34;PROD&#34; &#34;DEV&#34; }}</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ENV</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: {{ <span style="color:#ae81ff">$env }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Loops over the list and renders each value as an environment variable.</p>
+</blockquote>
+<p><strong>Rendered output:</strong></p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ENV</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#ae81ff">STAGING</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ENV</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#ae81ff">PROD</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ENV</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#ae81ff">DEV</span></span></span></code></pre></div>
+<hr>
+<h4 id="-example-join--convert-a-list-to-comma-separated-string">✅ Example: <code>join</code> – Convert a list to comma-separated string</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">environments</span>: {{ <span style="color:#ae81ff">join &#34;,&#34; (list &#34;dev&#34; &#34;staging&#34; &#34;prod&#34;) }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Converts list to string: <code>dev,staging,prod</code>.</p>
+</blockquote>
+<hr>
+<h4 id="-example-uniq--remove-duplicates-from-list">✅ Example: <code>uniq</code> – Remove duplicates from list</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">uniq-values</span>: {{ <span style="color:#f92672">uniq (list 1 2 2 3 1) }}  # Output</span>: [<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span>]</span></span></code></pre></div>
+<blockquote>
+<p>Removes duplicate values.<br>
+Use <code>join</code> if you need to convert it to string for use in annotations/labels.</p>
+</blockquote>
+<hr>
+<h2 id="-dictionaryobject-functions">🗂️ Dictionary/Object Functions</h2>
+<h3 id="dict-haskey-pluck-keys"><code>dict</code>, <code>hasKey</code>, <code>pluck</code>, <code>keys</code></h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{- <span style="color:#ae81ff">$config := dict &#34;env&#34; &#34;prod&#34; &#34;region&#34; &#34;us-west&#34; }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">region</span>: {{ <span style="color:#ae81ff">$config.region }}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{- <span style="color:#ae81ff">if hasKey .Values &#34;replicaCount&#34; }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">replicas</span>: {{ <span style="color:#ae81ff">.Values.replicaCount }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<blockquote>
+<p>These functions help dynamically access and iterate through key-value pairs.</p>
+</blockquote>
+<hr>
+<h2 id="-flow-control">🔁 Flow Control</h2>
+<h3 id="if-else-range-with"><code>if</code>, <code>else</code>, <code>range</code>, <code>with</code></h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{- <span style="color:#ae81ff">if .Values.enabled }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">else }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">enabled</span>: <span style="color:#e6db74">&#34;false&#34;</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{- <span style="color:#ae81ff">range $key, $val := .Values.config }}</span>
+</span></span><span style="display:flex;"><span>  {{ <span style="color:#f92672">$key }}</span>: {{ <span style="color:#ae81ff">$val }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<h3 id="in-valuesyaml">in Values.yaml</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">logLevel</span>: <span style="color:#ae81ff">debug</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>{{- <span style="color:#ae81ff">with .Values.database }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">host</span>: {{ <span style="color:#ae81ff">.host }}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">port</span>: {{ <span style="color:#ae81ff">.port }}</span>
+</span></span><span style="display:flex;"><span>{{- <span style="color:#ae81ff">end }}</span></span></span></code></pre></div>
+<h3 id="in-valuesyaml-1">in Values.yaml</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">database</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">host</span>: <span style="color:#ae81ff">db.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5432</span></span></span></code></pre></div>
+<blockquote>
+<p>Conditional logic and scoping for clean, DRY templates.</p>
+</blockquote>
+<hr>
+<h2 id="-crypto--encoding">🔐 Crypto &amp; Encoding</h2>
+<h3 id="b64enc-b64dec-sha256sum"><code>b64enc</code>, <code>b64dec</code>, <code>sha256sum</code></h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">data</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">password</span>: {{ <span style="color:#ae81ff">.Values.dbPassword | b64enc }}</span></span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">hashed</span>: {{ <span style="color:#e6db74">&#34;sensitive&#34;</span> <span style="color:#ae81ff">| sha256sum }}</span></span></span></code></pre></div>
+<blockquote>
+<p>Useful for secrets, hashing, and safe encoding.</p>
+</blockquote>
+<hr>
+<h2 id="-date--time-limited">🕒 Date &amp; Time (Limited)</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">annotations</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">generatedAt</span>: {{ <span style="color:#ae81ff">now | date &#34;2006-01-02T15:04:05Z07:00&#34; }}</span></span></span></code></pre></div>
+<blockquote>
+<p><code>now</code> returns current timestamp.<br>
+Format it using Go time layout (<code>2006-01-02</code> is the reference format).</p>
+</blockquote>
+<hr>
+<h2 id="-example-valuesyaml">🧪 Example <code>values.yaml</code></h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">replicaCount</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;simple chart&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cpuBase</span>: <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cpuFactor</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">password</span>: <span style="color:#e6db74">&#34;secret123&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dbPassword</span>: <span style="color:#e6db74">&#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">envList</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ENV</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">value</span>: <span style="color:#ae81ff">PROD</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">config</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">LOG_LEVEL</span>: <span style="color:#ae81ff">debug</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">TIMEOUT</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">database</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">host</span>: <span style="color:#ae81ff">db.example.com</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">5432</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">service2</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">port</span>: <span style="color:#ae81ff">443</span></span></span></code></pre></div>
+<hr>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1751961963";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1751961963" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1751961963" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1751961963" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1751961963" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1751961963" defer></script>
+        <script src="../../js/search.js?1751961963" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
+            <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../../helm/toc/index.html">Helm Contents</a></li>
+            <li class="" data-nav-id="/helm/session01/index.html"><a class="padding" href="../../helm/session01/index.html">Session 1: Introduction to Helm</a></li>
+            <li class="" data-nav-id="/helm/session02/index.html"><a class="padding" href="../../helm/session02/index.html">Session 2: Creating and Hosting Custom Helm Charts</a></li>
+            <li class="active " data-nav-id="/helm/helmfunctions/index.html"><a class="padding" href="../../helm/helmfunctions/index.html">Helm unctions</a></li>
+            <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../../helm/additional/index.html">Additional</a></li></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../helm/helmfunctions/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1751961963" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1751961963" defer></script>
+    <script src="../../js/theme.js?1751961963" defer></script>
+  </body>
+</html>

@@ -5,23 +5,27 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.4">
     <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
-    <meta name="description" content="">
+    <meta name="description" content="Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax &amp; Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Helms :: Helm">
+    <meta name="twitter:title" content="Introduction to Helm :: Helm">
+    <meta name="twitter:description" content="Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax &amp; Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.">
     <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/index.html">
     <meta property="og:site_name" content="Helm">
-    <meta property="og:title" content="Helms :: Helm">
+    <meta property="og:title" content="Introduction to Helm :: Helm">
+    <meta property="og:description" content="Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax &amp; Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="website">
-    <meta itemprop="name" content="Helms :: Helm">
-    <title>Helms :: Helm</title>
-    <link href="../helm/index.xml" rel="alternate" type="application/rss+xml" title="Helms :: Helm">
-    <link href="../css/fontawesome-all.min.css?1751879078" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1751879078" rel="stylesheet"></noscript>
-    <link href="../css/auto-complete.css?1751879078" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1751879078" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1751879078" rel="stylesheet">
-    <link href="../css/theme.min.css?1751879078" rel="stylesheet">
-    <link href="../css/format-html.min.css?1751879078" rel="stylesheet" id="R-format-style">
+    <meta itemprop="name" content="Introduction to Helm :: Helm">
+    <meta itemprop="description" content="Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax &amp; Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.">
+    <meta itemprop="wordCount" content="196">
+    <title>Introduction to Helm :: Helm</title>
+    <link href="../helm/index.xml" rel="alternate" type="application/rss+xml" title="Introduction to Helm :: Helm">
+    <link href="../css/fontawesome-all.min.css?1751961963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1751961963" rel="stylesheet"></noscript>
+    <link href="../css/auto-complete.css?1751961963" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1751961963" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1751961963" rel="stylesheet">
+    <link href="../css/theme.min.css?1751961963" rel="stylesheet">
+    <link href="../css/format-html.min.css?1751961963" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -81,14 +85,23 @@
             </div>
             <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
               <div class="topbar-content">
-                <div class="topbar-content-wrapper"> 
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#table-of-contents">Table of Contents</a></li>
+    <li><a href="#overview-what-is-helm">Overview: What is Helm?</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#required-tools">Required Tools</a></li>
+    <li><a href="#hands-on-labs">Hands-On Labs</a></li>
+  </ul>
+</nav>
                 </div>
               </div>
             </div>
           </div>
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
             itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Helms</span><meta itemprop="position" content="2"></li>
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Introduction to Helm</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="Introduction to Helm (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -113,8 +126,58 @@
   <header class="headline">
   </header>
 
-<h1 id="helms">Helms</h1>
+<h1 id="introduction-to-helm">Introduction to Helm</h1>
 
+<p><a href="#R-image-6a2c257e555ed17abdc22be7811654e7" class="lightbox-link"><img alt="ocp01" class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../images/helm.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-6a2c257e555ed17abdc22be7811654e7"><img alt="ocp01" class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../images/helm.png"></a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="../helm/index.html#overview-what-is-helm">Overview: What is Helm?</a></li>
+<li><a href="https://helm.sh" rel="external" target="_blank">Official Helm Documentation</a></li>
+<li>Working with Existing Helm Charts
+<ul>
+<li>Adding and Managing Repositories</li>
+<li>Installing a Helm Release</li>
+<li>Using and Customizing <code>values.yaml</code></li>
+<li>Overriding Values with <code>--set</code></li>
+<li>Upgrading an Existing Release</li>
+<li>Rolling Back to a Previous Release</li>
+<li>Viewing Current Values of a Release</li>
+<li>Managing Multiple Environments</li>
+<li>Debugging and Dry Runs</li>
+</ul>
+</li>
+<li>Creating Helm Charts
+<ul>
+<li><a href="https://helm.sh/docs/intro/quickstart/" rel="external" target="_blank">Quick Start Guide</a></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/getting_started/" rel="external" target="_blank">Template Syntax &amp; Structure</a></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/builtin_objects/" rel="external" target="_blank">Built-in Template Objects</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="overview-what-is-helm">Overview: What is Helm?</h2>
+<p>Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before you begin, ensure you have:</p>
+<ul>
+<li>A basic understanding of Kubernetes concepts</li>
+<li>Familiarity with Linux command-line operations</li>
+</ul>
+<h2 id="required-tools">Required Tools</h2>
+<p>To follow along and perform hands-on tasks, you&rsquo;ll need:</p>
+<ul>
+<li>Visual Studio Code (VSCode) or any preferred text editor</li>
+<li>The <code>kubectl</code> CLI to interact with Kubernetes</li>
+<li>The Helm CLI (<code>helm</code>) installed and configured</li>
+</ul>
+<h2 id="hands-on-labs">Hands-On Labs</h2>
+<p>This guide includes practical labs where you&rsquo;ll learn how to:</p>
+<ul>
+<li>Deploy applications using publicly available Helm charts</li>
+<li>Customize deployments by editing chart values</li>
+<li>Create and deploy your own Helm charts</li>
+<li>Use Helm’s core features such as install, upgrade, rollback, and templating</li>
+</ul>
 
   <footer class="footline">
   </footer>
@@ -131,7 +194,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../searchindex.en.js?1751879078";
+          window.index_js_url="../searchindex.en.js?1751961963";
         </script>
         <search><form action="../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -144,12 +207,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../js/auto-complete.js?1751879078" defer></script>
-        <script src="../js/lunr/lunr.min.js?1751879078" defer></script>
-        <script src="../js/lunr/lunr.stemmer.support.min.js?1751879078" defer></script>
-        <script src="../js/lunr/lunr.multi.min.js?1751879078" defer></script>
-        <script src="../js/lunr/lunr.en.min.js?1751879078" defer></script>
-        <script src="../js/search.js?1751879078" defer></script>
+        <script src="../js/auto-complete.js?1751961963" defer></script>
+        <script src="../js/lunr/lunr.min.js?1751961963" defer></script>
+        <script src="../js/lunr/lunr.stemmer.support.min.js?1751961963" defer></script>
+        <script src="../js/lunr/lunr.multi.min.js?1751961963" defer></script>
+        <script src="../js/lunr/lunr.en.min.js?1751961963" defer></script>
+        <script src="../js/search.js?1751961963" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -160,12 +223,11 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
-            <li class="active parent " data-nav-id="/helm/index.html"><a class="padding" href="../helm/index.html">Helms</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
+            <li class="active parent " data-nav-id="/helm/index.html"><a class="padding" href="../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
             <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../helm/toc/index.html">Helm Contents</a></li>
-            <li class="" data-nav-id="/helm/01.helm/index.html"><a class="padding" href="../helm/01.helm/index.html">What is Helm?</a></li>
-            <li class="" data-nav-id="/helm/03-helm/index.html"><a class="padding" href="../helm/03-helm/index.html">Helm Components</a></li>
-            <li class="" data-nav-id="/helm/04.helm/index.html"><a class="padding" href="../helm/04.helm/index.html">Creating Helm Charts </a></li>
-            <li class="" data-nav-id="/helm/05.helm/index.html"><a class="padding" href="../helm/05.helm/index.html">Hosting Helm Charts on GitHub</a></li>
+            <li class="" data-nav-id="/helm/session01/index.html"><a class="padding" href="../helm/session01/index.html">Session 1: Introduction to Helm</a></li>
+            <li class="" data-nav-id="/helm/session02/index.html"><a class="padding" href="../helm/session02/index.html">Session 2: Creating and Hosting Custom Helm Charts</a></li>
+            <li class="" data-nav-id="/helm/helmfunctions/index.html"><a class="padding" href="../helm/helmfunctions/index.html">Helm unctions</a></li>
             <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../helm/additional/index.html">Additional</a></li></ul></li>
           </ul>
         </div>
@@ -220,8 +282,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1751879078" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1751879078" defer></script>
-    <script src="../js/theme.js?1751879078" defer></script>
+    <script src="../js/clipboard.min.js?1751961963" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1751961963" defer></script>
+    <script src="../js/theme.js?1751961963" defer></script>
   </body>
 </html>
