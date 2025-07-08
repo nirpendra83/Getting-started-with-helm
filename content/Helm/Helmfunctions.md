@@ -1,5 +1,5 @@
 +++
-title = "Helm unctions"
+title = "Helm Functions"
 weight = 5
 +++
 

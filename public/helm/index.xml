@@ -29,7 +29,7 @@
       <description>🎯 Session 2: Creating and Hosting Custom Helm Charts In this session, you’ll learn to:&#xA;✅ Create your own Helm charts from scratch ✅ Customize templates and use values effectively ✅ Understand and use _helpers.tpl ✅ Host charts on GitHub as a Helm repository ✅ Apply real-world scenarios (Ingress, ConfigMap, HPA) 🛠️ Step 1: Create a Custom Chart helm create nginx-demo cd nginx-demo This creates the following structure:&#xA;nginx-demo/ ├── charts/ ├── Chart.yaml ├── templates/ │ ├── deployment.yaml │ ├── _helpers.tpl │ ├── hpa.yaml │ ├── ingress.yaml │ ├── service.yaml │ ├── configmap.yaml │ └── tests/ └── values.yaml 📄 What is _helpers.tpl? _helpers.tpl is a special file used to define reusable template snippets using Go’s template syntax. It’s where you can define helper functions like naming conventions or labels, which you can include in other templates using {{ include &#34;name&#34; . }}.</description>
     </item>
     <item>
-      <title>Helm unctions</title>
+      <title>Helm Functions</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/helm/helmfunctions/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/helm/helmfunctions/index.html</guid>
