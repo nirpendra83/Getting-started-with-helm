@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dockerfile :: Tag :: Helm</title>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/tags/dockerfile/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/dockerfile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Session 01</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day01/index.html</link>
+      <pubDate>Sat, 02 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day01/index.html</guid>
+      <description>Learn Docker concepts, architecture, and how to write your first Dockerfile with real examples.</description>
+    </item>
+    <item>
+      <title>.NET Related containers</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/misc/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/misc/index.html</guid>
+      <description>Install ms sql on container docker run -e &#34;ACCEPT_EULA=Y&#34; \ -e &#34;MSSQL_SA_PASSWORD=Redhat@123456&#34; \ -p 1433:1433 \ --name sql2022 \ -d mcr.microsoft.com/mssql/server:2022-latest&#xD;Create a database in Ms sql docker run -it --rm \ --network container:sql2022 \ mcr.microsoft.com/mssql-tools \ /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P &#39;Redhat@123456&#39; -Q &#34;CREATE DATABASE LMSDatabase&#34;&#xD;Check the database if available docker run -it --rm --network container:sql2022 mcr.microsoft.com/mssql-tools /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P &#39;Redhat@123456&#39; 1&gt; SELECT name FROM sys.databases; 2&gt; GO name -------------------------------------------------------------------------------------------------------------------------------- master tempdb model msdb LMSDatabase (5 rows affected)&#xD;{ &#34;ConnectionStrings&#34;: { &#34;DefaultConnection&#34;: &#34;Server=localhost,1433;Database=LMSDatabase;User Id=sa;Password=Redhat@123456;TrustServerCertificate=true&#34; } }&#xD;🚀 Host a Static Website with IIS in Docker (Windows) This guide walks you through creating and deploying a simple static HTML site using IIS inside a Docker container on Windows.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Install Jenkins and Run Docker Compose with Pipeline">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Session 04 :: Helm">
+    <meta name="twitter:description" content="Install Jenkins and Run Docker Compose with Pipeline">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day04/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Session 04 :: Helm">
+    <meta property="og:description" content="Install Jenkins and Run Docker Compose with Pipeline">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Deploy a .NET Core Web API using Docker and Kubernetes">
+    <meta property="article:published_time" content="2025-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-02T00:00:00+00:00">
+    <meta property="article:tag" content="Jenkins">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Docker-Compose">
+    <meta property="article:tag" content="Ci-Cd">
+    <meta property="article:tag" content="Devops">
+    <meta property="article:tag" content="Pipeline">
+    <meta itemprop="name" content="Session 04 :: Helm">
+    <meta itemprop="description" content="Install Jenkins and Run Docker Compose with Pipeline">
+    <meta itemprop="datePublished" content="2025-08-02T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-02T00:00:00+00:00">
+    <meta itemprop="wordCount" content="1224">
+    <meta itemprop="keywords" content="Jenkins,Docker,Docker-Compose,Ci-Cd,Devops,Pipeline">
+    <title>Session 04 :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754201096" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../dotnet/day04/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-cicd-explained">🚀 CI/CD Explained</a></li>
+    <li><a href="#-1-what-is-ci-continuous-integration">🔧 1. What is CI (Continuous Integration)?</a>
+      <ul>
+        <li><a href="#key-concepts">Key Concepts:</a></li>
+        <li><a href="#example-activities">Example Activities:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-2-what-is-cd">📦 2. What is CD?</a>
+      <ul>
+        <li><a href="#-2a-continuous-delivery">✅ 2A. Continuous Delivery</a></li>
+        <li><a href="#-2b-continuous-deployment">🚀 2B. Continuous Deployment</a></li>
+      </ul>
+    </li>
+    <li><a href="#-cicd-pipeline-example-flow">🔁 CI/CD Pipeline Example Flow</a></li>
+    <li><a href="#-benefits-of-cicd">🧠 Benefits of CI/CD</a></li>
+    <li><a href="#-tools-for-cicd">🛠️ Tools for CI/CD</a></li>
+    <li><a href="#-summary-table">🧩 Summary Table</a></li>
+    <li><a href="#-jenkins-setup-and-docker-compose-pipeline-guide">🧰 Jenkins Setup and Docker Compose Pipeline Guide</a></li>
+    <li><a href="#-part-1-install-jenkins-ubuntudebian">🧱 Part 1: Install Jenkins (Ubuntu/Debian)</a>
+      <ul>
+        <li><a href="#-step-1-install-java-required">🔹 Step 1: Install Java (required)</a></li>
+        <li><a href="#-step-2-add-jenkins-repository">🔹 Step 2: Add Jenkins repository</a></li>
+        <li><a href="#-step-3-install-jenkins">🔹 Step 3: Install Jenkins</a></li>
+        <li><a href="#-step-4-start-and-enable-jenkins">🔹 Step 4: Start and Enable Jenkins</a></li>
+      </ul>
+    </li>
+    <li><a href="#-step-5-access-jenkins">📬 Step 5: Access Jenkins</a>
+      <ul>
+        <li><a href="#get-initial-admin-password">Get initial admin password:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-part-2-install-docker--docker-compose">🐳 Part 2: Install Docker &amp; Docker Compose</a>
+      <ul>
+        <li><a href="#install-docker">Install Docker</a></li>
+        <li><a href="#allow-jenkins-to-run-docker">Allow Jenkins to run Docker</a></li>
+      </ul>
+    </li>
+    <li><a href="#-part-3-verify-docker-access-from-jenkins">🧪 Part 3: Verify Docker Access from Jenkins</a>
+      <ul>
+        <li><a href="#test-in-jenkins-via-freestyle-or-pipeline-job">Test in Jenkins (via freestyle or pipeline job):</a></li>
+      </ul>
+    </li>
+    <li><a href="#-part-4-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 4: Sample Jenkins Pipeline to Run Docker Compose App</a></li>
+    <li><a href="#-tips">🧠 Tips</a></li>
+    <li><a href="#-jenkins-declarative-pipeline-guide">💡 Jenkins Declarative Pipeline Guide</a></li>
+    <li><a href="#-1-basic-structure">🧱 1. Basic Structure</a></li>
+    <li><a href="#-2-agent-block">🚀 2. <code>agent</code> Block</a>
+      <ul>
+        <li><a href="#-global-agent">🔹 Global Agent</a></li>
+        <li><a href="#-label-based-agent">🔹 Label-based Agent</a></li>
+        <li><a href="#-docker-agent">🔹 Docker Agent</a></li>
+        <li><a href="#-no-agent-globally-define-per-stage">🔹 No Agent Globally (define per stage)</a></li>
+      </ul>
+    </li>
+    <li><a href="#-3-environment-block">🌍 3. <code>environment</code> Block</a></li>
+    <li><a href="#-4-parameters-block">🧪 4. <code>parameters</code> Block</a></li>
+    <li><a href="#-5-stages-and-steps">🧱 5. <code>stages</code> and <code>steps</code></a></li>
+    <li><a href="#-6-post-block">🧼 6. <code>post</code> Block</a></li>
+    <li><a href="#-7-when-block">🎯 7. <code>when</code> Block</a></li>
+    <li><a href="#-8-parallel-stages">🔀 8. Parallel Stages</a></li>
+    <li><a href="#-9-error-handling">🔧 9. Error Handling</a>
+      <ul>
+        <li><a href="#explicit-failure">Explicit failure:</a></li>
+        <li><a href="#retry-logic">Retry logic:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-10-built-in-variables">🧠 10. Built-in Variables</a></li>
+    <li><a href="#-example-full-declarative-pipeline">📦 Example: Full Declarative Pipeline</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dotnet/index.html"><span itemprop="name">Deploy a .NET Core Web API using Docker and Kubernetes</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 04</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day02/index.html" title="Session 02 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/session02/index.html" title="Deploying Learning Portal with Docker and Kubernetes (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable dotnet" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/ci-cd/index.html">Ci-Cd</a></li>
+    <li><a class="term-link" href="../../tags/devops/index.html">Devops</a></li>
+    <li><a class="term-link" href="../../tags/docker/index.html">Docker</a></li>
+    <li><a class="term-link" href="../../tags/docker-compose/index.html">Docker-Compose</a></li>
+    <li><a class="term-link" href="../../tags/jenkins/index.html">Jenkins</a></li>
+    <li><a class="term-link" href="../../tags/pipeline/index.html">Pipeline</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="session-04">Session 04</h1>
+
+<h2 id="-cicd-explained">🚀 CI/CD Explained</h2>
+<p>CI/CD stands for:</p>
+<ul>
+<li><strong>CI</strong> → Continuous Integration</li>
+<li><strong>CD</strong> → Continuous Delivery / Continuous Deployment</li>
+</ul>
+<p>These are essential practices in <strong>DevOps</strong> that help teams deliver software <strong>faster, more reliably, and with confidence</strong>.</p>
+<hr>
+<h2 id="-1-what-is-ci-continuous-integration">🔧 1. What is CI (Continuous Integration)?</h2>
+<blockquote>
+<p>✅ CI automates the process of merging and testing code <strong>frequently</strong>.</p>
+</blockquote>
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+<li>Developers push code frequently (e.g., daily)</li>
+<li>Code is automatically <strong>built and tested</strong> via pipelines</li>
+<li>Prevents &ldquo;integration hell&rdquo; at release time</li>
+</ul>
+<h3 id="example-activities">Example Activities:</h3>
+<ul>
+<li>Compile/build the app</li>
+<li>Run unit tests</li>
+<li>Lint code</li>
+<li>Package artifacts (e.g., <code>.jar</code>, <code>.tar.gz</code>)</li>
+</ul>
+<hr>
+<h2 id="-2-what-is-cd">📦 2. What is CD?</h2>
+<blockquote>
+<p>CD has two meanings:<br>
+<strong>Continuous Delivery</strong> or <strong>Continuous Deployment</strong></p>
+</blockquote>
+<p>Let’s break it down:</p>
+<hr>
+<h3 id="-2a-continuous-delivery">✅ 2A. Continuous Delivery</h3>
+<blockquote>
+<p>Automates delivery of code to <strong>a staging environment</strong> or <strong>manual approval gate</strong>.</p>
+</blockquote>
+<ul>
+<li>Code is <strong>tested and ready to deploy</strong></li>
+<li>Human approval is needed for production</li>
+<li>Reduces time between development and release</li>
+</ul>
+<p>🧪 Ideal for teams that want <strong>control</strong> and <strong>automated testing</strong>, but <strong>manual production releases</strong>.</p>
+<hr>
+<h3 id="-2b-continuous-deployment">🚀 2B. Continuous Deployment</h3>
+<blockquote>
+<p>Fully automates deployment to <strong>production</strong> with no manual steps.</p>
+</blockquote>
+<ul>
+<li>Every successful commit is deployed to production</li>
+<li>Requires robust <strong>test automation</strong></li>
+<li>Zero manual intervention</li>
+</ul>
+<p>🔁 Ideal for <strong>high-frequency release teams</strong> (e.g., Netflix, Amazon)</p>
+<hr>
+<h2 id="-cicd-pipeline-example-flow">🔁 CI/CD Pipeline Example Flow</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Commit → CI Build → Unit Test → Lint → Integration Test → Package → CD Staging → Manual Approval → CD Production</span></span></code></pre></div>
+<p>In Continuous Deployment, the <strong>Manual Approval</strong> step is removed.</p>
+<hr>
+<h2 id="-benefits-of-cicd">🧠 Benefits of CI/CD</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Benefit</th>
+          <th>CI</th>
+          <th>CD</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Early bug detection</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Faster releases</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Automation</td>
+          <td>✅ Build/Test</td>
+          <td>✅ Deploy/Test</td>
+      </tr>
+      <tr>
+          <td>Developer confidence</td>
+          <td>✅</td>
+          <td>✅</td>
+      </tr>
+      <tr>
+          <td>Customer satisfaction</td>
+          <td></td>
+          <td>✅ Faster feature delivery</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-tools-for-cicd">🛠️ Tools for CI/CD</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Category</th>
+          <th>Popular Tools</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>CI Pipelines</td>
+          <td>Jenkins, GitLab CI, CircleCI</td>
+      </tr>
+      <tr>
+          <td>CD Tools</td>
+          <td>ArgoCD, Spinnaker, Flux</td>
+      </tr>
+      <tr>
+          <td>Testing</td>
+          <td>JUnit, Pytest, Selenium</td>
+      </tr>
+      <tr>
+          <td>Containers</td>
+          <td>Docker, Podman</td>
+      </tr>
+      <tr>
+          <td>Orchestration</td>
+          <td>Kubernetes, Nomad</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-summary-table">🧩 Summary Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Term</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>CI</strong></td>
+          <td>Automate build and test after every commit</td>
+      </tr>
+      <tr>
+          <td><strong>Continuous Delivery</strong></td>
+          <td>Ready to deploy with approval</td>
+      </tr>
+      <tr>
+          <td><strong>Continuous Deployment</strong></td>
+          <td>Automatically deploy to production</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="-jenkins-setup-and-docker-compose-pipeline-guide">🧰 Jenkins Setup and Docker Compose Pipeline Guide</h2>
+<hr>
+<h2 id="-part-1-install-jenkins-ubuntudebian">🧱 Part 1: Install Jenkins (Ubuntu/Debian)</h2>
+<h3 id="-step-1-install-java-required">🔹 Step 1: Install Java (required)</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install openjdk-17-jdk -y</span></span></code></pre></div>
+<h3 id="-step-2-add-jenkins-repository">🔹 Step 2: Add Jenkins repository</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /usr/share/keyrings/jenkins-keyring.asc &gt; /dev/null
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo deb <span style="color:#f92672">[</span>signed-by<span style="color:#f92672">=</span>/usr/share/keyrings/jenkins-keyring.asc<span style="color:#f92672">]</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://pkg.jenkins.io/debian binary/ | sudo tee <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /etc/apt/sources.list.d/jenkins.list &gt; /dev/null</span></span></code></pre></div>
+<h3 id="-step-3-install-jenkins">🔹 Step 3: Install Jenkins</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install jenkins -y</span></span></code></pre></div>
+<h3 id="-step-4-start-and-enable-jenkins">🔹 Step 4: Start and Enable Jenkins</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable jenkins
+</span></span><span style="display:flex;"><span>sudo systemctl start jenkins</span></span></code></pre></div>
+<hr>
+<h2 id="-step-5-access-jenkins">📬 Step 5: Access Jenkins</h2>
+<p>Open in browser:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>http://&lt;your-server-ip&gt;:8080</code></pre></div>
+<h3 id="get-initial-admin-password">Get initial admin password:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cat /var/lib/jenkins/secrets/initialAdminPassword</span></span></code></pre></div>
+<p>Copy that password to the browser and finish setup.</p>
+<hr>
+<h2 id="-part-2-install-docker--docker-compose">🐳 Part 2: Install Docker &amp; Docker Compose</h2>
+<h3 id="install-docker">Install Docker</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install ca-certificates curl gnupg -y
+</span></span><span style="display:flex;"><span>sudo install -m <span style="color:#ae81ff">0755</span> -d /etc/apt/keyrings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;deb [arch=</span><span style="color:#66d9ef">$(</span>dpkg --print-architecture<span style="color:#66d9ef">)</span><span style="color:#e6db74"> \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  signed-by=/etc/apt/keyrings/docker.gpg] \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  https://download.docker.com/linux/ubuntu \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  </span><span style="color:#66d9ef">$(</span>lsb_release -cs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> stable&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y</span></span></code></pre></div>
+<h3 id="allow-jenkins-to-run-docker">Allow Jenkins to run Docker</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo usermod -aG docker jenkins
+</span></span><span style="display:flex;"><span>sudo systemctl restart jenkins</span></span></code></pre></div>
+<blockquote>
+<p>🔁 You may also need to reboot or restart Jenkins for group changes to apply.</p>
+</blockquote>
+<hr>
+<h2 id="-part-3-verify-docker-access-from-jenkins">🧪 Part 3: Verify Docker Access from Jenkins</h2>
+<h3 id="test-in-jenkins-via-freestyle-or-pipeline-job">Test in Jenkins (via freestyle or pipeline job):</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent any
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Docker Test&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        sh <span style="color:#e6db74">&#39;docker version&#39;</span>
+</span></span><span style="display:flex;"><span>        sh <span style="color:#e6db74">&#39;docker info&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-part-4-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 4: Sample Jenkins Pipeline to Run Docker Compose App</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  environment <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    COMPOSE_PROJECT_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${WORKSPACE}/myapp&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Checkout&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        git <span style="color:#e6db74">&#39;https://github.com/nirpendra83/docker-compose.git&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build and Deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        dir<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;myapp&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          sh <span style="color:#e6db74">&#39;docker-compose down --volumes || true&#39;</span>
+</span></span><span style="display:flex;"><span>          sh <span style="color:#e6db74">&#39;docker-compose up -d --build&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Health Check&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        sh <span style="color:#e6db74">&#39;sleep 5 &amp;&amp; curl -f http://localhost:5000&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Shutdown&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        dir<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;myapp&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          sh <span style="color:#e6db74">&#39;docker-compose down&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    always <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#39;✅ Pipeline complete. Clean up done.&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-tips">🧠 Tips</h2>
+<ul>
+<li>Add SSH credentials if cloning from private Git repositories</li>
+<li>Use <code>docker-compose logs</code> for troubleshooting</li>
+<li>Avoid using <code>localhost</code> for health checks if Jenkins runs in Docker</li>
+</ul>
+<hr>
+<p>Let me know if you want a <code>.sh</code> script to automate this or a <code>Jenkinsfile</code> zipped with the <code>myapp/</code> project! I can generate and upload it for you.</p>
+<h2 id="-jenkins-declarative-pipeline-guide">💡 Jenkins Declarative Pipeline Guide</h2>
+<p>The <strong>Declarative Pipeline</strong> in Jenkins is a structured way to define CI/CD workflows using a <code>Jenkinsfile</code>. It is easier to read, validate, and maintain compared to Scripted Pipelines.</p>
+<hr>
+<h2 id="-1-basic-structure">🧱 1. Basic Structure</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent any
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Example&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#39;Hello World&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-2-agent-block">🚀 2. <code>agent</code> Block</h2>
+<p>The <code>agent</code> defines <strong>where</strong> the pipeline or a specific stage runs.</p>
+<h3 id="-global-agent">🔹 Global Agent</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>agent any</span></span></code></pre></div>
+<h3 id="-label-based-agent">🔹 Label-based Agent</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>agent <span style="color:#f92672">{</span> label <span style="color:#e6db74">&#39;docker-node&#39;</span> <span style="color:#f92672">}</span></span></span></code></pre></div>
+<h3 id="-docker-agent">🔹 Docker Agent</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>agent <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  docker <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    image <span style="color:#e6db74">&#39;python:3.10&#39;</span>
+</span></span><span style="display:flex;"><span>    args <span style="color:#e6db74">&#39;-p 5000:5000&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<h3 id="-no-agent-globally-define-per-stage">🔹 No Agent Globally (define per stage)</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent none
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      agent any
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;Building...&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-3-environment-block">🌍 3. <code>environment</code> Block</h2>
+<p>Defines environment variables, globally or per stage.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>environment <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  MY_ENV <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;production&#39;</span>
+</span></span><span style="display:flex;"><span>  PATH <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/custom/bin:${env.PATH}&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-4-parameters-block">🧪 4. <code>parameters</code> Block</h2>
+<p>Used for user input when starting a pipeline manually.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>parameters <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  string<span style="color:#f92672">(</span>name: <span style="color:#e6db74">&#39;VERSION&#39;</span><span style="color:#f92672">,</span> defaultValue: <span style="color:#e6db74">&#39;1.0.0&#39;</span><span style="color:#f92672">,</span> description: <span style="color:#e6db74">&#39;Release version&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  booleanParam<span style="color:#f92672">(</span>name: <span style="color:#e6db74">&#39;RUN_TESTS&#39;</span><span style="color:#f92672">,</span> defaultValue: <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> description: <span style="color:#e6db74">&#39;Run tests?&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<p>Use with: <code>${params.VERSION}</code>, <code>${params.RUN_TESTS}</code></p>
+<hr>
+<h2 id="-5-stages-and-steps">🧱 5. <code>stages</code> and <code>steps</code></h2>
+<ul>
+<li><strong>Stages</strong> are logical divisions like &ldquo;Build&rdquo;, &ldquo;Test&rdquo;, &ldquo;Deploy&rdquo;</li>
+<li><strong>Steps</strong> are shell commands or Jenkins actions</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#34;Building version ${params.VERSION}&#34;</span>
+</span></span><span style="display:flex;"><span>      sh <span style="color:#e6db74">&#39;make build&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-6-post-block">🧼 6. <code>post</code> Block</h2>
+<p>Defines <strong>actions to run after the pipeline or a stage</strong>, based on outcome.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  always <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;Always runs&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  success <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;Runs on success&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  failure <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;Runs on failure&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  unstable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;Runs if build is unstable&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  changed <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#39;Runs if result changed since last run&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-7-when-block">🎯 7. <code>when</code> Block</h2>
+<p>Run a stage only if conditions are met.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  when <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    branch <span style="color:#e6db74">&#39;main&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    sh <span style="color:#e6db74">&#39;./deploy.sh&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<p>Other options:</p>
+<ul>
+<li><code>expression { return params.RUN_TESTS }</code></li>
+<li><code>environment name: 'ENV_VAR', value: 'prod'</code></li>
+<li><code>not</code>, <code>anyOf</code>, <code>allOf</code> for combining conditions</li>
+</ul>
+<hr>
+<h2 id="-8-parallel-stages">🔀 8. Parallel Stages</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Test Suite&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  parallel <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Unit Tests&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span> sh <span style="color:#e6db74">&#39;pytest tests/unit&#39;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Integration Tests&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span> sh <span style="color:#e6db74">&#39;pytest tests/integration&#39;</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-9-error-handling">🔧 9. Error Handling</h2>
+<h3 id="explicit-failure">Explicit failure:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  error<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Stopping pipeline due to failure&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<h3 id="retry-logic">Retry logic:</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  retry<span style="color:#f92672">(</span><span style="color:#ae81ff">3</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    sh <span style="color:#e6db74">&#39;./sometimes-fails.sh&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<h2 id="-10-built-in-variables">🧠 10. Built-in Variables</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Variable</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>env.BUILD_ID</code></td>
+          <td>Unique ID for the current build</td>
+      </tr>
+      <tr>
+          <td><code>env.BUILD_NUMBER</code></td>
+          <td>Build number</td>
+      </tr>
+      <tr>
+          <td><code>env.JOB_NAME</code></td>
+          <td>Name of the job</td>
+      </tr>
+      <tr>
+          <td><code>params.&lt;name&gt;</code></td>
+          <td>Access input parameters</td>
+      </tr>
+      <tr>
+          <td><code>env.WORKSPACE</code></td>
+          <td>File path of the working directory</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-example-full-declarative-pipeline">📦 Example: Full Declarative Pipeline</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  parameters <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    string<span style="color:#f92672">(</span>name: <span style="color:#e6db74">&#39;VERSION&#39;</span><span style="color:#f92672">,</span> defaultValue: <span style="color:#e6db74">&#39;1.0.0&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  environment <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    DEPLOY_ENV <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;staging&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        echo <span style="color:#e6db74">&#34;Building version ${params.VERSION}&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Test&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        sh <span style="color:#e6db74">&#39;./run_tests.sh&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      when <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        branch <span style="color:#e6db74">&#39;main&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        sh <span style="color:#e6db74">&#39;./deploy.sh ${params.VERSION}&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    success <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#39;✅ Build succeeded.&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    failure <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#39;❌ Build failed.&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    always <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#39;🧹 Cleaning up...&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<hr>
+<blockquote>
+<p>✅ <strong>Declarative pipelines</strong> are YAML-like Groovy configurations that make your Jenkins workflows repeatable, testable, and easy to maintain.</p>
+</blockquote>
+<p>Let me know if you want this converted to a downloadable <code>.md</code> file or added to a GitHub repo template.</p>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1754201096";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754201096" defer></script>
+        <script src="../../js/search.js?1754201096" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
+            <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../../dotnet/planning.md/index.html">Planning</a></li>
+            <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="" data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../../dotnet/day01/index.html">Session 01</a></li>
+            <li class="" data-nav-id="/dotnet/day02/index.html"><a class="padding" href="../../dotnet/day02/index.html">Session 02</a></li>
+            <li class="active " data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
+            <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
+            <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../dotnet/day04/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1754201096" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754201096" defer></script>
+    <script src="../../js/theme.js?1754201096" defer></script>
+  </body>
+</html>

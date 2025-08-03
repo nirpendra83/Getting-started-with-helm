@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pipeline :: Tag :: Helm</title>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/tags/pipeline/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/pipeline/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Session 04</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day04/index.html</link>
+      <pubDate>Sat, 02 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day04/index.html</guid>
+      <description>Install Jenkins and Run Docker Compose with Pipeline</description>
+    </item>
+  </channel>
+</rss>

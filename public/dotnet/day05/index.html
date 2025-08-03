@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Session 05 :: Helm">
+    <meta name="twitter:description" content="Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day05/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Session 05 :: Helm">
+    <meta property="og:description" content="Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Deploy a .NET Core Web API using Docker and Kubernetes">
+    <meta property="article:published_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:tag" content="Clean Architecture">
+    <meta property="article:tag" content="Dotnet">
+    <meta property="article:tag" content="Angular">
+    <meta property="article:tag" content="Postgresql">
+    <meta property="article:tag" content="Full-Stack">
+    <meta property="article:tag" content="Starter-Kit">
+    <meta itemprop="name" content="Session 05 :: Helm">
+    <meta itemprop="description" content="Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.">
+    <meta itemprop="datePublished" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="wordCount" content="178">
+    <meta itemprop="keywords" content="Clean Architecture,Dotnet,Angular,Postgresql,Full-Stack,Starter-Kit,Devops">
+    <title>Session 05 :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754201096" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../dotnet/day05/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#project-linkhttpsgithubcomnirpendra83clean-architecture-docker-dotnet-angulargit"><a href="https://github.com/nirpendra83/clean-architecture-docker-dotnet-angular.git">Project Link</a></a></li>
+    <li><a href="#-what-is-this">✨ What is this?</a></li>
+    <li><a href="#-why-clean-architecture">🏗️ Why Clean Architecture?</a>
+      <ul>
+        <li><a href="#benefits">Benefits:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-application-demo">🚀 Application Demo</a></li>
+    <li><a href="#-technologies-used">🔧 Technologies Used</a></li>
+    <li><a href="#-getting-started">🚀 Getting Started</a>
+      <ul>
+        <li><a href="#-clone-the-repository">🔃 Clone the Repository</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dotnet/index.html"><span itemprop="name">Deploy a .NET Core Web API using Docker and Kubernetes</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 05</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/planning.md/index.html" title="Planning (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day01/index.html" title="Session 01 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable dotnet" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/angular/index.html">Angular</a></li>
+    <li><a class="term-link" href="../../tags/clean-architecture/index.html">Clean Architecture</a></li>
+    <li><a class="term-link" href="../../tags/devops/index.html">Devops</a></li>
+    <li><a class="term-link" href="../../tags/dotnet/index.html">Dotnet</a></li>
+    <li><a class="term-link" href="../../tags/full-stack/index.html">Full-Stack</a></li>
+    <li><a class="term-link" href="../../tags/postgresql/index.html">Postgresql</a></li>
+    <li><a class="term-link" href="../../tags/starter-kit/index.html">Starter-Kit</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="session-05">Session 05</h1>
+
+<h2 id="project-linkhttpsgithubcomnirpendra83clean-architecture-docker-dotnet-angulargit"><a href="https://github.com/nirpendra83/clean-architecture-docker-dotnet-angular.git" rel="external" target="_blank">Project Link</a></h2>
+<h2 id="-what-is-this">✨ What is this?</h2>
+<p>A <strong>production-ready full-stack starter kit</strong> built using modern technologies and best practices:</p>
+<ul>
+<li><strong>Frontend</strong>: Angular 20 with Signals, Material Design, and TailwindCSS</li>
+<li><strong>Backend</strong>: .NET 9 API implementing Clean Architecture</li>
+<li><strong>Database</strong>: PostgreSQL 16 using Dapper ORM</li>
+<li><strong>DevOps</strong>: Docker, GitHub Actions, and NGINX</li>
+</ul>
+<blockquote>
+<p>Perfect for developers who want to focus on <strong>business logic</strong> instead of spending time setting up infrastructure.</p>
+</blockquote>
+<hr>
+<h2 id="-why-clean-architecture">🏗️ Why Clean Architecture?</h2>
+<p>Clean Architecture helps in creating maintainable, testable, and scalable applications by separating concerns and enforcing clear boundaries between layers.</p>
+<h3 id="benefits">Benefits:</h3>
+<ul>
+<li>Independent of frameworks and UI</li>
+<li>Emphasizes testability and loose coupling</li>
+<li>Simplifies onboarding and feature extension</li>
+<li>Ensures long-term maintainability</li>
+</ul>
+<hr>
+<h2 id="-application-demo">🚀 Application Demo</h2>
+<p>A <strong>Contact Management Application</strong> with:</p>
+<ul>
+<li>Role-Based Access Control (RBAC)</li>
+<li>Secure API endpoints</li>
+<li>Modular and extensible design</li>
+</ul>
+<hr>
+<h2 id="-technologies-used">🔧 Technologies Used</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Layer</th>
+          <th>Stack</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Frontend</td>
+          <td>Angular 20, Signals, TailwindCSS, Material</td>
+      </tr>
+      <tr>
+          <td>Backend</td>
+          <td>.NET 9, Clean Architecture, Dapper ORM</td>
+      </tr>
+      <tr>
+          <td>Database</td>
+          <td>PostgreSQL 16</td>
+      </tr>
+      <tr>
+          <td>DevOps</td>
+          <td>Docker, GitHub Actions, NGINX</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-getting-started">🚀 Getting Started</h2>
+<h3 id="-clone-the-repository">🔃 Clone the Repository</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/nitin27may/clean-architecture-docker-dotnet-angular.git clean-app
+</span></span><span style="display:flex;"><span>cd clean-app</span></span></code></pre></div>
+<ul>
+<li>Create .env File</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cp .env.example .env</span></span></code></pre></div>
+<ul>
+<li>Run the below command</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker-compose up
+</span></span><span style="display:flex;"><span>docker-compose up -d</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1754201096";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754201096" defer></script>
+        <script src="../../js/search.js?1754201096" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
+            <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../../dotnet/planning.md/index.html">Planning</a></li>
+            <li class="active " data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="" data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../../dotnet/day01/index.html">Session 01</a></li>
+            <li class="" data-nav-id="/dotnet/day02/index.html"><a class="padding" href="../../dotnet/day02/index.html">Session 02</a></li>
+            <li class="" data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
+            <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
+            <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../dotnet/day05/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1754201096" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754201096" defer></script>
+    <script src="../../js/theme.js?1754201096" defer></script>
+  </body>
+</html>

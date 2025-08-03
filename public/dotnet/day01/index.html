@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Learn Docker concepts, architecture, and how to write your first Dockerfile with real examples.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Session 01 :: Helm">
+    <meta name="twitter:description" content="Learn Docker concepts, architecture, and how to write your first Dockerfile with real examples.">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day01/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Session 01 :: Helm">
+    <meta property="og:description" content="Learn Docker concepts, architecture, and how to write your first Dockerfile with real examples.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Deploy a .NET Core Web API using Docker and Kubernetes">
+    <meta property="article:published_time" content="2025-08-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-02T00:00:00+00:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Dockerfile">
+    <meta property="article:tag" content="Containers">
+    <meta property="article:tag" content="Devops">
+    <meta property="article:tag" content="Tutorial">
+    <meta itemprop="name" content="Session 01 :: Helm">
+    <meta itemprop="description" content="Learn Docker concepts, architecture, and how to write your first Dockerfile with real examples.">
+    <meta itemprop="datePublished" content="2025-08-02T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-02T00:00:00+00:00">
+    <meta itemprop="wordCount" content="1507">
+    <meta itemprop="keywords" content="Docker,Dockerfile,Containers,Devops,Tutorial">
+    <title>Session 01 :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754201096" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../dotnet/day01/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-what-is-a-container">📦 What is a Container?</a>
+      <ul>
+        <li><a href="#-think-of-a-container-as">🧊 Think of a Container as:</a></li>
+      </ul>
+    </li>
+    <li><a href="#-container-vs-virtual-machine-vm">🆚 Container vs Virtual Machine (VM)</a></li>
+    <li><a href="#-container-architecture-simplified">📸 Container Architecture (Simplified)</a></li>
+    <li><a href="#-why-containers">✅ Why Containers?</a></li>
+    <li><a href="#-real-world-example">📌 Real-world Example</a></li>
+    <li><a href="#-docker-and-dockerfile--complete-beginners-guide">🐳 Docker and Dockerfile – Complete Beginner&rsquo;s Guide</a></li>
+    <li><a href="#-introduction">📌 Introduction</a></li>
+    <li><a href="#-what-is-docker">🔍 What is Docker?</a>
+      <ul>
+        <li><a href="#-key-benefits">✅ Key Benefits</a></li>
+      </ul>
+    </li>
+    <li><a href="#-docker-architecture">⚙️ Docker Architecture</a></li>
+    <li><a href="#check-the-images">Check the images</a></li>
+    <li><a href="#-run-docker-container">🚀 Run Docker Container</a></li>
+    <li><a href="#-check-running-and-stopped-containers">📋 Check Running and Stopped Containers</a></li>
+    <li><a href="#-container-logs">📂 Container Logs</a></li>
+    <li><a href="#-docker-hub-login">🔐 Docker Hub Login</a></li>
+    <li><a href="#-tag-and-push-image-to-docker-hub">☁️ Tag and Push Image to Docker Hub</a>
+      <ul>
+        <li><a href="#step-1-tag-the-image">Step 1: Tag the Image</a></li>
+        <li><a href="#step-2-push-the-image">Step 2: Push the Image</a></li>
+      </ul>
+    </li>
+    <li><a href="#-docker-cleanup-commands">🧹 Docker Cleanup Commands</a></li>
+    <li><a href="#tasks-01">Tasks 01</a></li>
+    <li><a href="#task-02">Task 02</a></li>
+    <li><a href="#-what-is-a-dockerfile">🧱 What is a Dockerfile?</a>
+      <ul>
+        <li><a href="#-common-instructions">🔧 Common Instructions</a></li>
+      </ul>
+    </li>
+    <li><a href="#-sample-project--python-app-in-docker">🏗️ Sample Project – Python App in Docker</a>
+      <ul>
+        <li><a href="#-directory-structure">📁 Directory Structure</a></li>
+        <li><a href="#-apppy">📝 app.py</a></li>
+        <li><a href="#-dockerfile">🛠️ Dockerfile</a></li>
+      </ul>
+    </li>
+    <li><a href="#-build-and-run-the-docker-container">🧪 Build and Run the Docker Container</a>
+      <ul>
+        <li><a href="#-step-1-build-the-image">🔨 Step 1: Build the Image</a></li>
+        <li><a href="#-step-2-run-the-container">🚀 Step 2: Run the Container</a></li>
+        <li><a href="#-output">✅ Output</a></li>
+      </ul>
+    </li>
+    <li><a href="#-docker-cleanup-commands-1">🧹 Docker Cleanup Commands</a></li>
+    <li><a href="#-docker-cmd-vs-entrypoint-whats-the-difference">🆚 Docker CMD vs ENTRYPOINT: What’s the Difference?</a>
+      <ul>
+        <li><a href="#-cmd">🔹 CMD</a></li>
+        <li><a href="#-entrypoint">🔸 ENTRYPOINT</a></li>
+        <li><a href="#-using-entrypoint-with-cmd">🔄 Using ENTRYPOINT with CMD</a></li>
+        <li><a href="#-shell-vs-exec-form">⚠️ Shell vs Exec Form</a></li>
+        <li><a href="#-summary">🧠 Summary</a></li>
+      </ul>
+    </li>
+    <li><a href="#-dockerfile-copy-vs-add--whats-the-difference">📂 Dockerfile: COPY vs ADD – What’s the Difference?</a>
+      <ul>
+        <li><a href="#-copy">🟦 COPY</a></li>
+        <li><a href="#-add">🟨 ADD</a></li>
+      </ul>
+    </li>
+    <li><a href="#-copy-vs-add-feature-comparison">⚖️ COPY vs ADD: Feature Comparison</a></li>
+    <li><a href="#-best-practice">🧠 Best Practice</a></li>
+    <li><a href="#-example-when-to-use-what">💡 Example: When to Use What</a></li>
+    <li><a href="#-docker-multi-stage-builds">🏗️ Docker Multi-Stage Builds</a></li>
+    <li><a href="#-what-are-multi-stage-builds">🔍 What Are Multi-Stage Builds?</a></li>
+    <li><a href="#-why-use-multi-stage-builds">✅ Why Use Multi-Stage Builds?</a></li>
+    <li><a href="#-sample-dockerfile-go-application">🛠️ Sample Dockerfile: Go Application</a></li>
+    <li><a href="#-step-by-step-explanation">📋 Step-by-Step Explanation</a></li>
+    <li><a href="#-advantages">⚖️ Advantages</a></li>
+    <li><a href="#-additional-notes">🔧 Additional Notes</a></li>
+    <li><a href="#container-ui-tool-portainerhttpsdocsportaineriostartinstall-ce">Container UI Tool <a href="https://docs.portainer.io/start/install-ce">Portainer</a></a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dotnet/index.html"><span itemprop="name">Deploy a .NET Core Web API using Docker and Kubernetes</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 01</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day05/index.html" title="Session 05 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day02/index.html" title="Session 02 (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable dotnet" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/containers/index.html">Containers</a></li>
+    <li><a class="term-link" href="../../tags/devops/index.html">Devops</a></li>
+    <li><a class="term-link" href="../../tags/docker/index.html">Docker</a></li>
+    <li><a class="term-link" href="../../tags/dockerfile/index.html">Dockerfile</a></li>
+    <li><a class="term-link" href="../../tags/tutorial/index.html">Tutorial</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="session-01">Session 01</h1>
+
+<h2 id="-what-is-a-container">📦 What is a Container?</h2>
+<p>A <strong>container</strong> is a <strong>lightweight, portable, and isolated runtime environment</strong> that bundles:</p>
+<ul>
+<li>Your application code</li>
+<li>All necessary dependencies (libraries, binaries, configs)</li>
+<li>Environment variables</li>
+<li>A minimal runtime</li>
+</ul>
+<p>Containers ensure that your application <strong>runs consistently</strong> across different environments — whether on a developer’s laptop, a test server, or in production.</p>
+<hr>
+<h3 id="-think-of-a-container-as">🧊 Think of a Container as:</h3>
+<blockquote>
+<p>A portable box that contains everything your app needs to run — no matter where you move it, it will work the same.</p>
+</blockquote>
+<hr>
+<h2 id="-container-vs-virtual-machine-vm">🆚 Container vs Virtual Machine (VM)</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Container</th>
+          <th>Virtual Machine (VM)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Startup Time</td>
+          <td>Seconds</td>
+          <td>Minutes</td>
+      </tr>
+      <tr>
+          <td>Size</td>
+          <td>Lightweight (MBs)</td>
+          <td>Heavy (GBs)</td>
+      </tr>
+      <tr>
+          <td>OS Isolation</td>
+          <td>Shares host OS kernel</td>
+          <td>Has full guest OS</td>
+      </tr>
+      <tr>
+          <td>Performance</td>
+          <td>Near-native</td>
+          <td>Slight overhead</td>
+      </tr>
+      <tr>
+          <td>Use Case</td>
+          <td>Microservices, cloud-native</td>
+          <td>Full OS apps, legacy support</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-container-architecture-simplified">📸 Container Architecture (Simplified)</h2>
+<div class="highlight wrap-code"><pre tabindex="0"><code>+----------------------------+
+|        Host OS             |
+|  +----------------------+  |
+|  | Container Runtime     |  |
+|  |  +------------------+ | |
+|  |  |   Container App   | | |
+|  |  +------------------+ | |
+|  +----------------------+  |
++----------------------------+</code></pre></div>
+<hr>
+<h2 id="-why-containers">✅ Why Containers?</h2>
+<ul>
+<li><strong>Portability</strong>: Run your app anywhere (laptop, server, cloud)</li>
+<li><strong>Consistency</strong>: Eliminate &ldquo;it works on my machine&rdquo; issues</li>
+<li><strong>Isolation</strong>: Keep apps independent and secure</li>
+<li><strong>Efficiency</strong>: Use fewer resources than virtual machines</li>
+<li><strong>Scalability</strong>: Easily scale containers in/out based on demand</li>
+</ul>
+<hr>
+<h2 id="-real-world-example">📌 Real-world Example</h2>
+<p>Suppose you&rsquo;re developing a Python app with Flask that needs Python 3.10 and specific libraries.</p>
+<p>If you run it on a machine without those exact versions, it may fail.</p>
+<p>With a <strong>container</strong>, you bundle Python 3.10, Flask, and your app into one image. That image runs <strong>the same way</strong> on any Docker-enabled system.</p>
+<hr>
+<blockquote>
+<p>💡 Containers are essential to modern DevOps, CI/CD, and cloud-native application development.</p>
+</blockquote>
+<h2 id="-docker-and-dockerfile--complete-beginners-guide">🐳 Docker and Dockerfile – Complete Beginner&rsquo;s Guide</h2>
+<h2 id="-introduction">📌 Introduction</h2>
+<p>Docker is a platform that allows you to <strong>build, ship, and run</strong> applications in lightweight, portable <strong>containers</strong>. This guide walks you through:</p>
+<ul>
+<li>What Docker is</li>
+<li>Why it’s useful</li>
+<li>Docker architecture</li>
+<li>Writing your first Dockerfile</li>
+<li>Building and running a container</li>
+</ul>
+<hr>
+<h2 id="-what-is-docker">🔍 What is Docker?</h2>
+<p>Docker is an open-source tool that helps developers:</p>
+<ul>
+<li>Package applications and dependencies into a <strong>container</strong></li>
+<li>Run containers <strong>consistently</strong> across environments</li>
+<li>Simplify deployment and scaling</li>
+</ul>
+<h3 id="-key-benefits">✅ Key Benefits</h3>
+<ul>
+<li>Environment consistency across dev, test, and prod</li>
+<li>Lightweight compared to virtual machines</li>
+<li>Fast startup and shutdown</li>
+<li>Isolated apps (better security and control)</li>
+</ul>
+<hr>
+<h2 id="-docker-architecture">⚙️ Docker Architecture</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Docker Engine</strong></td>
+          <td>Core runtime to build and run containers</td>
+      </tr>
+      <tr>
+          <td><strong>Docker Images</strong></td>
+          <td>Read-only templates used to create containers</td>
+      </tr>
+      <tr>
+          <td><strong>Docker Containers</strong></td>
+          <td>Running instances of Docker images</td>
+      </tr>
+      <tr>
+          <td><strong>Dockerfile</strong></td>
+          <td>A script to define how to build an image</td>
+      </tr>
+      <tr>
+          <td><strong>Docker Hub</strong></td>
+          <td>A public registry to host and share images</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="check-the-images">Check the images</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker images</span></span></code></pre></div>
+<h2 id="-run-docker-container">🚀 Run Docker Container</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run &lt;Image name&gt;</span></span></code></pre></div>
+<h2 id="-check-running-and-stopped-containers">📋 Check Running and Stopped Containers</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps            <span style="color:#75715e"># Running containers</span>
+</span></span><span style="display:flex;"><span>docker ps -a         <span style="color:#75715e"># All containers</span></span></span></code></pre></div>
+<hr>
+<h2 id="-container-logs">📂 Container Logs</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker logs &lt;container_id&gt;</span></span></code></pre></div>
+<hr>
+<h2 id="-docker-hub-login">🔐 Docker Hub Login</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker login</span></span></code></pre></div>
+<p>Provide your Docker Hub username and password.</p>
+<hr>
+<h2 id="-tag-and-push-image-to-docker-hub">☁️ Tag and Push Image to Docker Hub</h2>
+<h3 id="step-1-tag-the-image">Step 1: Tag the Image</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker tag my-first-docker-app your_dockerhub_username/my-first-docker-app:latest</span></span></code></pre></div>
+<h3 id="step-2-push-the-image">Step 2: Push the Image</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker push your_dockerhub_username/my-first-docker-app:latest</span></span></code></pre></div>
+<p>You can now access it on <a href="https://hub.docker.com" rel="external" target="_blank">https://hub.docker.com</a>.</p>
+<hr>
+<h2 id="-docker-cleanup-commands">🧹 Docker Cleanup Commands</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker rm &lt;container_id&gt;          <span style="color:#75715e"># Remove container</span>
+</span></span><span style="display:flex;"><span>docker rmi &lt;image_id&gt;             <span style="color:#75715e"># Remove image</span>
+</span></span><span style="display:flex;"><span>docker system prune -f            <span style="color:#75715e"># Remove unused data</span></span></span></code></pre></div>
+<h2 id="tasks-01">Tasks 01</h2>
+<ul>
+<li>Create a mysql db container</li>
+<li>check the logs if this is failed</li>
+<li>fix and rerun</li>
+<li>try to Access you db</li>
+<li>Convert this running container into an image and push to dockerhub</li>
+</ul>
+<h2 id="task-02">Task 02</h2>
+<ul>
+<li>Create a container with volumes</li>
+<li>Create a container to expose the app to access from browser .</li>
+</ul>
+<p><strong>Conceptual Flow:</strong></p>
+<p>Dockerfile → Docker Image → Docker Container</p>
+<hr>
+<h2 id="-what-is-a-dockerfile">🧱 What is a Dockerfile?</h2>
+<p>A <strong>Dockerfile</strong> is a text file that contains <strong>step-by-step instructions</strong> on how to create a Docker image.</p>
+<h3 id="-common-instructions">🔧 Common Instructions</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Instruction</th>
+          <th>Purpose</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>FROM</code></td>
+          <td>Base image to build from</td>
+      </tr>
+      <tr>
+          <td><code>WORKDIR</code></td>
+          <td>Set working directory</td>
+      </tr>
+      <tr>
+          <td><code>COPY</code></td>
+          <td>Copy files from host to container</td>
+      </tr>
+      <tr>
+          <td><code>RUN</code></td>
+          <td>Execute commands during image build</td>
+      </tr>
+      <tr>
+          <td><code>CMD</code></td>
+          <td>Default command to run on start</td>
+      </tr>
+      <tr>
+          <td><code>EXPOSE</code></td>
+          <td>Document container&rsquo;s port</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-sample-project--python-app-in-docker">🏗️ Sample Project – Python App in Docker</h2>
+<h3 id="-directory-structure">📁 Directory Structure</h3>
+<p>myapp/<br>
+├── app.py<br>
+└── Dockerfile</p>
+<h3 id="-apppy">📝 app.py</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Hello from Docker!&#34;</span>)</span></span></code></pre></div>
+<h3 id="-dockerfile">🛠️ Dockerfile</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Use base image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> python:3.10-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Set working directory</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Copy app code</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> app.py .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Run the script</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;app.py&#34;</span>]</span></span></code></pre></div>
+<hr>
+<h2 id="-build-and-run-the-docker-container">🧪 Build and Run the Docker Container</h2>
+<h3 id="-step-1-build-the-image">🔨 Step 1: Build the Image</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t my-first-docker-app .</span></span></code></pre></div>
+<h3 id="-step-2-run-the-container">🚀 Step 2: Run the Container</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run my-first-docker-app</span></span></code></pre></div>
+<h3 id="-output">✅ Output</h3>
+<p>Hello from Docker!</p>
+<hr>
+<h2 id="-docker-cleanup-commands-1">🧹 Docker Cleanup Commands</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker ps -a               <span style="color:#75715e"># List all containers</span>
+</span></span><span style="display:flex;"><span>docker rm &lt;container-id&gt;   <span style="color:#75715e"># Remove a specific container</span>
+</span></span><span style="display:flex;"><span>docker images              <span style="color:#75715e"># List all images</span>
+</span></span><span style="display:flex;"><span>docker rmi &lt;image-id&gt;      <span style="color:#75715e"># Remove a specific image</span></span></span></code></pre></div>
+<hr>
+<h2 id="-docker-cmd-vs-entrypoint-whats-the-difference">🆚 Docker CMD vs ENTRYPOINT: What’s the Difference?</h2>
+<p>When defining a Dockerfile, you typically use either <strong>CMD</strong> or <strong>ENTRYPOINT</strong> to specify what command should be run when the container starts.</p>
+<p>While they may look similar, <strong>they serve different purposes</strong> and behave differently.</p>
+<hr>
+<h3 id="-cmd">🔹 CMD</h3>
+<ul>
+<li>Provides <strong>default arguments</strong> for the container’s execution.</li>
+<li><strong>Can be overridden</strong> by command-line arguments passed with <code>docker run</code>.</li>
+<li>Only <strong>one CMD instruction</strong> is allowed in a Dockerfile (if multiple are present, only the last is used).</li>
+</ul>
+<h4 id="-example">✅ Example</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ubuntu</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;echo&#34;</span>, <span style="color:#e6db74">&#34;Hello from CMD&#34;</span>]</span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t cmd-example .
+</span></span><span style="display:flex;"><span>docker run cmd-example           <span style="color:#75715e"># Output: Hello from CMD</span>
+</span></span><span style="display:flex;"><span>docker run cmd-example echo Hi  <span style="color:#75715e"># Output: Hi</span></span></span></code></pre></div>
+<hr>
+<h3 id="-entrypoint">🔸 ENTRYPOINT</h3>
+<ul>
+<li>Defines the <strong>main command</strong> that <strong>cannot be overridden</strong> by arguments passed in <code>docker run</code>.</li>
+<li>It <strong>always runs</strong>, and CLI arguments are passed as parameters to it.</li>
+</ul>
+<h4 id="-example-1">✅ Example</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ubuntu</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;echo&#34;</span>, <span style="color:#e6db74">&#34;Hello from ENTRYPOINT&#34;</span>]</span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t entrypoint-example .
+</span></span><span style="display:flex;"><span>docker run entrypoint-example             <span style="color:#75715e"># Output: Hello from ENTRYPOINT</span>
+</span></span><span style="display:flex;"><span>docker run entrypoint-example User123     <span style="color:#75715e"># Output: Hello from ENTRYPOINT User123</span></span></span></code></pre></div>
+<hr>
+<h3 id="-using-entrypoint-with-cmd">🔄 Using ENTRYPOINT with CMD</h3>
+<p>You can use <strong>ENTRYPOINT</strong> to define the main command and <strong>CMD</strong> to provide default parameters.</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> ubuntu</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;echo&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;Hello from both&#34;</span>]</span></span></code></pre></div>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run both-example                <span style="color:#75715e"># Output: Hello from both</span>
+</span></span><span style="display:flex;"><span>docker run both-example <span style="color:#e6db74">&#34;Custom msg&#34;</span>  <span style="color:#75715e"># Output: Custom msg</span></span></span></code></pre></div>
+<hr>
+<h3 id="-shell-vs-exec-form">⚠️ Shell vs Exec Form</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Form</th>
+          <th>Syntax</th>
+          <th>Behavior</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Shell</td>
+          <td><code>CMD echo &quot;Hello&quot;</code></td>
+          <td>Runs in shell <code>/bin/sh -c</code>, allows env substitution</td>
+      </tr>
+      <tr>
+          <td>Exec</td>
+          <td><code>CMD [&quot;echo&quot;, &quot;Hello&quot;]</code></td>
+          <td>No shell processing, no env var substitution</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h3 id="-summary">🧠 Summary</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>CMD</th>
+          <th>ENTRYPOINT</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Overridable?</td>
+          <td>✅ Yes</td>
+          <td>🚫 No (executes always)</td>
+      </tr>
+      <tr>
+          <td>Use case</td>
+          <td>Default arguments</td>
+          <td>Fixed main process</td>
+      </tr>
+      <tr>
+          <td>Shell/Exec support</td>
+          <td>Both</td>
+          <td>Both</td>
+      </tr>
+      <tr>
+          <td>Best used for</td>
+          <td>Flexibility</td>
+          <td>Wrapper for legacy tools, enforced run behavior</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>🔍 Use <strong>ENTRYPOINT</strong> when your container should always run a specific binary, and <strong>CMD</strong> to supply optional default arguments.</p>
+</blockquote>
+<h2 id="-dockerfile-copy-vs-add--whats-the-difference">📂 Dockerfile: COPY vs ADD – What’s the Difference?</h2>
+<p>Both <code>COPY</code> and <code>ADD</code> are Dockerfile instructions used to transfer files from your local system into a Docker image during the build process. However, they are not identical.</p>
+<hr>
+<h3 id="-copy">🟦 COPY</h3>
+<ul>
+<li><strong>Purpose:</strong> Simple file/directory copy from local context into the image.</li>
+<li><strong>Behavior:</strong> Only copies files and directories.</li>
+<li><strong>No extra features</strong> (e.g., does not extract archives or support URLs).</li>
+</ul>
+<h4 id="-syntax">✅ Syntax</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> &lt;src&gt; &lt;dest&gt;</span></span></code></pre></div>
+<h4 id="-example-2">✅ Example</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> app.py /app/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> config/ /app/config/</span></span></code></pre></div>
+<hr>
+<h3 id="-add">🟨 ADD</h3>
+<ul>
+<li><strong>Purpose:</strong> More powerful than <code>COPY</code>, but also more error-prone.</li>
+<li>Supports:
+<ul>
+<li><strong>File copying</strong></li>
+<li><strong>Automatic tar archive extraction</strong></li>
+<li><strong>Remote URL downloads</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="-syntax-1">✅ Syntax</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> &lt;src&gt; &lt;dest&gt;</span></span></code></pre></div>
+<h4 id="-example-with-local-files">✅ Example (with local files)</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> app.tar.gz /app/     <span style="color:#75715e"># Automatically extracts to /app/</span></span></span></code></pre></div>
+<h4 id="-example-with-url">⚠️ Example (with URL)</h4>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">ADD</span> https://example.com/file.txt /app/file.txt</span></span></code></pre></div>
+<hr>
+<h2 id="-copy-vs-add-feature-comparison">⚖️ COPY vs ADD: Feature Comparison</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>COPY</th>
+          <th>ADD</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Copy local files</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+      </tr>
+      <tr>
+          <td>Extract tar archives</td>
+          <td>❌ No</td>
+          <td>✅ Yes</td>
+      </tr>
+      <tr>
+          <td>Download from URLs</td>
+          <td>❌ No</td>
+          <td>✅ Yes</td>
+      </tr>
+      <tr>
+          <td>Simpler &amp; more predictable</td>
+          <td>✅ Yes</td>
+          <td>❌ No</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-best-practice">🧠 Best Practice</h2>
+<blockquote>
+<p>🛡️ <strong>Use <code>COPY</code> by default.</strong>
+Only use <code>ADD</code> if you need its special features like auto-extraction or remote downloads.</p>
+</blockquote>
+<hr>
+<h2 id="-example-when-to-use-what">💡 Example: When to Use What</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Prefer COPY for clarity</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . /app/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Use ADD only when required</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span> myapp.tar.gz /app/       <span style="color:#75715e"># Unpacks the archive</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ADD</span> https://example.com/config.yaml /app/config.yaml</span></span></code></pre></div>
+<h2 id="-docker-multi-stage-builds">🏗️ Docker Multi-Stage Builds</h2>
+<hr>
+<h2 id="-what-are-multi-stage-builds">🔍 What Are Multi-Stage Builds?</h2>
+<p>Multi-stage builds allow you to use <strong>multiple <code>FROM</code> instructions</strong> in a single Dockerfile to:</p>
+<ul>
+<li>Separate the <strong>build environment</strong> from the <strong>runtime image</strong></li>
+<li><strong>Minimize final image size</strong></li>
+<li>Improve <strong>security and performance</strong></li>
+</ul>
+<hr>
+<h2 id="-why-use-multi-stage-builds">✅ Why Use Multi-Stage Builds?</h2>
+<p>In traditional Docker builds:</p>
+<ul>
+<li>Build tools, compilers, and source files get bundled into the final image</li>
+<li>This bloats the image and exposes internal code and tools</li>
+</ul>
+<p><strong>Multi-stage builds solve this</strong> by building your app in one stage, then copying only what’s needed to a second minimal image.</p>
+<hr>
+<h2 id="-sample-dockerfile-go-application">🛠️ Sample Dockerfile: Go Application</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Stage 1: Builder</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> golang:1.21 AS builder</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> go build -o myapp<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Stage 2: Final image</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> alpine:3.19</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> /app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /app/myapp .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;./myapp&#34;</span>]</span></span></code></pre></div>
+<hr>
+<h2 id="-step-by-step-explanation">📋 Step-by-Step Explanation</h2>
+<ol>
+<li><strong>First stage</strong> (builder):
+<ul>
+<li>Uses <code>golang</code> image to compile the application</li>
+<li>Output is the binary <code>myapp</code></li>
+</ul>
+</li>
+<li><strong>Second stage</strong>:
+<ul>
+<li>Uses lightweight <code>alpine</code> image</li>
+<li>Copies only the binary from the builder</li>
+<li>Runs the binary using <code>CMD</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="-advantages">⚖️ Advantages</h2>
+<ul>
+<li>🧹 <strong>Cleaner</strong>: Only final artifacts in runtime image</li>
+<li>🔐 <strong>Secure</strong>: No compilers, secrets, or source code left behind</li>
+<li>📦 <strong>Lightweight</strong>: Smaller and faster image</li>
+</ul>
+<hr>
+<h2 id="-additional-notes">🔧 Additional Notes</h2>
+<ul>
+<li>You can name stages using <code>AS &lt;name&gt;</code> and refer to them with <code>--from=&lt;name&gt;</code></li>
+<li>You can have <strong>more than two stages</strong> (e.g., test, build, package)</li>
+<li>Multi-stage builds are supported in <strong>Docker 17.05+</strong></li>
+</ul>
+<hr>
+<h2 id="container-ui-tool-portainerhttpsdocsportaineriostartinstall-ce">Container UI Tool <a href="https://docs.portainer.io/start/install-ce" rel="external" target="_blank">Portainer</a></h2>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1754201096";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754201096" defer></script>
+        <script src="../../js/search.js?1754201096" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
+            <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../../dotnet/planning.md/index.html">Planning</a></li>
+            <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="active " data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../../dotnet/day01/index.html">Session 01</a></li>
+            <li class="" data-nav-id="/dotnet/day02/index.html"><a class="padding" href="../../dotnet/day02/index.html">Session 02</a></li>
+            <li class="" data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
+            <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
+            <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../dotnet/day01/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1754201096" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754201096" defer></script>
+    <script src="../../js/theme.js?1754201096" defer></script>
+  </body>
+</html>

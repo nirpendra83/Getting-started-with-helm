@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="Step-by-step guide to containerize and deploy a .NET Core &#43; Angular &#43; PostgreSQL application using Docker and Kubernetes">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Deploying Learning Portal with Docker and Kubernetes :: Helm">
+    <meta name="twitter:description" content="Step-by-step guide to containerize and deploy a .NET Core &#43; Angular &#43; PostgreSQL application using Docker and Kubernetes">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/dotnet/session02/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Deploying Learning Portal with Docker and Kubernetes :: Helm">
+    <meta property="og:description" content="Step-by-step guide to containerize and deploy a .NET Core &#43; Angular &#43; PostgreSQL application using Docker and Kubernetes">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="Deploy a .NET Core Web API using Docker and Kubernetes">
+    <meta property="article:published_time" content="2025-08-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-01T00:00:00+00:00">
+    <meta itemprop="name" content="Deploying Learning Portal with Docker and Kubernetes :: Helm">
+    <meta itemprop="description" content="Step-by-step guide to containerize and deploy a .NET Core &#43; Angular &#43; PostgreSQL application using Docker and Kubernetes">
+    <meta itemprop="datePublished" content="2025-08-01T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-01T00:00:00+00:00">
+    <meta itemprop="wordCount" content="234">
+    <title>Deploying Learning Portal with Docker and Kubernetes :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754201096" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754201096" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754201096" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../dotnet/session02/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#step-1-clone-the-repository">Step 1: Clone the Repository</a></li>
+    <li><a href="#step-2-prepare-the-directory-structure">Step 2: Prepare the Directory Structure</a></li>
+    <li><a href="#step-3-dockerize-the-backend-net-core">Step 3: Dockerize the Backend (.NET Core)</a></li>
+    <li><a href="#step-4-dockerize-the-frontend-angular">Step 4: Dockerize the Frontend (Angular)</a></li>
+    <li><a href="#step-5-create-docker-composeyml">Step 5: Create docker-compose.yml</a></li>
+    <li><a href="#step-6-build-and-push-docker-images">Step 6: Build and Push Docker Images</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../dotnet/index.html"><span itemprop="name">Deploy a .NET Core Web API using Docker and Kubernetes</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Deploying Learning Portal with Docker and Kubernetes</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day04/index.html" title="Session 04 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/misc/index.html" title=".NET Related containers (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable dotnet" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+  </header>
+
+<h1 id="deploying-learning-portal-with-docker-and-kubernetes">Deploying Learning Portal with Docker and Kubernetes</h1>
+
+<h2 id="overview">Overview</h2>
+<p>This guide explains how to containerize and deploy the Learning Portal application (<a href="https://github.com/Ashish-Ranjan001/Learning-Portal-" rel="external" target="_blank">https://github.com/Ashish-Ranjan001/Learning-Portal-</a>) using Docker and Kubernetes. The application is composed of:</p>
+<ul>
+<li><strong>Frontend</strong>: Angular</li>
+<li><strong>Backend</strong>: .NET Core</li>
+<li><strong>Database</strong>: PostgreSQL</li>
+</ul>
+<hr>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Docker installed</li>
+<li>Kubernetes cluster (e.g., Minikube, CRC, K3s, or cloud-managed)</li>
+<li><code>kubectl</code> configured</li>
+<li>Docker Hub account (e.g., <code>nippy</code>)</li>
+</ul>
+<hr>
+<h2 id="step-1-clone-the-repository">Step 1: Clone the Repository</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/Ashish-Ranjan001/Learning-Portal-.git
+</span></span><span style="display:flex;"><span>cd Learning-Portal-</span></span></code></pre></div>
+<h2 id="step-2-prepare-the-directory-structure">Step 2: Prepare the Directory Structure</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Learning-Portal-/
+</span></span><span style="display:flex;"><span>├── frontend/         <span style="color:#75715e"># Angular</span>
+</span></span><span style="display:flex;"><span>├── backend/          <span style="color:#75715e"># .NET Core</span>
+</span></span><span style="display:flex;"><span>├── docker-compose.yml</span></span></code></pre></div>
+<h2 id="step-3-dockerize-the-backend-net-core">Step 3: Dockerize the Backend (.NET Core)</h2>
+<p>Create backend/Dockerfile:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+</span></span><span style="display:flex;"><span>WORKDIR /src
+</span></span><span style="display:flex;"><span>COPY . .
+</span></span><span style="display:flex;"><span>RUN dotnet restore
+</span></span><span style="display:flex;"><span>RUN dotnet publish -c Release -o /app/publish
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FROM mcr.microsoft.com/dotnet/aspnet:6.0
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY --from<span style="color:#f92672">=</span>build /app/publish .
+</span></span><span style="display:flex;"><span>ENTRYPOINT <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;dotnet&#34;</span>, <span style="color:#e6db74">&#34;LearningPortal.dll&#34;</span><span style="color:#f92672">]</span></span></span></code></pre></div>
+<h2 id="step-4-dockerize-the-frontend-angular">Step 4: Dockerize the Frontend (Angular)</h2>
+<p>Create frontend/Dockerfile:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>FROM node:18-alpine as build
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY . .
+</span></span><span style="display:flex;"><span>RUN npm install <span style="color:#f92672">&amp;&amp;</span> npm run build --prod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FROM nginx:alpine
+</span></span><span style="display:flex;"><span>COPY --from<span style="color:#f92672">=</span>build /app/dist/* /usr/share/nginx/html</span></span></code></pre></div>
+<h2 id="step-5-create-docker-composeyml">Step 5: Create docker-compose.yml</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>services:
+</span></span><span style="display:flex;"><span>  db:
+</span></span><span style="display:flex;"><span>    image: postgres:15
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      POSTGRES_USER: user
+</span></span><span style="display:flex;"><span>      POSTGRES_PASSWORD: password
+</span></span><span style="display:flex;"><span>      POSTGRES_DB: learning
+</span></span><span style="display:flex;"><span>    volumes:
+</span></span><span style="display:flex;"><span>      - pgdata:/var/lib/postgresql/data
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - appnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  backend:
+</span></span><span style="display:flex;"><span>    build: ./backend
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      - db
+</span></span><span style="display:flex;"><span>    environment:
+</span></span><span style="display:flex;"><span>      - DB_HOST<span style="color:#f92672">=</span>db
+</span></span><span style="display:flex;"><span>      - DB_USER<span style="color:#f92672">=</span>user
+</span></span><span style="display:flex;"><span>      - DB_PASS<span style="color:#f92672">=</span>password
+</span></span><span style="display:flex;"><span>      - DB_NAME<span style="color:#f92672">=</span>learning
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - appnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  frontend:
+</span></span><span style="display:flex;"><span>    build: ./frontend
+</span></span><span style="display:flex;"><span>    ports:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>    depends_on:
+</span></span><span style="display:flex;"><span>      - backend
+</span></span><span style="display:flex;"><span>    networks:
+</span></span><span style="display:flex;"><span>      - appnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>volumes:
+</span></span><span style="display:flex;"><span>  pgdata:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>networks:
+</span></span><span style="display:flex;"><span>  appnet:</span></span></code></pre></div>
+<h2 id="step-6-build-and-push-docker-images">Step 6: Build and Push Docker Images</h2>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># Backend</span>
+</span></span><span style="display:flex;"><span>cd backend
+</span></span><span style="display:flex;"><span>docker build -t nippy/learning-backend:latest .
+</span></span><span style="display:flex;"><span>docker push nippy/learning-backend:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Frontend</span>
+</span></span><span style="display:flex;"><span>cd ../frontend
+</span></span><span style="display:flex;"><span>docker build -t nippy/learning-frontend:latest .
+</span></span><span style="display:flex;"><span>docker push nippy/learning-frontend:latest</span></span></code></pre></div>
+
+  <footer class="footline">
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1754201096";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754201096" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754201096" defer></script>
+        <script src="../../js/search.js?1754201096" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
+            <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../../dotnet/planning.md/index.html">Planning</a></li>
+            <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="" data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../../dotnet/day01/index.html">Session 01</a></li>
+            <li class="" data-nav-id="/dotnet/day02/index.html"><a class="padding" href="../../dotnet/day02/index.html">Session 02</a></li>
+            <li class="" data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
+            <li class="active " data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
+            <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../dotnet/session02/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1754201096" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754201096" defer></script>
+    <script src="../../js/theme.js?1754201096" defer></script>
+  </body>
+</html>
