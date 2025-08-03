@@ -7,22 +7,7 @@ draft: false
 weight: 10
 ---
 
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [1. Install Required Software](#1-install-required-software)
-- [2. Create a .NET Core Web API Project](#2-create-a-net-core-web-api-project)
-- [3. Add Docker Support](#3-add-docker-support)
-- [4. Build and Push Docker Image](#4-build-and-push-docker-image)
-- [5. Create Kubernetes Manifests](#5-create-kubernetes-manifests)
-- [6. Deploy to Kubernetes](#6-deploy-to-kubernetes)
-- [7. Access the Application](#7-access-the-application)
-- [8. Optional Enhancements](#8-optional-enhancements)
-- [Conclusion](#conclusion)
-
-
-## Prerequisites to install 
+## Prerequisites to install docker and kubernetes
 
 - Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux)
 - User with `sudo` privileges

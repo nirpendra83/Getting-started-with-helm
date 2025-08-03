@@ -4,6 +4,7 @@ description: "Learn how to use Docker Compose to define and run multi-container 
 date: 2025-08-02
 draft: false
 tags: ["docker", "docker-compose", "containers", "devops"]
+weight: 3
 ---
 
 ## 📦 Docker Compose – Manage Multi-Container Applications

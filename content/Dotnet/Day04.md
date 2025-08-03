@@ -4,6 +4,7 @@ description: "Install Jenkins and Run Docker Compose with Pipeline"
 date: 2025-08-02
 draft: false
 tags: ["jenkins", "docker", "docker-compose", "ci-cd", "devops", "pipeline"]
+weight: 5
 ---
 
 

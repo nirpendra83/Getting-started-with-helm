@@ -3,7 +3,7 @@ title: "Planning"
 description: "A comprehensive guide to building, containerizing, and deploying a .NET Core Web API on Kubernetes using Docker."
 tags: ["dotnet", "kubernetes", "docker", "webapi", "devops"]
 draft: false
-weight: 10
+weight: 1
 ---
 
 ## Table of Contents

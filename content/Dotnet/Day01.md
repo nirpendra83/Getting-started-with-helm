@@ -4,8 +4,8 @@ description: "Learn Docker concepts, architecture, and how to write your first D
 date: 2025-08-02
 draft: false
 tags: ["docker", "dockerfile", "containers", "devops", "tutorial"]
+weight: 2
 ---
-
 
 
 ## 📦 What is a Container?
@@ -78,7 +78,7 @@ With a **container**, you bundle Python 3.10, Flask, and your app into one image
 > 💡 Containers are essential to modern DevOps, CI/CD, and cloud-native application development.
 
 
-## 🐳 Docker and Dockerfile – Complete Beginner's Guide
+## 🐳 Docker and Dockerfile 
 
 ## 📌 Introduction
 
@@ -129,7 +129,6 @@ docker images
 docker run <Image name>
 ```
 
-
 ## 📋 Check Running and Stopped Containers
 
 ```bash
@@ -153,7 +152,7 @@ docker logs <container_id>
 docker login
 ```
 
-Provide your Docker Hub username and password.
+> Provide your Docker Hub username and password.
 
 ---
 
@@ -189,21 +188,26 @@ docker system prune -f            # Remove unused data
 - check the logs if this is failed
 - fix and rerun
 - try to Access you db
-- Convert this running container into an image and push to dockerhub
+- Convert running container into an image and push to dockerhub.
 
 ## Task 02
 - Create a container with volumes 
-- Create a container to expose the app to access from browser .
+```sh
+docker run -d --name test01 -v <hostlocation:Containerlocation> nginx 
+```
+- Create a container to expose the app to access from browser.
+```sh
+docker run -d --name test01 -p 80:80 nginx 
+```
 
-**Conceptual Flow:**
-
-Dockerfile → Docker Image → Docker Container
-
----
 
 ## 🧱 What is a Dockerfile?
 
 A **Dockerfile** is a text file that contains **step-by-step instructions** on how to create a Docker image.
+
+**Conceptual Flow:**
+
+Dockerfile → Docker Image → Docker Container
 
 ### 🔧 Common Instructions
 
@@ -346,18 +350,6 @@ CMD ["Hello from both"]
 docker run both-example                # Output: Hello from both
 docker run both-example "Custom msg"  # Output: Custom msg
 ```
-
----
-
-### ⚠️ Shell vs Exec Form
-
-| Form      | Syntax                         | Behavior |
-|-----------|--------------------------------|----------|
-| Shell     | `CMD echo "Hello"`             | Runs in shell `/bin/sh -c`, allows env substitution |
-| Exec      | `CMD ["echo", "Hello"]`        | No shell processing, no env var substitution |
-
----
-
 ### 🧠 Summary
 
 | Feature             | CMD                             | ENTRYPOINT                          |
@@ -527,8 +519,35 @@ CMD ["./myapp"]
 
 ---
 
+## Maven Build Example
+- Clone the Maven sample Project
+```sh
+git clone https://github.com/khushiramsingh680/studentapp.git
+```
+- Create a Dockerfile
+```sh
+# Stage 1: Builder
+FROM maven:3.3-jdk-8 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean install
 
-
+FROM tomcat
+WORKDIR /usr/local/tomcat/webapps
+COPY --from=builder /app/target/studentapp-2.5-SNAPSHOT.war  .
+```
+-  Now Generate an image
+```sh
+docker build -t <name> .
+```
+- Create a container using this image
+```sh
+docker run -d -p 88:8080 <image name>
+```
+- Access your app from Browser
+```sh
+ip:88/studentapp-2.5-SNAPSHOT/
+```
 ## Container UI Tool [Portainer](https://docs.portainer.io/start/install-ce)
 
 

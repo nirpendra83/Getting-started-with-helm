@@ -9,13 +9,6 @@
     <lastBuildDate>Sat, 02 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Deploy a .NET Core Web API using Docker and Kubernetes</title>
-      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/index.html</link>
-      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/index.html</guid>
-      <description>Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.</description>
-    </item>
-    <item>
       <title>Planning</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/planning.md/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -37,11 +30,25 @@
       <description>Learn how to use Docker Compose to define and run multi-container applications with ease.</description>
     </item>
     <item>
+      <title>Session 03</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day03/index.html</link>
+      <pubDate>Sat, 02 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day03/index.html</guid>
+      <description>Getting Started with Kuberntes</description>
+    </item>
+    <item>
       <title>Session 04</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day04/index.html</link>
       <pubDate>Sat, 02 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day04/index.html</guid>
       <description>Install Jenkins and Run Docker Compose with Pipeline</description>
+    </item>
+    <item>
+      <title>Deploy a .NET Core Web API using Docker and Kubernetes</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/index.html</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/index.html</guid>
+      <description>Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.</description>
     </item>
     <item>
       <title>.NET Related containers</title>

@@ -20,15 +20,15 @@
     <meta itemprop="description" content="Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.">
     <meta itemprop="datePublished" content="2025-08-01T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-08-01T00:00:00+00:00">
-    <meta itemprop="wordCount" content="1018">
+    <meta itemprop="wordCount" content="979">
     <meta itemprop="keywords" content="Dotnet,Kubernetes,Docker,Webapi,Devops">
     <title>Deploy a .NET Core Web API using Docker and Kubernetes :: Helm</title>
     <link href="../dotnet/index.xml" rel="alternate" type="application/rss+xml" title="Deploy a .NET Core Web API using Docker and Kubernetes :: Helm">
-    <link href="../css/fontawesome-all.min.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1754201096" rel="stylesheet"></noscript>
-    <link href="../css/auto-complete.css?1754201096" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1754201096" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1754201096" rel="stylesheet">
-    <link href="../css/theme.min.css?1754201096" rel="stylesheet">
-    <link href="../css/format-html.min.css?1754201096" rel="stylesheet" id="R-format-style">
+    <link href="../css/fontawesome-all.min.css?1754219507" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1754219507" rel="stylesheet"></noscript>
+    <link href="../css/auto-complete.css?1754219507" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1754219507" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1754219507" rel="stylesheet">
+    <link href="../css/theme.min.css?1754219507" rel="stylesheet">
+    <link href="../css/format-html.min.css?1754219507" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -91,8 +91,7 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#table-of-contents">Table of Contents</a></li>
-    <li><a href="#prerequisites-to-install">Prerequisites to install</a></li>
+    <li><a href="#prerequisites-to-install-docker-and-kubernetes">Prerequisites to install docker and kubernetes</a></li>
     <li><a href="#step-1-install-net-8-sdk-on-linux">Step 1: Install .NET 8 SDK on Linux</a>
       <ul>
         <li><a href="#ubuntu-2204--2004">Ubuntu 22.04 / 20.04</a></li>
@@ -183,20 +182,7 @@
 
 <h1 id="deploy-a-net-core-web-api-using-docker-and-kubernetes">Deploy a .NET Core Web API using Docker and Kubernetes</h1>
 
-<h2 id="table-of-contents">Table of Contents</h2>
-<ul>
-<li><a href="../dotnet/index.html#prerequisites">Prerequisites</a></li>
-<li><a href="../dotnet/index.html#1-install-required-software">1. Install Required Software</a></li>
-<li><a href="../dotnet/index.html#2-create-a-net-core-web-api-project">2. Create a .NET Core Web API Project</a></li>
-<li><a href="../dotnet/index.html#3-add-docker-support">3. Add Docker Support</a></li>
-<li><a href="../dotnet/index.html#4-build-and-push-docker-image">4. Build and Push Docker Image</a></li>
-<li><a href="../dotnet/index.html#5-create-kubernetes-manifests">5. Create Kubernetes Manifests</a></li>
-<li><a href="../dotnet/index.html#6-deploy-to-kubernetes">6. Deploy to Kubernetes</a></li>
-<li><a href="../dotnet/index.html#7-access-the-application">7. Access the Application</a></li>
-<li><a href="../dotnet/index.html#8-optional-enhancements">8. Optional Enhancements</a></li>
-<li><a href="../dotnet/index.html#conclusion">Conclusion</a></li>
-</ul>
-<h2 id="prerequisites-to-install">Prerequisites to install</h2>
+<h2 id="prerequisites-to-install-docker-and-kubernetes">Prerequisites to install docker and kubernetes</h2>
 <ul>
 <li>Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux)</li>
 <li>User with <code>sudo</code> privileges</li>
@@ -598,7 +584,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../searchindex.en.js?1754201096";
+          window.index_js_url="../searchindex.en.js?1754219507";
         </script>
         <search><form action="../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -611,12 +597,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../js/auto-complete.js?1754201096" defer></script>
-        <script src="../js/lunr/lunr.min.js?1754201096" defer></script>
-        <script src="../js/lunr/lunr.stemmer.support.min.js?1754201096" defer></script>
-        <script src="../js/lunr/lunr.multi.min.js?1754201096" defer></script>
-        <script src="../js/lunr/lunr.en.min.js?1754201096" defer></script>
-        <script src="../js/search.js?1754201096" defer></script>
+        <script src="../js/auto-complete.js?1754219507" defer></script>
+        <script src="../js/lunr/lunr.min.js?1754219507" defer></script>
+        <script src="../js/lunr/lunr.stemmer.support.min.js?1754219507" defer></script>
+        <script src="../js/lunr/lunr.multi.min.js?1754219507" defer></script>
+        <script src="../js/lunr/lunr.en.min.js?1754219507" defer></script>
+        <script src="../js/search.js?1754219507" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -629,10 +615,11 @@ Helm
           <ul class="enlarge morespace collapsible-menu">
             <li class="active parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
             <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../dotnet/planning.md/index.html">Planning</a></li>
-            <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../dotnet/day05/index.html">Session 05</a></li>
             <li class="" data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../dotnet/day01/index.html">Session 01</a></li>
             <li class="" data-nav-id="/dotnet/day02/index.html"><a class="padding" href="../dotnet/day02/index.html">Session 02</a></li>
+            <li class="" data-nav-id="/dotnet/day03/index.html"><a class="padding" href="../dotnet/day03/index.html">Session 03</a></li>
             <li class="" data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../dotnet/day04/index.html">Session 04</a></li>
+            <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../dotnet/day05/index.html">Session 05</a></li>
             <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
             <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
@@ -691,8 +678,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1754201096" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1754201096" defer></script>
-    <script src="../js/theme.js?1754201096" defer></script>
+    <script src="../js/clipboard.min.js?1754219507" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1754219507" defer></script>
+    <script src="../js/theme.js?1754219507" defer></script>
   </body>
 </html>
