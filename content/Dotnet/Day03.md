@@ -7,6 +7,8 @@ tags: ["jenkins", "docker", "docker-compose", "ci-cd", "devops", "pipeline"]
 weight: 5
 ---
 
+## [Kubernetes Documentation](http://k8s.selfstudy.life/)
+
 # Getting Started with Kubernetes
 
 Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications.
