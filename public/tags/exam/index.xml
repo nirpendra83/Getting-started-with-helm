@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Exam :: Tag :: Helm</title>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/tags/exam/index.html</link>
+    <description></description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/exam/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWS Certified Solutions Architect – Associate (SAA-C03) ToC</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/index.html</guid>
+      <description>Comprehensive Table of Contents for the AWS Solutions Architect Associate certification exam, aligned with the latest SAA-C03 blueprint.</description>
+    </item>
+  </channel>
+</rss>

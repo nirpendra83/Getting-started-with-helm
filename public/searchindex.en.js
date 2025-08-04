@@ -61,7 +61,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Deploy a .NET Core Web API using Docker and Kubernetes",
-    "content": "📦 Docker Compose – Manage Multi-Container Applications 📌 What is Docker Compose? Docker Compose is a tool used to define and run multi-container Docker applications.\nYou define the services, networks, and volumes your app needs in a docker-compose.yml file, and bring everything up with a single command.\n✅ Benefits of Docker Compose Easy to manage complex applications Reproducible environments Centralized configuration Supports custom networks and volumes Ideal for local development and CI pipelines Docker Compose Installation 🧱 Example Project Structure myapp/\r├── backend/\r│ └── app.py\r├── frontend/\r│ └── index.html\r├── db/\r│ └── init.sql\r├── docker-compose.yml\r└── Dockerfile (for backend)\rRun this script to have the structure created automatically #!/bin/bash # Create directories mkdir -p myapp/backend myapp/frontend myapp/db cd myapp # Create backend/app.py cat \u003c\u003cEOF \u003e backend/app.py from flask import Flask app = Flask(__name__) @app.route(\"/\") def hello(): return \"Hello from the Backend Flask App!\" if __name__ == \"__main__\": app.run(host=\"0.0.0.0\", port=5000) EOF # Create frontend/index.html cat \u003c\u003cEOF \u003e frontend/index.html \u003c!DOCTYPE html\u003e \u003chtml\u003e \u003chead\u003e \u003ctitle\u003eFrontend\u003c/title\u003e \u003c/head\u003e \u003cbody\u003e \u003ch1\u003eHello from Frontend\u003c/h1\u003e \u003c/body\u003e \u003c/html\u003e EOF # Create db/init.sql cat \u003c\u003cEOF \u003e db/init.sql CREATE TABLE IF NOT EXISTS messages ( id SERIAL PRIMARY KEY, text VARCHAR(255) NOT NULL ); EOF # Create Dockerfile (for backend) cat \u003c\u003cEOF \u003e Dockerfile FROM python:3.10-slim WORKDIR /app COPY backend/ . RUN pip install flask CMD [\"python\", \"app.py\"] EOF # Create docker-compose.yml cat \u003c\u003cEOF \u003e docker-compose.yml version: \"3.9\" services: backend: build: . ports: - \"5000:5000\" depends_on: - db frontend: image: nginx:alpine ports: - \"80:80\" volumes: - ./frontend:/usr/share/nginx/html:ro db: image: postgres:13 environment: POSTGRES_USER: myuser POSTGRES_PASSWORD: mypass POSTGRES_DB: mydb volumes: - db_data:/var/lib/postgresql/data - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro volumes: db_data: EOF echo \"✅ Project structure created successfully in ./myapp\"\r📜 Sample docker-compose.yml version: \"3.9\" services: backend: build: ./backend ports: - \"5000:5000\" depends_on: - db frontend: image: nginx:alpine ports: - \"80:80\" volumes: - ./frontend:/usr/share/nginx/html db: image: postgres:13 environment: POSTGRES_USER: myuser POSTGRES_PASSWORD: mypass POSTGRES_DB: mydb volumes: - db_data:/var/lib/postgresql/data volumes: db_data:\r🚀 Common Docker Compose Commands docker-compose up # Start all services docker-compose up -d # Run in detached mode docker-compose down # Stop and remove all containers docker-compose ps # List running services docker-compose logs # View logs for all services docker-compose build # Build services docker-compose restart backend # Restart a specific service\r🔄 Rebuild and Restart docker-compose down --volumes # Remove all volumes too docker-compose up --build # Rebuild and start\r🧪 Compose for Local Development Use Compose to simulate a full application stack locally:\nBackend (e.g., Flask/Django/Node) Frontend (e.g., React/Vue/Angular) Database (e.g., PostgreSQL/MySQL) Proxy/Load balancer (e.g., NGINX) 🧠 Tips and Best Practices Use .env files for secrets and environment config Use depends_on for startup order (not readiness checks) Bind volumes for live code changes Version-lock your base images ✅ Docker Compose is a must-have for developing, testing, and deploying multi-container apps with consistency.",
+    "content": "📦 Docker Compose – Manage Multi-Container Applications 📌 What is Docker Compose? Docker Compose is a tool used to define and run multi-container Docker applications.\nYou define the services, networks, and volumes your app needs in a docker-compose.yml file, and bring everything up with a single command.\n✅ Benefits of Docker Compose Easy to manage complex applications Reproducible environments Centralized configuration Supports custom networks and volumes Ideal for local development and CI pipelines Docker Compose Installation 🧱 Example Project Structure myapp/\r├── backend/\r│ └── app.py\r├── frontend/\r│ └── index.html\r├── db/\r│ └── init.sql\r├── docker-compose.yml\r└── Dockerfile (for backend)\rRun this script to have the structure created automatically #!/bin/bash # Create directories mkdir -p myapp/backend myapp/frontend myapp/db cd myapp # Create backend/app.py cat \u003c\u003cEOF \u003e backend/app.py from flask import Flask app = Flask(__name__) @app.route(\"/\") def hello(): return \"Hello from the Backend Flask App!\" if __name__ == \"__main__\": app.run(host=\"0.0.0.0\", port=5000) EOF # Create frontend/index.html cat \u003c\u003cEOF \u003e frontend/index.html \u003c!DOCTYPE html\u003e \u003chtml\u003e \u003chead\u003e \u003ctitle\u003eFrontend\u003c/title\u003e \u003c/head\u003e \u003cbody\u003e \u003ch1\u003eHello from Frontend\u003c/h1\u003e \u003c/body\u003e \u003c/html\u003e EOF # Create db/init.sql cat \u003c\u003cEOF \u003e db/init.sql CREATE TABLE IF NOT EXISTS messages ( id SERIAL PRIMARY KEY, text VARCHAR(255) NOT NULL ); EOF # Create Dockerfile (for backend) cat \u003c\u003cEOF \u003e Dockerfile FROM python:3.10-slim WORKDIR /app COPY backend/ . RUN pip install flask CMD [\"python\", \"app.py\"] EOF # Create docker-compose.yml cat \u003c\u003cEOF \u003e docker-compose.yml version: \"3.9\" services: backend: build: . ports: - \"5000:5000\" depends_on: - db frontend: image: nginx:alpine ports: - \"80:80\" volumes: - ./frontend:/usr/share/nginx/html:ro db: image: postgres:13 environment: POSTGRES_USER: myuser POSTGRES_PASSWORD: mypass POSTGRES_DB: mydb volumes: - db_data:/var/lib/postgresql/data - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro volumes: db_data: EOF echo \"✅ Project structure created successfully in ./myapp\"\r📜 Sample docker-compose.yml version: \"3.9\" services: backend: build: ./backend ports: - \"5000:5000\" depends_on: - db frontend: image: nginx:alpine ports: - \"80:80\" volumes: - ./frontend:/usr/share/nginx/html db: image: postgres:13 environment: POSTGRES_USER: myuser POSTGRES_PASSWORD: mypass POSTGRES_DB: mydb volumes: - db_data:/var/lib/postgresql/data volumes: db_data:\r🚀 Common Docker Compose Commands docker-compose up # Start all services docker-compose up -d # Run in detached mode docker-compose down # Stop and remove all containers docker-compose ps # List running services docker-compose logs # View logs for all services docker-compose build # Build services docker-compose restart backend # Restart a specific service\r🔄 Rebuild and Restart docker-compose down --volumes # Remove all volumes too docker-compose up --build # Rebuild and start\r🧪 Compose for Local Development Use Compose to simulate a full application stack locally:\nBackend (e.g., Flask/Django/Node) Frontend (e.g., React/Vue/Angular) Database (e.g., PostgreSQL/MySQL) Proxy/Load balancer (e.g., NGINX) 🧠 Tips and Best Practices Use .env files for secrets and environment config Use depends_on for startup order (not readiness checks) Bind volumes for live code changes Version-lock your base images ✅ Docker Compose is a must-have for developing, testing, and deploying multi-container apps with consistency.\nMore Examples for Docker Compose",
     "description": "Learn how to use Docker Compose to define and run multi-container applications with ease.",
     "tags": [
       "Docker",
@@ -128,7 +128,22 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Introduction to Helm",
-    "content": "Prerequisites to install docker and kubernetes Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux) User with sudo privileges Internet connection Docker Hub account (or private container registry) Step 1: Install .NET 8 SDK on Linux Ubuntu 22.04 / 20.04 sudo apt update sudo apt install -y wget apt-transport-https software-properties-common wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb sudo dpkg -i packages-microsoft-prod.deb rm packages-microsoft-prod.deb\r** Install Dot net version 8 sudo apt update sudo apt install -y dotnet-sdk-8.0\rVerify dotnet --version\rStep 2: Install Docker and Kubernetes Tools sudo apt-get update sudo apt-get install -y ca-certificates curl gnupg lsb-release sudo mkdir -p /etc/apt/keyrings curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/docker.gpg \u003e /dev/null echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \\ https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" \\ | sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io sudo systemctl enable docker sudo systemctl start docker\rInstall kubectl curl -LO \"https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl\" chmod +x kubectl sudo mv kubectl /usr/local/bin/\rStep 3: Create .NET Core Web API Project dotnet new webapi -n HelloWorldApi cd HelloWorldApi dotnet run\rAdd some code to confirm it’s running In Program.cs or Startup.cs, add: Console.WriteLine(\"App started\");\rNow check again dotnet run\rCreate a Dockerfile Dockerfile # Stage 1: Build FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /app # Copy csproj and restore as distinct layers COPY *.csproj ./ RUN dotnet restore # Copy the rest of the source and build COPY . ./ RUN dotnet publish -c Release -o /app/out # Stage 2: Runtime FROM mcr.microsoft.com/dotnet/aspnet:8.0 WORKDIR /app COPY --from=build /app/out . # Expose the default port EXPOSE 80 # Run the application ENTRYPOINT [\"dotnet\", \"HelloWorldApi.dll\"]\r. Build the Docker image: docker build -t helloworldapi:8 .\rRun the container docker run -d -p 8080:5000 --name hwapi helloworldapi:8\rSteps to Run .NET 8 Web App Persistently in Docker In Program.cs, ensure your app listens on 0.0.0.0: var builder = WebApplication.CreateBuilder(args); var app = builder.Build(); app.MapGet(\"/\", () =\u003e \"Hello from .NET 8 API\"); app.Run(\"http://0.0.0.0:5000\");\rAgain create an image docker build -t helloworldapi:8 . `` - Run the container now ```sh docker run -d --restart=always -p 8080:5000 --name hwapi helloworldapi:8\rAccess your app from browser ip:8080\rNow push this image to dockerhub docker login\rTag your image as per your user docker tag helloworldapi:8 nippy/helloworldapi:8\rpush your image to dockerhub docker push nippy/helloworldapi:8\rDeploy this to kubernetes (Create deployment ) helloworld-deploy.yaml apiVersion: apps/v1 kind: Deployment metadata: name: helloworld-api spec: replicas: 1 selector: matchLabels: app: helloworld-api template: metadata: labels: app: helloworld-api spec: containers: - name: helloworld-api image: nippy/helloworldapi:8 imagePullPolicy: IfNotPresent ports: - containerPort: 80\r✅ 2. Service YAML (unchanged, helloworld-svc.yaml) apiVersion: v1 kind: Service metadata: name: helloworld-service spec: type: LoadBalancer selector: app: helloworld-api ports: - protocol: TCP port: 80 targetPort: 5000\rOR kubectl expose deployment helloworld-api --port 80 --type LoadBalancer --target-port 5000 --name test01\r🚀 3. Deploy to Kubernetes kubectl apply -f helloworld-deploy.yaml kubectl apply -f helloworld-svc.yaml\rNow check the loadBalancer IP kubectl get svc\rAccess in Browser ip:80\r3 Tier APP Complete Sample: Angular Frontend + .NET 8 Web API + PostgreSQL + Docker Compose Step 1: Folder Structure my-fullstack-app/\r├── backend/\r│ ├── Controllers/\r│ ├── Data/\r│ ├── Models/\r│ ├── Program.cs\r│ ├── appsettings.json\r│ ├── Dockerfile\r│ └── HelloWorldApi.csproj\r├── frontend/\r│ ├── (Angular app here)\r│ └── Dockerfile\r└── docker-compose.yml\rStep 2: Backend - .NET 8 Web API Program.cs using Microsoft.EntityFrameworkCore; using Microsoft.Extensions.DependencyInjection; using HelloWorldApi.Data; var builder = WebApplication.CreateBuilder(args); builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); builder.Services.AddDbContext\u003cAppDbContext\u003e(options =\u003e options.UseNpgsql(builder.Configuration.GetConnectionString(\"DefaultConnection\"))); var app = builder.Build(); if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); } app.UseAuthorization(); app.MapControllers(); app.Run();\rData/AppDbContext.cs using Microsoft.EntityFrameworkCore; using HelloWorldApi.Models; namespace HelloWorldApi.Data { public class AppDbContext : DbContext { public AppDbContext(DbContextOptions\u003cAppDbContext\u003e options) : base(options) {} public DbSet\u003cMessage\u003e Messages { get; set; } } }\rModels/Message.cs namespace HelloWorldApi.Models { public class Message { public int Id { get; set; } public string Text { get; set; } } }\rControllers/MessageController.cs using Microsoft.AspNetCore.Mvc; using HelloWorldApi.Data; using HelloWorldApi.Models; using Microsoft.EntityFrameworkCore; using System.Threading.Tasks; using System.Collections.Generic; namespace HelloWorldApi.Controllers { [ApiController] [Route(\"api/[controller]\")] public class MessageController : ControllerBase { private readonly AppDbContext _context; public MessageController(AppDbContext context) { _context = context; } [HttpGet] public async Task\u003cIEnumerable\u003cMessage\u003e\u003e GetMessages() =\u003e await _context.Messages.ToListAsync(); [HttpPost] public async Task\u003cIActionResult\u003e CreateMessage(Message msg) { _context.Messages.Add(msg); await _context.SaveChangesAsync(); return CreatedAtAction(nameof(GetMessages), new { id = msg.Id }, msg); } } }\rappsettings.json { \"ConnectionStrings\": { \"DefaultConnection\": \"Host=postgres;Port=5432;Database=helloapi;Username=postgres;Password=postgres\" }, \"Logging\": { \"LogLevel\": { \"Default\": \"Information\", \"Microsoft.AspNetCore\": \"Warning\" } }, \"AllowedHosts\": \"*\" }\rDockerfile (backend) FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base WORKDIR /app EXPOSE 5000 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /src COPY . . RUN dotnet restore RUN dotnet publish -c Release -o /app/publish FROM base AS final WORKDIR /app COPY --from=build /app/publish . ENTRYPOINT [\"dotnet\", \"HelloWorldApi.dll\"]\rStep 3: Frontend - Angular App Generate Angular app:\nng new frontend --routing=false --style=css cd frontend ng generate component home\rsrc/app/app.component.html \u003ch2\u003eMessages\u003c/h2\u003e \u003cul\u003e \u003cli *ngFor=\"let message of messages\"\u003e{{ message.text }}\u003c/li\u003e \u003c/ul\u003e \u003cinput [(ngModel)]=\"newMessage\" /\u003e \u003cbutton (click)=\"addMessage()\"\u003eAdd\u003c/button\u003e\rsrc/app/app.component.ts import { HttpClient } from '@angular/common/http'; import { Component } from '@angular/core'; @Component({ selector: 'app-root', templateUrl: './app.component.html' }) export class AppComponent { messages: any[] = []; newMessage: string = ''; constructor(private http: HttpClient) { this.loadMessages(); } loadMessages() { this.http.get\u003cany[]\u003e('http://localhost:8080/api/message').subscribe(data =\u003e this.messages = data); } addMessage() { this.http.post('http://localhost:8080/api/message', { text: this.newMessage }).subscribe(() =\u003e { this.newMessage = ''; this.loadMessages(); }); } }\rDockerfile (frontend) FROM node:20-alpine AS build WORKDIR /app COPY . . RUN npm install \u0026\u0026 npm run build -- --output-path=dist FROM nginx:alpine COPY --from=build /app/dist /usr/share/nginx/html COPY nginx.conf /etc/nginx/nginx.conf\rnginx.conf server { listen 80; location / { root /usr/share/nginx/html; index index.html; try_files $uri $uri/ /index.html; } location /api/ { proxy_pass http://backend:5000/api/; } }\rStep 4: Docker Compose docker-compose.yml version: '3.9' services: frontend: build: ./frontend ports: - \"8080:80\" depends_on: - backend backend: build: ./backend environment: - ASPNETCORE_URLS=http://+:5000 ports: - \"5000:5000\" depends_on: - postgres postgres: image: postgres:15 restart: always environment: POSTGRES_USER: postgres POSTGRES_PASSWORD: postgres POSTGRES_DB: helloapi volumes: - pgdata:/var/lib/postgresql/data volumes: pgdata:\rStep 5: Build \u0026 Run docker-compose up --build -d\rThen visit:\nAngular UI: http://localhost:8080 Swagger (API docs): http://localhost:5000/swagger",
+    "content": "✅ AWS Certified Solutions Architect – Associate (SAA-C03) - Table of Contents 1. Introduction About the SAA-C03 exam Target audience and prerequisites Exam overview (format, duration, passing score) Study resources and preparation tips 2. Domain 1: Design Secure Architectures (30%) IAM (Users, Roles, Groups, Policies) IAM Permissions boundaries and session policies Resource-based vs Identity-based policies AWS Organizations, SCPs, and account structure Encryption and Data Protection AWS KMS, S3 encryption, EBS encryption Secrets Manager \u0026 Systems Manager Parameter Store Secure Network Architecture VPC, Security Groups, NACLs PrivateLink, VPC Peering, VPN, Direct Connect 3. Domain 2: Design Resilient Architectures (26%) High Availability and Fault Tolerance Multi-AZ, Multi-Region design patterns Load Balancing ALB, NLB, CLB use cases Auto Scaling and Elasticity DNS-based Failover (Route 53) Backup \u0026 Disaster Recovery Backup policies, AWS Backup DR strategies: Pilot light, Warm standby, Active-active 4. Domain 3: Design High-Performing Architectures (24%) Storage Optimization S3 Storage Classes (Standard, IA, Glacier) EBS, EFS, FSx Compute Optimization EC2 instance types and performance tuning Lambda, Fargate, ECS, EKS Placement groups Database Selection and Performance RDS, Aurora, DynamoDB, Redshift Read Replicas, Global Tables, ElastiCache Content Delivery and Caching CloudFront, API Gateway caching 5. Domain 4: Design Cost-Optimized Architectures (20%) Resource Right-Sizing Pricing Models On-Demand, Reserved, Spot Instances, Savings Plans Cost Management Tools AWS Budgets, Cost Explorer, Trusted Advisor Cost-Effective Storage and Data Transfer 6. AWS Well-Architected Framework Pillars of the Well-Architected Framework Operational Excellence Security Reliability Performance Efficiency Cost Optimization Sustainability 7. Practice and Exam Preparation Sample questions and explanations Practice exams and mock tests Hands-on labs (AWS Free Tier, Qwiklabs, AWS SkillBuilder) Final review tips 8. Appendix Summary of Key AWS Services AWS CLI and SDK basics Architectural Design Patterns (Well-Architected Diagrams) Certification Exam FAQs Cheat Sheets and Flashcards",
+    "description": "Comprehensive Table of Contents for the AWS Solutions Architect Associate certification exam, aligned with the latest SAA-C03 blueprint.",
+    "tags": [
+      "Aws",
+      "Certification",
+      "Solution Architect",
+      "Saa-C03",
+      "Cloud",
+      "Exam"
+    ],
+    "title": "AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "uri": "/aws/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm",
+    "content": "Required softwares Vscode(optional) Gitbash putty or mobaxterm Docker Desktop Check if your docker desktop using Linux OS or WIndows os docker info | findstr /C:\"OSType\" OSType: windows\rHow to swith b/w OS: (Run this as an admin) \u0026 \"$Env:ProgramFiles\\Docker\\Docker\\DockerCli.exe\" -SwitchDaemon\rPrerequisites to install docker and kubernetes Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux) User with sudo privileges Internet connection Docker Hub account (or private container registry) Step 1: Install .NET 8 SDK on Linux Ubuntu 22.04 / 20.04 sudo apt update sudo apt install -y wget apt-transport-https software-properties-common wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb sudo dpkg -i packages-microsoft-prod.deb rm packages-microsoft-prod.deb\r** Install Dot net version 8 sudo apt update sudo apt install -y dotnet-sdk-8.0\rVerify dotnet --version\rStep 2: Install Docker and Kubernetes Tools sudo apt-get update sudo apt-get install -y ca-certificates curl gnupg lsb-release sudo mkdir -p /etc/apt/keyrings curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor | sudo tee /etc/apt/keyrings/docker.gpg \u003e /dev/null echo \\ \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \\ https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" \\ | sudo tee /etc/apt/sources.list.d/docker.list \u003e /dev/null sudo apt-get update sudo apt-get install -y docker-ce docker-ce-cli containerd.io sudo systemctl enable docker sudo systemctl start docker\rInstall kubectl curl -LO \"https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl\" chmod +x kubectl sudo mv kubectl /usr/local/bin/\rStep 3: Create .NET Core Web API Project dotnet new webapi -n HelloWorldApi cd HelloWorldApi dotnet run\rAdd some code to confirm it’s running In Program.cs or Startup.cs, add: Console.WriteLine(\"App started\");\rNow check again dotnet run\rCreate a Dockerfile Dockerfile # Stage 1: Build FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /app # Copy csproj and restore as distinct layers COPY *.csproj ./ RUN dotnet restore # Copy the rest of the source and build COPY . ./ RUN dotnet publish -c Release -o /app/out # Stage 2: Runtime FROM mcr.microsoft.com/dotnet/aspnet:8.0 WORKDIR /app COPY --from=build /app/out . # Expose the default port EXPOSE 80 # Run the application ENTRYPOINT [\"dotnet\", \"HelloWorldApi.dll\"]\r. Build the Docker image: docker build -t helloworldapi:8 .\rRun the container docker run -d -p 8080:5000 --name hwapi helloworldapi:8\rSteps to Run .NET 8 Web App Persistently in Docker In Program.cs, ensure your app listens on 0.0.0.0: var builder = WebApplication.CreateBuilder(args); var app = builder.Build(); app.MapGet(\"/\", () =\u003e \"Hello from .NET 8 API\"); app.Run(\"http://0.0.0.0:5000\");\rAgain create an image docker build -t helloworldapi:8 . `` - Run the container now ```sh docker run -d --restart=always -p 8080:5000 --name hwapi helloworldapi:8\rAccess your app from browser ip:8080\rNow push this image to dockerhub docker login\rTag your image as per your user docker tag helloworldapi:8 nippy/helloworldapi:8\rpush your image to dockerhub docker push nippy/helloworldapi:8\rDeploy this to kubernetes (Create deployment ) helloworld-deploy.yaml apiVersion: apps/v1 kind: Deployment metadata: name: helloworld-api spec: replicas: 1 selector: matchLabels: app: helloworld-api template: metadata: labels: app: helloworld-api spec: containers: - name: helloworld-api image: nippy/helloworldapi:8 imagePullPolicy: IfNotPresent ports: - containerPort: 80\r✅ 2. Service YAML (unchanged, helloworld-svc.yaml) apiVersion: v1 kind: Service metadata: name: helloworld-service spec: type: LoadBalancer selector: app: helloworld-api ports: - protocol: TCP port: 80 targetPort: 5000\rOR kubectl expose deployment helloworld-api --port 80 --type LoadBalancer --target-port 5000 --name test01\r🚀 3. Deploy to Kubernetes kubectl apply -f helloworld-deploy.yaml kubectl apply -f helloworld-svc.yaml\rNow check the loadBalancer IP kubectl get svc\rAccess in Browser ip:80\r3 Tier APP Complete Sample: Angular Frontend + .NET 8 Web API + PostgreSQL + Docker Compose Step 1: Folder Structure my-fullstack-app/\r├── backend/\r│ ├── Controllers/\r│ ├── Data/\r│ ├── Models/\r│ ├── Program.cs\r│ ├── appsettings.json\r│ ├── Dockerfile\r│ └── HelloWorldApi.csproj\r├── frontend/\r│ ├── (Angular app here)\r│ └── Dockerfile\r└── docker-compose.yml\rStep 2: Backend - .NET 8 Web API Program.cs using Microsoft.EntityFrameworkCore; using Microsoft.Extensions.DependencyInjection; using HelloWorldApi.Data; var builder = WebApplication.CreateBuilder(args); builder.Services.AddControllers(); builder.Services.AddEndpointsApiExplorer(); builder.Services.AddSwaggerGen(); builder.Services.AddDbContext\u003cAppDbContext\u003e(options =\u003e options.UseNpgsql(builder.Configuration.GetConnectionString(\"DefaultConnection\"))); var app = builder.Build(); if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); } app.UseAuthorization(); app.MapControllers(); app.Run();\rData/AppDbContext.cs using Microsoft.EntityFrameworkCore; using HelloWorldApi.Models; namespace HelloWorldApi.Data { public class AppDbContext : DbContext { public AppDbContext(DbContextOptions\u003cAppDbContext\u003e options) : base(options) {} public DbSet\u003cMessage\u003e Messages { get; set; } } }\rModels/Message.cs namespace HelloWorldApi.Models { public class Message { public int Id { get; set; } public string Text { get; set; } } }\rControllers/MessageController.cs using Microsoft.AspNetCore.Mvc; using HelloWorldApi.Data; using HelloWorldApi.Models; using Microsoft.EntityFrameworkCore; using System.Threading.Tasks; using System.Collections.Generic; namespace HelloWorldApi.Controllers { [ApiController] [Route(\"api/[controller]\")] public class MessageController : ControllerBase { private readonly AppDbContext _context; public MessageController(AppDbContext context) { _context = context; } [HttpGet] public async Task\u003cIEnumerable\u003cMessage\u003e\u003e GetMessages() =\u003e await _context.Messages.ToListAsync(); [HttpPost] public async Task\u003cIActionResult\u003e CreateMessage(Message msg) { _context.Messages.Add(msg); await _context.SaveChangesAsync(); return CreatedAtAction(nameof(GetMessages), new { id = msg.Id }, msg); } } }\rappsettings.json { \"ConnectionStrings\": { \"DefaultConnection\": \"Host=postgres;Port=5432;Database=helloapi;Username=postgres;Password=postgres\" }, \"Logging\": { \"LogLevel\": { \"Default\": \"Information\", \"Microsoft.AspNetCore\": \"Warning\" } }, \"AllowedHosts\": \"*\" }\rDockerfile (backend) FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base WORKDIR /app EXPOSE 5000 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build WORKDIR /src COPY . . RUN dotnet restore RUN dotnet publish -c Release -o /app/publish FROM base AS final WORKDIR /app COPY --from=build /app/publish . ENTRYPOINT [\"dotnet\", \"HelloWorldApi.dll\"]\rStep 3: Frontend - Angular App Generate Angular app:\nng new frontend --routing=false --style=css cd frontend ng generate component home\rsrc/app/app.component.html \u003ch2\u003eMessages\u003c/h2\u003e \u003cul\u003e \u003cli *ngFor=\"let message of messages\"\u003e{{ message.text }}\u003c/li\u003e \u003c/ul\u003e \u003cinput [(ngModel)]=\"newMessage\" /\u003e \u003cbutton (click)=\"addMessage()\"\u003eAdd\u003c/button\u003e\rsrc/app/app.component.ts import { HttpClient } from '@angular/common/http'; import { Component } from '@angular/core'; @Component({ selector: 'app-root', templateUrl: './app.component.html' }) export class AppComponent { messages: any[] = []; newMessage: string = ''; constructor(private http: HttpClient) { this.loadMessages(); } loadMessages() { this.http.get\u003cany[]\u003e('http://localhost:8080/api/message').subscribe(data =\u003e this.messages = data); } addMessage() { this.http.post('http://localhost:8080/api/message', { text: this.newMessage }).subscribe(() =\u003e { this.newMessage = ''; this.loadMessages(); }); } }\rDockerfile (frontend) FROM node:20-alpine AS build WORKDIR /app COPY . . RUN npm install \u0026\u0026 npm run build -- --output-path=dist FROM nginx:alpine COPY --from=build /app/dist /usr/share/nginx/html COPY nginx.conf /etc/nginx/nginx.conf\rnginx.conf server { listen 80; location / { root /usr/share/nginx/html; index index.html; try_files $uri $uri/ /index.html; } location /api/ { proxy_pass http://backend:5000/api/; } }\rStep 4: Docker Compose docker-compose.yml version: '3.9' services: frontend: build: ./frontend ports: - \"8080:80\" depends_on: - backend backend: build: ./backend environment: - ASPNETCORE_URLS=http://+:5000 ports: - \"5000:5000\" depends_on: - postgres postgres: image: postgres:15 restart: always environment: POSTGRES_USER: postgres POSTGRES_PASSWORD: postgres POSTGRES_DB: helloapi volumes: - pgdata:/var/lib/postgresql/data volumes: pgdata:\rStep 5: Build \u0026 Run docker-compose up --build -d\rThen visit:\nAngular UI: http://localhost:8080 Swagger (API docs): http://localhost:5000/swagger",
     "description": "Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.",
     "tags": [
       "Dotnet",
@@ -149,6 +164,20 @@ var relearn_searchindex = [
     "uri": "/helm/additional/index.html"
   },
   {
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "🖥️ Amazon EC2 (Elastic Compute Cloud) Amazon EC2 provides scalable compute capacity in the AWS cloud. It allows you to launch virtual servers on demand and pay for what you use.\n🔹 Key Concepts 1. EC2 Instance Types General Purpose (e.g., t3, t4g, m5) Compute Optimized (c5) Memory Optimized (r5, x1) Storage Optimized (i3, d2) Accelerated Computing (p4, inf1) 2. Instance Lifecycle Start → Running → Stop → Terminate Instance retirement and status checks 3. Key EC2 Components AMI (Amazon Machine Image) – OS and application environment Instance Type – Hardware configuration Security Group – Acts as a virtual firewall Key Pair – SSH access credentials Elastic IP – Static public IP address User Data – Shell script to run on first boot (cloud-init) 4. Storage Options EBS (Elastic Block Store) Instance Store (ephemeral) EFS for network-attached storage 5. Networking Public/Private Subnets Elastic IPs NAT Gateways Security Groups vs NACLs 🛠️ Hands-On Task List Task Description ✅ Launch an EC2 Instance Use AWS Console or CLI to launch a t2.micro instance with Amazon Linux 2023. ✅ Configure Security Group Allow SSH (port 22) and HTTP (port 80). ✅ SSH into EC2 Connect using a PEM key from a Linux/Mac terminal or PuTTY for Windows. ✅ Install a Web Server Use sudo yum install httpd -y and start the service. ✅ Add a Custom Index Page Modify /var/www/html/index.html with your own content. ✅ Use EC2 User Data Launch a new instance that automatically installs a web server using user data. ✅ Create AMI Create a custom AMI from your configured instance. ✅ Attach/Detach EBS Volume Attach an additional EBS volume and mount it inside the instance. ✅ Stop, Start, and Terminate Observe instance state behavior and test persistent storage. ✅ Enable Detailed Monitoring Turn on CloudWatch detailed monitoring and view CPU graphs. 📘 Exam Tips Know the difference between EBS and Instance Store. Understand user data vs metadata (http://169.254.169.254). Security groups are stateful, NACLs are stateless. EC2 instances by default do not have public IPs in private subnets. IAM roles are used to assign permissions to instances without hardcoding credentials. https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html\nTasks to do ✅ Change the existing ssh public key",
+    "description": "In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.",
+    "tags": [
+      "Aws",
+      "Ec2",
+      "Compute",
+      "Solution Architect",
+      "Saa-C03"
+    ],
+    "title": "Session 01",
+    "uri": "/aws/session01/index.html"
+  },
+  {
     "breadcrumb": "Introduction to Helm \u003e Tags",
     "content": "",
     "description": "",
@@ -161,8 +190,64 @@ var relearn_searchindex = [
     "content": "",
     "description": "",
     "tags": [],
+    "title": "Tag :: Aws",
+    "uri": "/tags/aws/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Categories",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Category :: AWS",
+    "uri": "/categories/aws/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Categories",
+    "uri": "/categories/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Certification",
+    "uri": "/tags/certification/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Categories",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Category :: Certification",
+    "uri": "/categories/certification/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
     "title": "Tag :: Clean Architecture",
     "uri": "/tags/clean-architecture/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Cloud",
+    "uri": "/tags/cloud/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Compute",
+    "uri": "/tags/compute/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -179,6 +264,22 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: Dotnet",
     "uri": "/tags/dotnet/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Ec2",
+    "uri": "/tags/ec2/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Exam",
+    "uri": "/tags/exam/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -203,6 +304,22 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: Postgresql",
     "uri": "/tags/postgresql/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Saa-C03",
+    "uri": "/tags/saa-c03/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Solution Architect",
+    "uri": "/tags/solution-architect/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -321,14 +438,6 @@ var relearn_searchindex = [
     ],
     "title": ".NET Related containers",
     "uri": "/dotnet/misc/index.html"
-  },
-  {
-    "breadcrumb": "Introduction to Helm",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Categories",
-    "uri": "/categories/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e GIT Version Control System",

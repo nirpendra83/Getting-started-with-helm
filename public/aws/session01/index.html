@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Session 01 :: Helm">
+    <meta name="twitter:description" content="In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="Session 01 :: Helm">
+    <meta property="og:description" content="In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="AWS Certified Solutions Architect – Associate (SAA-C03) ToC">
+    <meta property="article:published_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:tag" content="Aws">
+    <meta property="article:tag" content="Ec2">
+    <meta property="article:tag" content="Compute">
+    <meta property="article:tag" content="Solution Architect">
+    <meta property="article:tag" content="Saa-C03">
+    <meta itemprop="name" content="Session 01 :: Helm">
+    <meta itemprop="description" content="In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.">
+    <meta itemprop="datePublished" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="wordCount" content="360">
+    <meta itemprop="keywords" content="Aws,Ec2,Compute,Solution Architect,Saa-C03">
+    <title>Session 01 :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1754307441" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754307441" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754307441" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754307441" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754307441" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754307441" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754307441" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../aws/session01/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#-amazon-ec2-elastic-compute-cloud">🖥️ Amazon EC2 (Elastic Compute Cloud)</a></li>
+    <li><a href="#-key-concepts">🔹 Key Concepts</a>
+      <ul>
+        <li><a href="#1-ec2-instance-types">1. <strong>EC2 Instance Types</strong></a></li>
+        <li><a href="#2-instance-lifecycle">2. <strong>Instance Lifecycle</strong></a></li>
+        <li><a href="#3-key-ec2-components">3. <strong>Key EC2 Components</strong></a></li>
+        <li><a href="#4-storage-options">4. <strong>Storage Options</strong></a></li>
+        <li><a href="#5-networking">5. <strong>Networking</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#-hands-on-task-list">🛠️ Hands-On Task List</a></li>
+    <li><a href="#-exam-tips">📘 Exam Tips</a></li>
+    <li><a href="#tasks-to-do">Tasks to do</a></li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../aws/index.html"><span itemprop="name">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 01</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../aws/index.html" title="AWS Certified Solutions Architect – Associate (SAA-C03) ToC (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/index.html" title="Deploy a .NET Core Web API using Docker and Kubernetes (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable aws" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/aws/index.html">Aws</a></li>
+    <li><a class="term-link" href="../../tags/compute/index.html">Compute</a></li>
+    <li><a class="term-link" href="../../tags/ec2/index.html">Ec2</a></li>
+    <li><a class="term-link" href="../../tags/saa-c03/index.html">Saa-C03</a></li>
+    <li><a class="term-link" href="../../tags/solution-architect/index.html">Solution Architect</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="session-01">Session 01</h1>
+
+<h2 id="-amazon-ec2-elastic-compute-cloud">🖥️ Amazon EC2 (Elastic Compute Cloud)</h2>
+<p>Amazon EC2 provides scalable compute capacity in the AWS cloud. It allows you to launch virtual servers on demand and pay for what you use.</p>
+<hr>
+<h2 id="-key-concepts">🔹 Key Concepts</h2>
+<h3 id="1-ec2-instance-types">1. <strong>EC2 Instance Types</strong></h3>
+<ul>
+<li>General Purpose (e.g., <code>t3</code>, <code>t4g</code>, <code>m5</code>)</li>
+<li>Compute Optimized (<code>c5</code>)</li>
+<li>Memory Optimized (<code>r5</code>, <code>x1</code>)</li>
+<li>Storage Optimized (<code>i3</code>, <code>d2</code>)</li>
+<li>Accelerated Computing (<code>p4</code>, <code>inf1</code>)</li>
+</ul>
+<h3 id="2-instance-lifecycle">2. <strong>Instance Lifecycle</strong></h3>
+<ul>
+<li>Start → Running → Stop → Terminate</li>
+<li>Instance retirement and status checks</li>
+</ul>
+<h3 id="3-key-ec2-components">3. <strong>Key EC2 Components</strong></h3>
+<ul>
+<li><strong>AMI (Amazon Machine Image)</strong> – OS and application environment</li>
+<li><strong>Instance Type</strong> – Hardware configuration</li>
+<li><strong>Security Group</strong> – Acts as a virtual firewall</li>
+<li><strong>Key Pair</strong> – SSH access credentials</li>
+<li><strong>Elastic IP</strong> – Static public IP address</li>
+<li><strong>User Data</strong> – Shell script to run on first boot (cloud-init)</li>
+</ul>
+<h3 id="4-storage-options">4. <strong>Storage Options</strong></h3>
+<ul>
+<li><strong>EBS (Elastic Block Store)</strong></li>
+<li><strong>Instance Store (ephemeral)</strong></li>
+<li><strong>EFS for network-attached storage</strong></li>
+</ul>
+<h3 id="5-networking">5. <strong>Networking</strong></h3>
+<ul>
+<li>Public/Private Subnets</li>
+<li>Elastic IPs</li>
+<li>NAT Gateways</li>
+<li>Security Groups vs NACLs</li>
+</ul>
+<hr>
+<h2 id="-hands-on-task-list">🛠️ Hands-On Task List</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Task</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>✅ Launch an EC2 Instance</td>
+          <td>Use AWS Console or CLI to launch a <code>t2.micro</code> instance with Amazon Linux 2023.</td>
+      </tr>
+      <tr>
+          <td>✅ Configure Security Group</td>
+          <td>Allow SSH (port 22) and HTTP (port 80).</td>
+      </tr>
+      <tr>
+          <td>✅ SSH into EC2</td>
+          <td>Connect using a PEM key from a Linux/Mac terminal or PuTTY for Windows.</td>
+      </tr>
+      <tr>
+          <td>✅ Install a Web Server</td>
+          <td>Use <code>sudo yum install httpd -y</code> and start the service.</td>
+      </tr>
+      <tr>
+          <td>✅ Add a Custom Index Page</td>
+          <td>Modify <code>/var/www/html/index.html</code> with your own content.</td>
+      </tr>
+      <tr>
+          <td>✅ Use EC2 User Data</td>
+          <td>Launch a new instance that automatically installs a web server using user data.</td>
+      </tr>
+      <tr>
+          <td>✅ Create AMI</td>
+          <td>Create a custom AMI from your configured instance.</td>
+      </tr>
+      <tr>
+          <td>✅ Attach/Detach EBS Volume</td>
+          <td>Attach an additional EBS volume and mount it inside the instance.</td>
+      </tr>
+      <tr>
+          <td>✅ Stop, Start, and Terminate</td>
+          <td>Observe instance state behavior and test persistent storage.</td>
+      </tr>
+      <tr>
+          <td>✅ Enable Detailed Monitoring</td>
+          <td>Turn on CloudWatch detailed monitoring and view CPU graphs.</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-exam-tips">📘 Exam Tips</h2>
+<ul>
+<li>Know the difference between <strong>EBS</strong> and <strong>Instance Store</strong>.</li>
+<li>Understand <strong>user data</strong> vs <strong>metadata</strong> (<code>http://169.254.169.254</code>).</li>
+<li>Security groups are <strong>stateful</strong>, NACLs are <strong>stateless</strong>.</li>
+<li>EC2 instances by default do <strong>not have public IPs</strong> in private subnets.</li>
+<li>IAM roles are used to <strong>assign permissions to instances</strong> without hardcoding credentials.</li>
+</ul>
+<hr>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html" rel="external" target="_blank">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html</a></p>
+<h2 id="tasks-to-do">Tasks to do</h2>
+<ul>
+<li>✅ Change the existing ssh public key</li>
+</ul>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/aws/index.html">AWS</a></li>
+    <li><a class="term-link" href="../../categories/certification/index.html">Certification</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1754307441";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1754307441" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754307441" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754307441" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754307441" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754307441" defer></script>
+        <script src="../../js/search.js?1754307441" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/aws/index.html"><a class="padding" href="../../aws/index.html">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</a><ul id="R-subsections-e9e32a24b6df90bb262ffc443f7fdbea" class="collapsible-menu">
+            <li class="active " data-nav-id="/aws/session01/index.html"><a class="padding" href="../../aws/session01/index.html">Session 01</a></li></ul></li>
+            <li class="" data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../aws/session01/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1754307441" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754307441" defer></script>
+    <script src="../../js/theme.js?1754307441" defer></script>
+  </body>
+</html>

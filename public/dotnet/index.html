@@ -20,15 +20,15 @@
     <meta itemprop="description" content="Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.">
     <meta itemprop="datePublished" content="2025-08-01T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-08-01T00:00:00+00:00">
-    <meta itemprop="wordCount" content="979">
+    <meta itemprop="wordCount" content="1019">
     <meta itemprop="keywords" content="Dotnet,Kubernetes,Docker,Webapi,Devops">
     <title>Deploy a .NET Core Web API using Docker and Kubernetes :: Helm</title>
     <link href="../dotnet/index.xml" rel="alternate" type="application/rss+xml" title="Deploy a .NET Core Web API using Docker and Kubernetes :: Helm">
-    <link href="../css/fontawesome-all.min.css?1754219507" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1754219507" rel="stylesheet"></noscript>
-    <link href="../css/auto-complete.css?1754219507" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1754219507" rel="stylesheet"></noscript>
-    <link href="../css/perfect-scrollbar.min.css?1754219507" rel="stylesheet">
-    <link href="../css/theme.min.css?1754219507" rel="stylesheet">
-    <link href="../css/format-html.min.css?1754219507" rel="stylesheet" id="R-format-style">
+    <link href="../css/fontawesome-all.min.css?1754307441" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/fontawesome-all.min.css?1754307441" rel="stylesheet"></noscript>
+    <link href="../css/auto-complete.css?1754307441" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../css/auto-complete.css?1754307441" rel="stylesheet"></noscript>
+    <link href="../css/perfect-scrollbar.min.css?1754307441" rel="stylesheet">
+    <link href="../css/theme.min.css?1754307441" rel="stylesheet">
+    <link href="../css/format-html.min.css?1754307441" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..';
@@ -91,6 +91,7 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
+    <li><a href="#required-softwares">Required softwares</a></li>
     <li><a href="#prerequisites-to-install-docker-and-kubernetes">Prerequisites to install docker and kubernetes</a></li>
     <li><a href="#step-1-install-net-8-sdk-on-linux">Step 1: Install .NET 8 SDK on Linux</a>
       <ul>
@@ -149,7 +150,7 @@
             itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Deploy a .NET Core Web API using Docker and Kubernetes</span><meta itemprop="position" content="2"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
-            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../index.html" title="Introduction to Helm (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../aws/session01/index.html" title="Session 01 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
             <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../dotnet/planning.md/index.html" title="Planning (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
@@ -182,6 +183,23 @@
 
 <h1 id="deploy-a-net-core-web-api-using-docker-and-kubernetes">Deploy a .NET Core Web API using Docker and Kubernetes</h1>
 
+<h2 id="required-softwares">Required softwares</h2>
+<ul>
+<li>Vscode(optional)</li>
+<li>Gitbash</li>
+<li>putty or mobaxterm</li>
+<li>Docker Desktop
+<ul>
+<li>Check if your docker desktop using Linux OS or WIndows os</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker info | findstr /C:<span style="color:#e6db74">&#34;OSType&#34;</span>
+</span></span><span style="display:flex;"><span>OSType: windows</span></span></code></pre></div>
+<ul>
+<li>How to swith b/w OS: (Run this as an admin)</li>
+</ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>&amp; <span style="color:#e6db74">&#34;</span>$Env<span style="color:#e6db74">:ProgramFiles\Docker\Docker\DockerCli.exe&#34;</span> -SwitchDaemon</span></span></code></pre></div>
+</li>
+</ul>
 <h2 id="prerequisites-to-install-docker-and-kubernetes">Prerequisites to install docker and kubernetes</h2>
 <ul>
 <li>Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux)</li>
@@ -584,7 +602,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../searchindex.en.js?1754219507";
+          window.index_js_url="../searchindex.en.js?1754307441";
         </script>
         <search><form action="../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -597,12 +615,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../js/auto-complete.js?1754219507" defer></script>
-        <script src="../js/lunr/lunr.min.js?1754219507" defer></script>
-        <script src="../js/lunr/lunr.stemmer.support.min.js?1754219507" defer></script>
-        <script src="../js/lunr/lunr.multi.min.js?1754219507" defer></script>
-        <script src="../js/lunr/lunr.en.min.js?1754219507" defer></script>
-        <script src="../js/search.js?1754219507" defer></script>
+        <script src="../js/auto-complete.js?1754307441" defer></script>
+        <script src="../js/lunr/lunr.min.js?1754307441" defer></script>
+        <script src="../js/lunr/lunr.stemmer.support.min.js?1754307441" defer></script>
+        <script src="../js/lunr/lunr.multi.min.js?1754307441" defer></script>
+        <script src="../js/lunr/lunr.en.min.js?1754307441" defer></script>
+        <script src="../js/search.js?1754307441" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -613,6 +631,7 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
+            <li class="" data-nav-id="/aws/index.html"><a class="padding" href="../aws/index.html">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</a><ul id="R-subsections-e9e32a24b6df90bb262ffc443f7fdbea" class="collapsible-menu"></ul></li>
             <li class="active parent " data-nav-id="/dotnet/index.html"><a class="padding" href="../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu">
             <li class="" data-nav-id="/dotnet/planning.md/index.html"><a class="padding" href="../dotnet/planning.md/index.html">Planning</a></li>
             <li class="" data-nav-id="/dotnet/day01/index.html"><a class="padding" href="../dotnet/day01/index.html">Session 01</a></li>
@@ -678,8 +697,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../js/clipboard.min.js?1754219507" defer></script>
-    <script src="../js/perfect-scrollbar.min.js?1754219507" defer></script>
-    <script src="../js/theme.js?1754219507" defer></script>
+    <script src="../js/clipboard.min.js?1754307441" defer></script>
+    <script src="../js/perfect-scrollbar.min.js?1754307441" defer></script>
+    <script src="../js/theme.js?1754307441" defer></script>
   </body>
 </html>

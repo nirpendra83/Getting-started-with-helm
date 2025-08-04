@@ -214,3 +214,5 @@ Use Compose to simulate a full application stack locally:
 ---
 
 > ✅ Docker Compose is a must-have for developing, testing, and deploying multi-container apps with consistency.
+
+## [More Examples for Docker Compose](https://github.com/docker/awesome-compose?tab=readme-ov-file) 

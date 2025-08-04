@@ -7,6 +7,21 @@ draft: false
 weight: 10
 ---
 
+## Required softwares 
+- Vscode(optional)
+- Gitbash
+- putty or mobaxterm
+- Docker Desktop
+   -  Check if your docker desktop using Linux OS or WIndows os
+    ```sh
+    docker info | findstr /C:"OSType"
+    OSType: windows
+    ```
+   - How to swith b/w OS: (Run this as an admin)
+   ```sh
+   & "$Env:ProgramFiles\Docker\Docker\DockerCli.exe" -SwitchDaemon
+   ```
+
 ## Prerequisites to install docker and kubernetes
 
 - Linux system (Ubuntu 20.04/22.04, RHEL 8/9, or Rocky Linux)
