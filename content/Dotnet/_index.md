@@ -11,7 +11,12 @@ weight: 10
 - Vscode(optional)
 - Gitbash
 - putty or mobaxterm
+- Dotnet v8 on your Laptop
 - Docker Desktop
+   -  Enable containers for windows Desktop using powershell as admin
+   ```sh
+   dism.exe /Online /Enable-Feature /FeatureName:Containers /All /NoRestart
+   ```
    -  Check if your docker desktop using Linux OS or WIndows os
     ```sh
     docker info | findstr /C:"OSType"

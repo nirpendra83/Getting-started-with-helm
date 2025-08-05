@@ -548,6 +548,138 @@ docker run -d -p 88:8080 <image name>
 ```sh
 ip:88/studentapp-2.5-SNAPSHOT/
 ```
-## Container UI Tool [Portainer](https://docs.portainer.io/start/install-ce)
 
+## More on Docker Images
+## 🐳 Docker Image Inspection on Windows (Docker Desktop with Hyper-V)
 
+This guide explains how to inspect Docker images on Windows using Docker Desktop with the **Hyper-V backend**.
+
+---
+
+## 📁 Where Are Docker Images Stored?
+
+Docker uses a **LinuxKit VM** running in Hyper-V to store images. These images are stored **inside a virtual disk**, not directly accessible from Windows.
+
+- Virtual Disk Path:
+  ```
+  C:\Users\intel\AppData\Local\Docker\vm-data
+  ```
+
+🛑 You **cannot browse or open** the image files directly here. Use Docker CLI to interact with them.
+
+---
+
+## ✅ Inspect Docker Images Using CLI
+
+### 🔹 List All Docker Images
+```powershell
+docker images
+```
+Displays:
+- Repository
+- Tag
+- Image ID
+- Created
+- Size
+
+---
+
+### 🔹 Inspect Image Metadata
+```powershell
+docker inspect <image-name or image-id>
+```
+
+**Example:**
+```powershell
+docker inspect nginx
+```
+
+Outputs detailed JSON metadata:
+- Entrypoint
+- Cmd
+- Environment variables
+- Volumes
+- Exposed ports
+- Labels
+- Layers
+- OS / Architecture
+
+---
+
+### 🔹 Format JSON Output (in PowerShell)
+```powershell
+docker inspect nginx | ConvertFrom-Json | Format-List
+```
+
+---
+
+### 🔹 View Image History (Layers)
+```powershell
+docker history <image-name>
+```
+
+**Example:**
+```powershell
+docker history nginx
+```
+
+Outputs:
+- Layer creation time
+- Command used (`RUN`, `COPY`, etc.)
+- Size of each layer
+
+---
+
+## 🐚 Explore Inside an Image (Using a Container)
+
+Run an interactive container and explore the image filesystem:
+
+```powershell
+docker run -it --rm nginx /bin/sh
+```
+
+Inside container, try:
+```sh
+ls /
+cat /etc/os-release
+```
+
+> Some images might use `/bin/bash` instead of `/bin/sh`.
+
+---
+
+## 📦 Save & Load Docker Images
+
+### 🔹 Save Image to `.tar` File
+```powershell
+docker save -o myimage.tar myimagename:tag
+```
+
+### 🔹 Load Image from `.tar` File
+```powershell
+docker load -i myimage.tar
+```
+
+---
+
+## ❗ Important Notes
+
+- Docker Desktop stores all image and container data **inside a virtual disk** managed by Hyper-V.
+- You **cannot browse** or edit image files directly in `C:\Users\intel\AppData\Local\Docker`.
+- Always use Docker CLI to inspect, save, or modify images.
+
+---
+
+## 📋 Quick Summary
+
+| Task                     | Command / Info                            |
+|--------------------------|-------------------------------------------|
+| List all images          | `docker images`                           |
+| Inspect image metadata   | `docker inspect <image>`                  |
+| View image layers        | `docker history <image>`                  |
+| Save image to tar file   | `docker save -o myimage.tar myimage`      |
+| Load image from tar file | `docker load -i myimage.tar`              |
+| Explore image via shell  | `docker run -it --rm <image> /bin/sh`     |
+| Image storage location   | `C:\Users\intel\AppData\Local\Docker` |
+
+---
