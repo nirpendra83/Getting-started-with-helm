@@ -7,7 +7,11 @@ tags: ["jenkins", "docker", "docker-compose", "ci-cd", "devops", "pipeline"]
 weight: 5
 ---
 
-
+## Agenda
+-  [Getting started kubernetes Pods](https://k8s.selfstudy.life/part02/index.html#pod)
+-  [Getting started kubernetes Services](https://k8s.selfstudy.life/part03/index.html#service)
+-  [Getting started kubernetes Deployments](https://k8s.selfstudy.life/part03/index.html#-deployment)
+-  [Getting started kubernetes Secret and configmap](https://k8s.selfstudy.life/part04/index.html)
 ## 🚀 CI/CD Explained
 
 CI/CD stands for:

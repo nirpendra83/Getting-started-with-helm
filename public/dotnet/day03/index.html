@@ -29,14 +29,14 @@
     <meta itemprop="description" content="Getting Started with Kuberntes">
     <meta itemprop="datePublished" content="2025-08-02T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-08-02T00:00:00+00:00">
-    <meta itemprop="wordCount" content="468">
+    <meta itemprop="wordCount" content="1220">
     <meta itemprop="keywords" content="Jenkins,Docker,Docker-Compose,Ci-Cd,Devops,Pipeline">
     <title>Session 03 :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1754384446" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754384446" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1754384446" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754384446" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1754384446" rel="stylesheet">
-    <link href="../../css/theme.min.css?1754384446" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1754384446" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754496878" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754496878" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754496878" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754496878" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -100,11 +100,39 @@
 <nav class="TableOfContents">
   <ul>
     <li><a href="#kubernetes-documentationhttpk8sselfstudylife"><a href="http://k8s.selfstudy.life/">Kubernetes Documentation</a></a></li>
-  </ul>
-
-  <ul>
+    <li><a href="#getting-started-with-kubernetes">Getting Started with Kubernetes</a></li>
+    <li><a href="#-docker-vs-kubernetes--quick-comparison">🚀 Docker vs Kubernetes – Quick Comparison</a></li>
     <li><a href="#-prerequisites">🚀 Prerequisites</a></li>
-    <li><a href="#-install-kubectl-command-to-manage-kubernetes">🛠 Install kubectl command to manage kubernetes</a></li>
+    <li><a href="#-install-kubectl-command-to-manage-kubernetes">🛠 Install kubectl command to manage kubernetes</a>
+      <ul>
+        <li><a href="#for-windows-download-linkhttpskubernetesiodocstaskstoolsinstall-kubectl-windows">For Windows <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/">Download link</a></a></li>
+      </ul>
+    </li>
+    <li><a href="#-kubernetes-components-brief-overview">🧠 Kubernetes Components (Brief Overview)</a></li>
+    <li><a href="#-control-plane-components">🛠️ Control Plane Components</a>
+      <ul>
+        <li><a href="#1-kube-apiserver">1. kube-apiserver</a></li>
+        <li><a href="#2-etcd">2. etcd</a></li>
+        <li><a href="#3-kube-scheduler">3. kube-scheduler</a></li>
+        <li><a href="#4-kube-controller-manager">4. kube-controller-manager</a></li>
+        <li><a href="#5-cloud-controller-manager-optional">5. cloud-controller-manager (optional)</a></li>
+      </ul>
+    </li>
+    <li><a href="#-node-components">🚀 Node Components</a>
+      <ul>
+        <li><a href="#1-kubelet">1. kubelet</a></li>
+        <li><a href="#2-kube-proxy">2. kube-proxy</a></li>
+        <li><a href="#3-container-runtime">3. container runtime</a></li>
+      </ul>
+    </li>
+    <li><a href="#-add-ons-common-but-not-mandatory">🔍 Add-ons (Common but not mandatory)</a>
+      <ul>
+        <li><a href="#1-coredns">1. CoreDNS</a></li>
+        <li><a href="#2-metrics-server">2. Metrics Server</a></li>
+        <li><a href="#3-ingress-controller">3. Ingress Controller</a></li>
+      </ul>
+    </li>
+    <li><a href="#-summary-table">✅ Summary Table</a></li>
     <li><a href="#aks-deployment-guide">AKS Deployment Guide</a></li>
     <li><a href="#-prerequisites-1">📌 Prerequisites</a></li>
     <li><a href="#-jenkins-credential-id-for-aks-kubeconfig">✅ Jenkins Credential ID for AKS kubeconfig</a></li>
@@ -121,6 +149,12 @@
       </ul>
     </li>
     <li><a href="#-convert-docker-compose-to-kubernetes-manifests">🔄 Convert Docker Compose to Kubernetes Manifests</a></li>
+    <li><a href="#-kubernetes-pods-assignment">📘 Kubernetes Pods Assignment</a></li>
+    <li><a href="#-tasks-01">📝 Tasks 01</a></li>
+    <li><a href="#-kubernetes-deployments-assignment">📘 Kubernetes Deployments Assignment</a></li>
+    <li><a href="#-tasks-02">📝 Tasks 02</a></li>
+    <li><a href="#-kubernetes-services-assignment">📘 Kubernetes Services Assignment</a></li>
+    <li><a href="#-tasks-03">📝 Tasks 03</a></li>
   </ul>
 </nav>
                 </div>
@@ -168,22 +202,193 @@
 <h1 id="session-03">Session 03</h1>
 
 <h2 id="kubernetes-documentationhttpk8sselfstudylife"><a href="http://k8s.selfstudy.life/" rel="external" target="_blank">Kubernetes Documentation</a></h2>
-<h1 id="getting-started-with-kubernetes">Getting Started with Kubernetes</h1>
+<h2 id="getting-started-with-kubernetes">Getting Started with Kubernetes</h2>
 <p>Kubernetes (K8s) is an open-source system for automating deployment, scaling, and management of containerized applications.</p>
 <hr>
+<h2 id="-docker-vs-kubernetes--quick-comparison">🚀 Docker vs Kubernetes – Quick Comparison</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Docker</th>
+          <th>Kubernetes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Purpose</strong></td>
+          <td>Build and run containers</td>
+          <td>Container orchestration</td>
+      </tr>
+      <tr>
+          <td><strong>Function</strong></td>
+          <td>Packages applications</td>
+          <td>Manages containers</td>
+      </tr>
+      <tr>
+          <td><strong>Architecture</strong></td>
+          <td>Runs on single nodes</td>
+          <td>Runs on clusters</td>
+      </tr>
+      <tr>
+          <td><strong>Scaling</strong></td>
+          <td>Manual scaling</td>
+          <td>Automatic scaling</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p><strong>Summary:</strong></p>
+<ul>
+<li><strong>Docker</strong> is used for creating and running containers.</li>
+<li><strong>Kubernetes</strong> is used for managing those containers at scale across multiple nodes.</li>
+</ul>
 <h2 id="-prerequisites">🚀 Prerequisites</h2>
 <ul>
 <li>Basic knowledge of containers (e.g., Docker)</li>
 <li>A running Kubernetes cluster (Minikube, Kind, or a managed service like GKE, EKS, AKS)</li>
 <li><code>kubectl</code> installed and configured</li>
+<li>Enable kuberntes from Docker Desktop to get started.</li>
 </ul>
 <hr>
 <h2 id="-install-kubectl-command-to-manage-kubernetes">🛠 Install kubectl command to manage kubernetes</h2>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install kubectl</span>
 </span></span><span style="display:flex;"><span>curl -LO <span style="color:#e6db74">&#34;https://dl.k8s.io/release/</span><span style="color:#66d9ef">$(</span>curl -s https://dl.k8s.io/release/stable.txt<span style="color:#66d9ef">)</span><span style="color:#e6db74">/bin/linux/amd64/kubectl&#34;</span>
 </span></span><span style="display:flex;"><span>chmod +x kubectl <span style="color:#f92672">&amp;&amp;</span> mv kubectl /usr/local/bin/</span></span></code></pre></div>
+<h3 id="for-windows-download-linkhttpskubernetesiodocstaskstoolsinstall-kubectl-windows">For Windows <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/" rel="external" target="_blank">Download link</a></h3>
+<ul>
+<li><input disabled="" type="checkbox"> Enable Kubernetes on Docker Desktop</li>
+<li><input disabled="" type="checkbox"> Understand the use of kubeconfig file</li>
+<li><input disabled="" type="checkbox"> Run some basic commands</li>
+</ul>
+<h2 id="-kubernetes-components-brief-overview">🧠 Kubernetes Components (Brief Overview)</h2>
+<p>Kubernetes consists of a <strong>control plane</strong> and <strong>worker nodes</strong>, each with several key components. Below is a summary of both.</p>
+<hr>
+<h2 id="-control-plane-components">🛠️ Control Plane Components</h2>
+<p>These components manage the overall cluster state.</p>
+<h3 id="1-kube-apiserver">1. kube-apiserver</h3>
+<ul>
+<li>The <strong>front-end</strong> of the Kubernetes control plane.</li>
+<li>Exposes the Kubernetes API.</li>
+<li>All internal/external communication happens through it.</li>
+</ul>
+<h3 id="2-etcd">2. etcd</h3>
+<ul>
+<li>A <strong>key-value store</strong> for all cluster data.</li>
+<li>Stores configuration, state, and metadata.</li>
+<li>Highly available and consistent.</li>
+</ul>
+<h3 id="3-kube-scheduler">3. kube-scheduler</h3>
+<ul>
+<li>Watches for new Pods without assigned nodes.</li>
+<li>Selects the best node to run the Pod based on constraints and policies.</li>
+</ul>
+<h3 id="4-kube-controller-manager">4. kube-controller-manager</h3>
+<ul>
+<li>Runs various <strong>controllers</strong> (e.g., ReplicationController, NodeController).</li>
+<li>Ensures desired state matches the actual cluster state.</li>
+</ul>
+<h3 id="5-cloud-controller-manager-optional">5. cloud-controller-manager (optional)</h3>
+<ul>
+<li>Manages cloud-specific resources (e.g., load balancers, IPs).</li>
+<li>Used only in cloud environments (e.g., AWS, Azure, GCP).</li>
+</ul>
+<hr>
+<h2 id="-node-components">🚀 Node Components</h2>
+<p>These run on <strong>each worker node</strong> and are responsible for running Pods.</p>
+<h3 id="1-kubelet">1. kubelet</h3>
+<ul>
+<li>Agent that runs on every node.</li>
+<li>Registers node with the cluster.</li>
+<li>Ensures containers are running in the desired state.</li>
+</ul>
+<h3 id="2-kube-proxy">2. kube-proxy</h3>
+<ul>
+<li>Maintains network rules for Pods.</li>
+<li>Enables communication within the cluster using Services.</li>
+<li>Handles routing and load balancing.</li>
+</ul>
+<h3 id="3-container-runtime">3. container runtime</h3>
+<ul>
+<li>Software that runs containers (e.g., containerd, CRI-O, Docker).</li>
+<li>Kubernetes uses it to run application containers.</li>
+</ul>
+<hr>
+<h2 id="-add-ons-common-but-not-mandatory">🔍 Add-ons (Common but not mandatory)</h2>
+<h3 id="1-coredns">1. CoreDNS</h3>
+<ul>
+<li>Provides <strong>DNS-based service discovery</strong>.</li>
+<li>Resolves service names to IPs.</li>
+</ul>
+<h3 id="2-metrics-server">2. Metrics Server</h3>
+<ul>
+<li>Collects resource metrics (CPU/memory).</li>
+<li>Enables autoscaling and monitoring.</li>
+</ul>
+<h3 id="3-ingress-controller">3. Ingress Controller</h3>
+<ul>
+<li>Manages <strong>external HTTP/HTTPS access</strong> to services.</li>
+<li>Works with Ingress resources.</li>
+</ul>
+<hr>
+<h2 id="-summary-table">✅ Summary Table</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Component</th>
+          <th>Role</th>
+          <th>Runs On</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>kube-apiserver</td>
+          <td>API access point</td>
+          <td>Control Plane</td>
+      </tr>
+      <tr>
+          <td>etcd</td>
+          <td>Cluster data store</td>
+          <td>Control Plane</td>
+      </tr>
+      <tr>
+          <td>kube-scheduler</td>
+          <td>Pod scheduling</td>
+          <td>Control Plane</td>
+      </tr>
+      <tr>
+          <td>kube-controller-manager</td>
+          <td>Runs controllers</td>
+          <td>Control Plane</td>
+      </tr>
+      <tr>
+          <td>cloud-controller-manager</td>
+          <td>Manages cloud resources</td>
+          <td>Control Plane</td>
+      </tr>
+      <tr>
+          <td>kubelet</td>
+          <td>Node agent</td>
+          <td>Worker Node</td>
+      </tr>
+      <tr>
+          <td>kube-proxy</td>
+          <td>Network proxy</td>
+          <td>Worker Node</td>
+      </tr>
+      <tr>
+          <td>container runtime</td>
+          <td>Runs containers</td>
+          <td>Worker Node</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<blockquote>
+<p>📝 <strong>Tip:</strong> Run <code>kubectl get componentstatuses</code> to see health of control plane components.</p>
+</blockquote>
 <h2 id="aks-deployment-guide">AKS Deployment Guide</h2>
-<p>A step-by-step guide to deploy Azure Kubernetes Service (AKS) using Azure CLI.</p>
+<p>Steps to deploy Azure Kubernetes Service (AKS) using Azure CLI.</p>
 <hr>
 <h2 id="-prerequisites-1">📌 Prerequisites</h2>
 <ul>
@@ -315,6 +520,56 @@
 <blockquote>
 <p>You may have to take care of the labels and ports assigned to svc and pods .</p>
 </blockquote>
+<h2 id="-kubernetes-pods-assignment">📘 Kubernetes Pods Assignment</h2>
+<p>Complete the following tasks to strengthen your understanding of Pods in Kubernetes.</p>
+<hr>
+<h2 id="-tasks-01">📝 Tasks 01</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Create a Pod named <code>nginx-pod</code> using the <code>nginx</code> image.</li>
+<li><input disabled="" type="checkbox"> Describe the <code>nginx-pod</code> and review its details.</li>
+<li><input disabled="" type="checkbox"> View logs of the <code>nginx-pod</code>.</li>
+<li><input disabled="" type="checkbox"> Execute an interactive shell inside the <code>nginx-pod</code>.</li>
+<li><input disabled="" type="checkbox"> Write a YAML manifest to create a Pod named <code>busybox-pod</code> running the <code>busybox</code> image.</li>
+<li><input disabled="" type="checkbox"> Create a Pod that runs for a long time using <code>sleep</code> command.</li>
+<li><input disabled="" type="checkbox"> Create a Pod with specific resource <code>requests</code> and <code>limits</code> for CPU and memory.</li>
+<li><input disabled="" type="checkbox"> Create a Pod that sets an environment variable <code>MY_ENV_VAR=HelloK8s</code>.</li>
+<li><input disabled="" type="checkbox"> Create a Pod that mounts a <code>hostPath</code> volume to a container.</li>
+<li><input disabled="" type="checkbox"> Delete a Pod using <code>kubectl delete</code> and confirm it&rsquo;s removed.</li>
+</ul>
+<hr>
+<h2 id="-kubernetes-deployments-assignment">📘 Kubernetes Deployments Assignment</h2>
+<p>Work through the following tasks to gain practical experience with Deployments in Kubernetes.</p>
+<hr>
+<h2 id="-tasks-02">📝 Tasks 02</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Create a Deployment named <code>web-deploy</code> with 2 replicas using the <code>nginx</code> image.</li>
+<li><input disabled="" type="checkbox"> Verify that the Deployment created the correct number of Pods.</li>
+<li><input disabled="" type="checkbox"> Scale the Deployment <code>web-deploy</code> to 5 replicas.</li>
+<li><input disabled="" type="checkbox"> Update the Deployment image to <code>nginx:1.21</code>.</li>
+<li><input disabled="" type="checkbox"> Roll back the Deployment to the previous version.</li>
+<li><input disabled="" type="checkbox"> Write a YAML manifest to create a Deployment named <code>httpd-deploy</code> using the <code>httpd</code> image.</li>
+<li><input disabled="" type="checkbox"> Add a label <code>env=prod</code> to all Pods created by <code>web-deploy</code>.</li>
+<li><input disabled="" type="checkbox"> Use <code>kubectl rollout status</code> to monitor the status of a rolling update.</li>
+<li><input disabled="" type="checkbox"> Delete the Deployment and verify that all Pods are also deleted.</li>
+</ul>
+<hr>
+<h2 id="-kubernetes-services-assignment">📘 Kubernetes Services Assignment</h2>
+<p>Complete the following tasks to understand and work with Services in Kubernetes.</p>
+<hr>
+<h2 id="-tasks-03">📝 Tasks 03</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Create a Deployment named <code>nginx-deploy</code> with 3 replicas using the <code>nginx</code> image.</li>
+<li><input disabled="" type="checkbox"> Expose the Deployment with a ClusterIP Service named <code>nginx-clusterip</code> on port 80.</li>
+<li><input disabled="" type="checkbox"> Verify that the Service correctly routes traffic to all 3 Pods.</li>
+<li><input disabled="" type="checkbox"> Use <code>kubectl get endpoints</code> to confirm endpoints are assigned to the Service.</li>
+<li><input disabled="" type="checkbox"> Create a NodePort Service named <code>nginx-nodeport</code> to expose the same Deployment on a node port.</li>
+<li><input disabled="" type="checkbox"> Access the application in a browser using <code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code>.</li>
+<li><input disabled="" type="checkbox"> Create a YAML file to define a LoadBalancer Service (only works in cloud environments).</li>
+<li><input disabled="" type="checkbox"> Delete the <code>nginx-clusterip</code> and <code>nginx-nodeport</code> services.</li>
+<li><input disabled="" type="checkbox"> Create a headless Service using <code>clusterIP: None</code> and verify DNS resolution inside a Pod.</li>
+<li><input disabled="" type="checkbox"> Use <code>kubectl port-forward</code> to expose a Pod without a Service and access it locally.</li>
+</ul>
+<hr>
 
   <footer class="footline">
   </footer>
@@ -331,7 +586,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1754384446";
+          window.index_js_url="../../searchindex.en.js?1754496878";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -344,12 +599,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1754384446" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1754384446" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754384446" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1754384446" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1754384446" defer></script>
-        <script src="../../js/search.js?1754384446" defer></script>
+        <script src="../../js/auto-complete.js?1754496878" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754496878" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754496878" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754496878" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754496878" defer></script>
+        <script src="../../js/search.js?1754496878" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -426,8 +681,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1754384446" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1754384446" defer></script>
-    <script src="../../js/theme.js?1754384446" defer></script>
+    <script src="../../js/clipboard.min.js?1754496878" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754496878" defer></script>
+    <script src="../../js/theme.js?1754496878" defer></script>
   </body>
 </html>
