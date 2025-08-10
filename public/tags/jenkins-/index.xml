@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Starter-Kit :: Tag :: Helm</title>
-    <link>https://github.com/nirpendra83/Getting-started-with-helm/tags/starter-kit/index.html</link>
+    <title>Jenkins  :: Tag :: Helm</title>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/tags/jenkins-/index.html</link>
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/starter-kit/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Session 05</title>
-      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day05/index.html</link>
-      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/day05/index.html</guid>
-      <description>Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.</description>
-    </item>
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/jenkins-/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Jenkins</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/jenkins/index.html</link>

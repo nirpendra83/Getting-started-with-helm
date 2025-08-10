@@ -29,14 +29,14 @@
     <meta itemprop="description" content="Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.">
     <meta itemprop="datePublished" content="2025-08-03T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-08-03T00:00:00+00:00">
-    <meta itemprop="wordCount" content="452">
+    <meta itemprop="wordCount" content="695">
     <meta itemprop="keywords" content="Clean Architecture,Dotnet,Angular,Postgresql,Full-Stack,Starter-Kit,Devops">
     <title>Session 05 :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754496878" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1754496878" rel="stylesheet">
-    <link href="../../css/theme.min.css?1754496878" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1754496878" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1754831659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754831659" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754831659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754831659" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754831659" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754831659" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754831659" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -129,6 +129,16 @@
         <li><a href="#step-2-use-the-kubeconfig-secret-file-in-your-jenkins-pipeline">Step 2: Use the kubeconfig Secret File in Your Jenkins Pipeline</a></li>
       </ul>
     </li>
+    <li><a href="#github-hook-trigger-for-gitscm-polling">GitHub Hook Trigger for GITScm Polling</a>
+      <ul>
+        <li><a href="#1-install-required-plugins">1️⃣ Install Required Plugins</a></li>
+        <li><a href="#2-configure-github-in-jenkins">2️⃣ Configure GitHub in Jenkins</a></li>
+        <li><a href="#3-configure-the-jenkins-job">3️⃣ Configure the Jenkins Job</a></li>
+        <li><a href="#4-set-up-github-webhook">4️⃣ Set Up GitHub Webhook</a></li>
+        <li><a href="#5-test-the-integration">5️⃣ Test the Integration</a></li>
+        <li><a href="#-sample-jenkinsfile-for-testing-windows-friendly">📄 Sample <code>Jenkinsfile</code> for Testing (Windows-Friendly)</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
                 </div>
@@ -143,7 +153,7 @@
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/day04/index.html" title="Session 04 (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
             </div>
-            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/session02/index.html" title="Deploying Learning Portal with Docker and Kubernetes (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../dotnet/jenkins/index.html" title="Jenkins (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
             </div>
             <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
               <div class="topbar-content">
@@ -311,6 +321,104 @@
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>withCredentials<span style="color:#f92672">([</span>file<span style="color:#f92672">(</span>credentialsId: <span style="color:#e6db74">&#39;kubeconfig-cred-id&#39;</span><span style="color:#f92672">,</span> variable: <span style="color:#e6db74">&#39;KUBECONFIG&#39;</span><span style="color:#f92672">)])</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    sh <span style="color:#e6db74">&#39;kubectl get pods&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
+<h2 id="github-hook-trigger-for-gitscm-polling">GitHub Hook Trigger for GITScm Polling</h2>
+<h3 id="1-install-required-plugins">1️⃣ Install Required Plugins</h3>
+<ul>
+<li>In Jenkins, go to <strong>Manage Jenkins → Plugins → Available Plugins</strong></li>
+<li>Install:
+<ul>
+<li><strong>Git</strong></li>
+<li><strong>GitHub Integration</strong> (or <strong>GitHub plugin</strong>)</li>
+<li><strong>GitHub Branch Source</strong> (optional but useful for multibranch)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-configure-github-in-jenkins">2️⃣ Configure GitHub in Jenkins</h3>
+<ol>
+<li>Go to <strong>Manage Jenkins → Configure System</strong></li>
+<li>Find <strong>GitHub</strong> section.</li>
+<li>Add a new GitHub server:
+<ul>
+<li><strong>Name</strong>: <code>GitHub</code></li>
+<li><strong>Credentials</strong>: Add your GitHub Personal Access Token (PAT)<br>
+<em>(Permissions: <code>repo</code>, <code>admin:repo_hook</code>)</em></li>
+<li>Click <strong>Test Connection</strong> to ensure connectivity.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="3-configure-the-jenkins-job">3️⃣ Configure the Jenkins Job</h3>
+<ol>
+<li>Create or edit your Jenkins pipeline/freestyle job.</li>
+<li>In <strong>Source Code Management</strong>, select <strong>Git</strong> and:
+<ul>
+<li>Enter repository URL.</li>
+<li>Add credentials (if private repo).</li>
+</ul>
+</li>
+<li>Under <strong>Build Triggers</strong>, check:
+<ul>
+<li>✅ <strong>GitHub hook trigger for GITScm polling</strong></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="4-set-up-github-webhook">4️⃣ Set Up GitHub Webhook</h3>
+<ol>
+<li>Open your GitHub repository in the browser.</li>
+<li>Go to <strong>Settings → Webhooks → Add webhook</strong>.</li>
+<li><strong>Payload URL</strong>:
+<div class="highlight wrap-code"><pre tabindex="0"><code>http://&lt;jenkins-server&gt;/github-webhook/</code></pre></div>
+Example:
+<div class="highlight wrap-code"><pre tabindex="0"><code>http://jenkins.example.com/github-webhook/</code></pre></div>
+</li>
+<li><strong>Content type</strong>: <code>application/json</code></li>
+<li>Select <strong>Just the push event</strong> (or required events).</li>
+<li>Save the webhook.</li>
+</ol>
+<hr>
+<h3 id="5-test-the-integration">5️⃣ Test the Integration</h3>
+<ul>
+<li>Push a commit to the GitHub repository.</li>
+<li>Jenkins should start the job automatically without manual polling.</li>
+</ul>
+<hr>
+<h3 id="-sample-jenkinsfile-for-testing-windows-friendly">📄 Sample <code>Jenkinsfile</code> for Testing (Windows-Friendly)</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    agent any
+</span></span><span style="display:flex;"><span>    triggers <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        githubPush<span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Checkout&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                echo <span style="color:#e6db74">&#34;Checking out code...&#34;</span>
+</span></span><span style="display:flex;"><span>                checkout scm
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                bat <span style="color:#e6db74">&#39;echo Building the project...&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Test&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                bat <span style="color:#e6db74">&#39;echo Running tests...&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                bat <span style="color:#e6db74">&#39;echo Deploying application...&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        always <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            bat <span style="color:#e6db74">&#39;echo Pipeline finished!&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
 
   <footer class="footline">
   </footer>
@@ -327,7 +435,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1754496878";
+          window.index_js_url="../../searchindex.en.js?1754831659";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -340,12 +448,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1754496878" defer></script>
-        <script src="../../js/search.js?1754496878" defer></script>
+        <script src="../../js/auto-complete.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754831659" defer></script>
+        <script src="../../js/search.js?1754831659" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -364,6 +472,8 @@ Helm
             <li class="" data-nav-id="/dotnet/day03/index.html"><a class="padding" href="../../dotnet/day03/index.html">Session 03</a></li>
             <li class="" data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
             <li class="active " data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="" data-nav-id="/dotnet/jenkins/index.html"><a class="padding" href="../../dotnet/jenkins/index.html">Jenkins</a></li>
+            <li class="" data-nav-id="/dotnet/jenkins02/index.html"><a class="padding" href="../../dotnet/jenkins02/index.html">Jenkins 02</a></li>
             <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
             <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
@@ -422,8 +532,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1754496878" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1754496878" defer></script>
-    <script src="../../js/theme.js?1754496878" defer></script>
+    <script src="../../js/clipboard.min.js?1754831659" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754831659" defer></script>
+    <script src="../../js/theme.js?1754831659" defer></script>
   </body>
 </html>

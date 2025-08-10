@@ -12,6 +12,7 @@ weight: 5
 -  [Getting started kubernetes Services](https://k8s.selfstudy.life/part03/index.html#service)
 -  [Getting started kubernetes Deployments](https://k8s.selfstudy.life/part03/index.html#-deployment)
 -  [Getting started kubernetes Secret and configmap](https://k8s.selfstudy.life/part04/index.html)
+-  [ Managing Kubernetes using Graphical Tool Rancher ](https://k8s.selfstudy.life/part05/index.html#rancher-kubernetes-management-tool)
 ## 🚀 CI/CD Explained
 
 CI/CD stands for:
@@ -118,100 +119,8 @@ In Continuous Deployment, the **Manual Approval** step is removed.
 | **Continuous Deployment**| Automatically deploy to production            |
 
 
-
-## 🧰 Jenkins Setup and Docker Compose Pipeline Guide
-
----
-
-## 🧱 Part 1: Install Jenkins (Ubuntu/Debian)
-
-### 🔹 Step 1: Install Java (required)
-
-```bash
-sudo apt update
-sudo apt install openjdk-17-jdk -y
-```
-
-### 🔹 Step 2: Add Jenkins repository
-
-```bash
-curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
-  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-  https://pkg.jenkins.io/debian binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
-```
-
-### 🔹 Step 3: Install Jenkins
-
-```bash
-sudo apt update
-sudo apt install jenkins -y
-```
-
-### 🔹 Step 4: Start and Enable Jenkins
-
-```bash
-sudo systemctl enable jenkins
-sudo systemctl start jenkins
-```
-
----
-
-## 📬 Step 5: Access Jenkins
-
-Open in browser:
-
-```
-http://<your-server-ip>:8080
-```
-
-### Get initial admin password:
-
-```bash
-sudo cat /var/lib/jenkins/secrets/initialAdminPassword
-```
-
-Copy that password to the browser and finish setup.
-
----
-
+## 🧱 [Part 1: Install Jenkins](https://www.jenkins.io/doc/book/installing/)
 ## 🐳 Part 2: Install Docker & Docker Compose
-
-### Install Docker
-
-```bash
-sudo apt install ca-certificates curl gnupg -y
-sudo install -m 0755 -d /etc/apt/keyrings
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
-  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-echo \
-  "deb [arch=$(dpkg --print-architecture) \
-  signed-by=/etc/apt/keyrings/docker.gpg] \
-  https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update
-sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-```
-
-### Allow Jenkins to run Docker
-
-```bash
-sudo usermod -aG docker jenkins
-sudo systemctl restart jenkins
-```
-
-> 🔁 You may also need to reboot or restart Jenkins for group changes to apply.
-
----
-
-## 🧪 Part 3: Verify Docker Access from Jenkins
-
 ### Test in Jenkins (via freestyle or pipeline job):
 
 ```groovy
@@ -230,7 +139,7 @@ pipeline {
 
 ---
 
-## 🚀 Part 4: Sample Jenkins Pipeline to Run Docker Compose App
+## 🚀 Part 3: Sample Jenkins Pipeline to Run Docker Compose App
 
 ```groovy
 pipeline {
@@ -278,21 +187,54 @@ pipeline {
   }
 }
 ```
+-  For Windows Jenkins agent
+```groovy
+pipeline {
+  agent any
 
+  environment {
+    COMPOSE_PROJECT_DIR = "${WORKSPACE}/myapp"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/nirpendra83/docker-compose.git'
+      }
+    }
+
+    stage('Build and Deploy') {
+      steps {
+        dir('myapp') {
+          bat 'docker-compose down --volumes || true'
+          bat 'docker-compose up -d --build'
+        }
+      }
+    }
+
+    stage('Health Check') {
+      steps {
+        bat 'sleep 5 && curl -f http://localhost:5000'
+      }
+    }
+
+    stage('Shutdown') {
+      steps {
+        dir('myapp') {
+          bat 'docker-compose down'
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      echo '✅ Pipeline complete. Clean up done.'
+    }
+  }
+}
+```
 ---
-
-## 🧠 Tips
-
-- Add SSH credentials if cloning from private Git repositories
-- Use `docker-compose logs` for troubleshooting
-- Avoid using `localhost` for health checks if Jenkins runs in Docker
-
----
-
-Let me know if you want a `.sh` script to automate this or a `Jenkinsfile` zipped with the `myapp/` project! I can generate and upload it for you.
-
-
-
 
 ## 💡 Jenkins Declarative Pipeline Guide
 
@@ -562,4 +504,3 @@ pipeline {
 
 > ✅ **Declarative pipelines** are YAML-like Groovy configurations that make your Jenkins workflows repeatable, testable, and easy to maintain.
 
-Let me know if you want this converted to a downloadable `.md` file or added to a GitHub repo template.

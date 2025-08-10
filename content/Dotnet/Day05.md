@@ -159,3 +159,98 @@ withCredentials([file(credentialsId: 'kubeconfig-cred-id', variable: 'KUBECONFIG
     sh 'kubectl get pods'
 }
 ```
+
+
+
+## GitHub Hook Trigger for GITScm Polling 
+### 1️⃣ Install Required Plugins
+- In Jenkins, go to **Manage Jenkins → Plugins → Available Plugins**
+- Install:
+  - **Git**
+  - **GitHub Integration** (or **GitHub plugin**)
+  - **GitHub Branch Source** (optional but useful for multibranch)
+
+---
+
+### 2️⃣ Configure GitHub in Jenkins
+1. Go to **Manage Jenkins → Configure System**
+2. Find **GitHub** section.
+3. Add a new GitHub server:
+   - **Name**: `GitHub`
+   - **Credentials**: Add your GitHub Personal Access Token (PAT)  
+     _(Permissions: `repo`, `admin:repo_hook`)_
+   - Click **Test Connection** to ensure connectivity.
+
+---
+
+### 3️⃣ Configure the Jenkins Job
+1. Create or edit your Jenkins pipeline/freestyle job.
+2. In **Source Code Management**, select **Git** and:
+   - Enter repository URL.
+   - Add credentials (if private repo).
+3. Under **Build Triggers**, check:
+   - ✅ **GitHub hook trigger for GITScm polling**
+
+---
+
+### 4️⃣ Set Up GitHub Webhook
+1. Open your GitHub repository in the browser.
+2. Go to **Settings → Webhooks → Add webhook**.
+3. **Payload URL**:
+   ```
+   http://<jenkins-server>/github-webhook/
+   ```
+   Example:
+   ```
+   http://jenkins.example.com/github-webhook/
+   ```
+4. **Content type**: `application/json`
+5. Select **Just the push event** (or required events).
+6. Save the webhook.
+
+---
+
+### 5️⃣ Test the Integration
+- Push a commit to the GitHub repository.
+- Jenkins should start the job automatically without manual polling.
+
+---
+
+### 📄 Sample `Jenkinsfile` for Testing (Windows-Friendly)
+
+```groovy
+pipeline {
+    agent any
+    triggers {
+        githubPush()
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Checking out code..."
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'echo Building the project...'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'echo Running tests...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'echo Deploying application...'
+            }
+        }
+    }
+    post {
+        always {
+            bat 'echo Pipeline finished!'
+        }
+    }
+}
+```

@@ -51,6 +51,20 @@
       <description>Production-ready starter with Angular, .NET 9, PostgreSQL, and Clean Architecture principles for scalable web apps.</description>
     </item>
     <item>
+      <title>Jenkins</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/jenkins/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/jenkins/index.html</guid>
+      <description>CICD with Jenkins</description>
+    </item>
+    <item>
+      <title>Jenkins 02</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/jenkins02/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/jenkins02/index.html</guid>
+      <description>CICD with Jenkins</description>
+    </item>
+    <item>
       <title>Deploying Learning Portal with Docker and Kubernetes</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/session02/index.html</link>
       <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>

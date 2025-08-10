@@ -29,14 +29,14 @@
     <meta itemprop="description" content="Install Jenkins and Run Docker Compose with Pipeline">
     <meta itemprop="datePublished" content="2025-08-02T00:00:00+00:00">
     <meta itemprop="dateModified" content="2025-08-02T00:00:00+00:00">
-    <meta itemprop="wordCount" content="1243">
+    <meta itemprop="wordCount" content="1066">
     <meta itemprop="keywords" content="Jenkins,Docker,Docker-Compose,Ci-Cd,Devops,Pipeline">
     <title>Session 04 :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754496878" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1754496878" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754496878" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1754496878" rel="stylesheet">
-    <link href="../../css/theme.min.css?1754496878" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1754496878" rel="stylesheet" id="R-format-style">
+    <link href="../../css/fontawesome-all.min.css?1754831659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1754831659" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1754831659" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1754831659" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1754831659" rel="stylesheet">
+    <link href="../../css/theme.min.css?1754831659" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1754831659" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -117,33 +117,13 @@
     <li><a href="#-benefits-of-cicd">🧠 Benefits of CI/CD</a></li>
     <li><a href="#-tools-for-cicd">🛠️ Tools for CI/CD</a></li>
     <li><a href="#-summary-table">🧩 Summary Table</a></li>
-    <li><a href="#-jenkins-setup-and-docker-compose-pipeline-guide">🧰 Jenkins Setup and Docker Compose Pipeline Guide</a></li>
-    <li><a href="#-part-1-install-jenkins-ubuntudebian">🧱 Part 1: Install Jenkins (Ubuntu/Debian)</a>
-      <ul>
-        <li><a href="#-step-1-install-java-required">🔹 Step 1: Install Java (required)</a></li>
-        <li><a href="#-step-2-add-jenkins-repository">🔹 Step 2: Add Jenkins repository</a></li>
-        <li><a href="#-step-3-install-jenkins">🔹 Step 3: Install Jenkins</a></li>
-        <li><a href="#-step-4-start-and-enable-jenkins">🔹 Step 4: Start and Enable Jenkins</a></li>
-      </ul>
-    </li>
-    <li><a href="#-step-5-access-jenkins">📬 Step 5: Access Jenkins</a>
-      <ul>
-        <li><a href="#get-initial-admin-password">Get initial admin password:</a></li>
-      </ul>
-    </li>
+    <li><a href="#-part-1-install-jenkinshttpswwwjenkinsiodocbookinstalling">🧱 <a href="https://www.jenkins.io/doc/book/installing/">Part 1: Install Jenkins</a></a></li>
     <li><a href="#-part-2-install-docker--docker-compose">🐳 Part 2: Install Docker &amp; Docker Compose</a>
-      <ul>
-        <li><a href="#install-docker">Install Docker</a></li>
-        <li><a href="#allow-jenkins-to-run-docker">Allow Jenkins to run Docker</a></li>
-      </ul>
-    </li>
-    <li><a href="#-part-3-verify-docker-access-from-jenkins">🧪 Part 3: Verify Docker Access from Jenkins</a>
       <ul>
         <li><a href="#test-in-jenkins-via-freestyle-or-pipeline-job">Test in Jenkins (via freestyle or pipeline job):</a></li>
       </ul>
     </li>
-    <li><a href="#-part-4-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 4: Sample Jenkins Pipeline to Run Docker Compose App</a></li>
-    <li><a href="#-tips">🧠 Tips</a></li>
+    <li><a href="#-part-3-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 3: Sample Jenkins Pipeline to Run Docker Compose App</a></li>
     <li><a href="#-jenkins-declarative-pipeline-guide">💡 Jenkins Declarative Pipeline Guide</a></li>
     <li><a href="#-1-basic-structure">🧱 1. Basic Structure</a></li>
     <li><a href="#-2-agent-block">🚀 2. <code>agent</code> Block</a>
@@ -220,6 +200,7 @@
 <li><a href="https://k8s.selfstudy.life/part03/index.html#service" rel="external" target="_blank">Getting started kubernetes Services</a></li>
 <li><a href="https://k8s.selfstudy.life/part03/index.html#-deployment" rel="external" target="_blank">Getting started kubernetes Deployments</a></li>
 <li><a href="https://k8s.selfstudy.life/part04/index.html" rel="external" target="_blank">Getting started kubernetes Secret and configmap</a></li>
+<li><a href="https://k8s.selfstudy.life/part05/index.html#rancher-kubernetes-management-tool" rel="external" target="_blank"> Managing Kubernetes using Graphical Tool Rancher </a></li>
 </ul>
 <h2 id="-cicd-explained">🚀 CI/CD Explained</h2>
 <p>CI/CD stands for:</p>
@@ -373,58 +354,8 @@
       </tr>
   </tbody>
 </table>
-<h2 id="-jenkins-setup-and-docker-compose-pipeline-guide">🧰 Jenkins Setup and Docker Compose Pipeline Guide</h2>
-<hr>
-<h2 id="-part-1-install-jenkins-ubuntudebian">🧱 Part 1: Install Jenkins (Ubuntu/Debian)</h2>
-<h3 id="-step-1-install-java-required">🔹 Step 1: Install Java (required)</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install openjdk-17-jdk -y</span></span></code></pre></div>
-<h3 id="-step-2-add-jenkins-repository">🔹 Step 2: Add Jenkins repository</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /usr/share/keyrings/jenkins-keyring.asc &gt; /dev/null
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo deb <span style="color:#f92672">[</span>signed-by<span style="color:#f92672">=</span>/usr/share/keyrings/jenkins-keyring.asc<span style="color:#f92672">]</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  https://pkg.jenkins.io/debian binary/ | sudo tee <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  /etc/apt/sources.list.d/jenkins.list &gt; /dev/null</span></span></code></pre></div>
-<h3 id="-step-3-install-jenkins">🔹 Step 3: Install Jenkins</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install jenkins -y</span></span></code></pre></div>
-<h3 id="-step-4-start-and-enable-jenkins">🔹 Step 4: Start and Enable Jenkins</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable jenkins
-</span></span><span style="display:flex;"><span>sudo systemctl start jenkins</span></span></code></pre></div>
-<hr>
-<h2 id="-step-5-access-jenkins">📬 Step 5: Access Jenkins</h2>
-<p>Open in browser:</p>
-<div class="highlight wrap-code"><pre tabindex="0"><code>http://&lt;your-server-ip&gt;:8080</code></pre></div>
-<h3 id="get-initial-admin-password">Get initial admin password:</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cat /var/lib/jenkins/secrets/initialAdminPassword</span></span></code></pre></div>
-<p>Copy that password to the browser and finish setup.</p>
-<hr>
+<h2 id="-part-1-install-jenkinshttpswwwjenkinsiodocbookinstalling">🧱 <a href="https://www.jenkins.io/doc/book/installing/" rel="external" target="_blank">Part 1: Install Jenkins</a></h2>
 <h2 id="-part-2-install-docker--docker-compose">🐳 Part 2: Install Docker &amp; Docker Compose</h2>
-<h3 id="install-docker">Install Docker</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install ca-certificates curl gnupg -y
-</span></span><span style="display:flex;"><span>sudo install -m <span style="color:#ae81ff">0755</span> -d /etc/apt/keyrings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>curl -fsSL https://download.docker.com/linux/ubuntu/gpg | <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;deb [arch=</span><span style="color:#66d9ef">$(</span>dpkg --print-architecture<span style="color:#66d9ef">)</span><span style="color:#e6db74"> \
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  signed-by=/etc/apt/keyrings/docker.gpg] \
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  https://download.docker.com/linux/ubuntu \
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  </span><span style="color:#66d9ef">$(</span>lsb_release -cs<span style="color:#66d9ef">)</span><span style="color:#e6db74"> stable&#34;</span> | <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>sudo apt update
-</span></span><span style="display:flex;"><span>sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y</span></span></code></pre></div>
-<h3 id="allow-jenkins-to-run-docker">Allow Jenkins to run Docker</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo usermod -aG docker jenkins
-</span></span><span style="display:flex;"><span>sudo systemctl restart jenkins</span></span></code></pre></div>
-<blockquote>
-<p>🔁 You may also need to reboot or restart Jenkins for group changes to apply.</p>
-</blockquote>
-<hr>
-<h2 id="-part-3-verify-docker-access-from-jenkins">🧪 Part 3: Verify Docker Access from Jenkins</h2>
 <h3 id="test-in-jenkins-via-freestyle-or-pipeline-job">Test in Jenkins (via freestyle or pipeline job):</h3>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  agent any
@@ -438,7 +369,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
 <hr>
-<h2 id="-part-4-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 4: Sample Jenkins Pipeline to Run Docker Compose App</h2>
+<h2 id="-part-3-sample-jenkins-pipeline-to-run-docker-compose-app">🚀 Part 3: Sample Jenkins Pipeline to Run Docker Compose App</h2>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  agent any
 </span></span><span style="display:flex;"><span>
@@ -483,15 +414,54 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
-<hr>
-<h2 id="-tips">🧠 Tips</h2>
 <ul>
-<li>Add SSH credentials if cloning from private Git repositories</li>
-<li>Use <code>docker-compose logs</code> for troubleshooting</li>
-<li>Avoid using <code>localhost</code> for health checks if Jenkins runs in Docker</li>
+<li>For Windows Jenkins agent</li>
 </ul>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  agent any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  environment <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    COMPOSE_PROJECT_DIR <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;${WORKSPACE}/myapp&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Checkout&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        git branch: <span style="color:#e6db74">&#39;main&#39;</span><span style="color:#f92672">,</span> url: <span style="color:#e6db74">&#39;https://github.com/nirpendra83/docker-compose.git&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Build and Deploy&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        dir<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;myapp&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          bat <span style="color:#e6db74">&#39;docker-compose down --volumes || true&#39;</span>
+</span></span><span style="display:flex;"><span>          bat <span style="color:#e6db74">&#39;docker-compose up -d --build&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Health Check&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        bat <span style="color:#e6db74">&#39;sleep 5 &amp;&amp; curl -f http://localhost:5000&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;Shutdown&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        dir<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;myapp&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>          bat <span style="color:#e6db74">&#39;docker-compose down&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    always <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      echo <span style="color:#e6db74">&#39;✅ Pipeline complete. Clean up done.&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span></span></span></code></pre></div>
 <hr>
-<p>Let me know if you want a <code>.sh</code> script to automate this or a <code>Jenkinsfile</code> zipped with the <code>myapp/</code> project! I can generate and upload it for you.</p>
 <h2 id="-jenkins-declarative-pipeline-guide">💡 Jenkins Declarative Pipeline Guide</h2>
 <p>The <strong>Declarative Pipeline</strong> in Jenkins is a structured way to define CI/CD workflows using a <code>Jenkinsfile</code>. It is easier to read, validate, and maintain compared to Scripted Pipelines.</p>
 <hr>
@@ -706,7 +676,6 @@
 <blockquote>
 <p>✅ <strong>Declarative pipelines</strong> are YAML-like Groovy configurations that make your Jenkins workflows repeatable, testable, and easy to maintain.</p>
 </blockquote>
-<p>Let me know if you want this converted to a downloadable <code>.md</code> file or added to a GitHub repo template.</p>
 
   <footer class="footline">
   </footer>
@@ -723,7 +692,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1754496878";
+          window.index_js_url="../../searchindex.en.js?1754831659";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -736,12 +705,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1754496878" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1754496878" defer></script>
-        <script src="../../js/search.js?1754496878" defer></script>
+        <script src="../../js/auto-complete.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1754831659" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1754831659" defer></script>
+        <script src="../../js/search.js?1754831659" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -760,6 +729,8 @@ Helm
             <li class="" data-nav-id="/dotnet/day03/index.html"><a class="padding" href="../../dotnet/day03/index.html">Session 03</a></li>
             <li class="active " data-nav-id="/dotnet/day04/index.html"><a class="padding" href="../../dotnet/day04/index.html">Session 04</a></li>
             <li class="" data-nav-id="/dotnet/day05/index.html"><a class="padding" href="../../dotnet/day05/index.html">Session 05</a></li>
+            <li class="" data-nav-id="/dotnet/jenkins/index.html"><a class="padding" href="../../dotnet/jenkins/index.html">Jenkins</a></li>
+            <li class="" data-nav-id="/dotnet/jenkins02/index.html"><a class="padding" href="../../dotnet/jenkins02/index.html">Jenkins 02</a></li>
             <li class="" data-nav-id="/dotnet/session02/index.html"><a class="padding" href="../../dotnet/session02/index.html">Deploying Learning Portal with Docker and Kubernetes</a></li>
             <li class="" data-nav-id="/dotnet/misc/index.html"><a class="padding" href="../../dotnet/misc/index.html">.NET Related containers</a></li></ul></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
@@ -818,8 +789,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1754496878" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1754496878" defer></script>
-    <script src="../../js/theme.js?1754496878" defer></script>
+    <script src="../../js/clipboard.min.js?1754831659" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1754831659" defer></script>
+    <script src="../../js/theme.js?1754831659" defer></script>
   </body>
 </html>
