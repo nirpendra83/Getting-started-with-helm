@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article" data-r-output-format="html">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="generator" content="Hugo 0.139.3">
+    <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
+    <meta name="description" content="In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.">
+    <meta name="author" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AWS Cloud Networking :: Helm">
+    <meta name="twitter:description" content="In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.">
+    <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html">
+    <meta property="og:site_name" content="Helm">
+    <meta property="og:title" content="AWS Cloud Networking :: Helm">
+    <meta property="og:description" content="In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.">
+    <meta property="og:locale" content="en_us">
+    <meta property="og:type" content="article">
+    <meta property="article:section" content="AWS Certified Solutions Architect – Associate (SAA-C03) ToC">
+    <meta property="article:published_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-03T00:00:00+00:00">
+    <meta property="article:tag" content="Aws">
+    <meta property="article:tag" content="Vpc">
+    <meta property="article:tag" content="Ec2">
+    <meta property="article:tag" content="Networking">
+    <meta property="article:tag" content="Solution Architect">
+    <meta property="article:tag" content="Saa-C03">
+    <meta itemprop="name" content="AWS Cloud Networking :: Helm">
+    <meta itemprop="description" content="In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.">
+    <meta itemprop="datePublished" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="dateModified" content="2025-08-03T00:00:00+00:00">
+    <meta itemprop="wordCount" content="815">
+    <meta itemprop="keywords" content="Aws,Vpc,Ec2,Networking,Solution Architect,Saa-C03">
+    <title>AWS Cloud Networking :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1755961071" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1755961071" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1755961071" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1755961071" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1755961071" rel="stylesheet">
+    <link href="../../css/theme.min.css?1755961071" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1755961071" rel="stylesheet" id="R-format-style">
+    <script>
+      window.relearn = window.relearn || {};
+      window.relearn.relBasePath='..\/..';
+      window.relearn.relBaseUri='..\/..';
+      window.relearn.absBaseUri='https:\/\/github.com\/nirpendra83\/Getting-started-with-helm';
+      window.relearn.min = `.min`;
+      window.relearn.disableAnchorCopy=false;
+      window.relearn.disableAnchorScrolling=false;
+      // variant stuff
+      window.relearn.themevariants = [ 'auto' ];
+      window.relearn.customvariantname = "my-custom-variant";
+      window.relearn.changeVariant = function(variant) {
+        var oldVariant = document.documentElement.dataset.rThemeVariant;
+        window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        document.documentElement.dataset.rThemeVariant = variant;
+        if (oldVariant != variant) {
+          document.dispatchEvent( new CustomEvent('themeVariantLoaded', { detail: { variant, oldVariant } }) );
+        }
+      }
+      window.relearn.markVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant");
+        var select = document.querySelector("#R-select-variant");
+        if (select) {
+          select.value = variant;
+        }
+      }
+      window.relearn.initVariant = function() {
+        var variant = window.localStorage.getItem(window.relearn.absBaseUri + "/variant") ?? "";
+        if( variant == window.relearn.customvariantname ){
+        }else if( !variant || !window.relearn.themevariants.includes(variant) ){
+          variant = window.relearn.themevariants[0];
+          window.localStorage.setItem(window.relearn.absBaseUri + "/variant", variant);
+        }
+        document.documentElement.dataset.rThemeVariant = variant;
+      }
+      window.relearn.initVariant();
+      window.relearn.markVariant();
+      // translations
+      window.T_Copy_to_clipboard = `Copy to clipboard`;
+      window.T_Copied_to_clipboard = `Copied to clipboard!`;
+      window.T_Copy_link_to_clipboard = `Copy link to clipboard`;
+      window.T_Link_copied_to_clipboard = `Copied link to clipboard!`;
+      window.T_Reset_view = `Reset view`;
+      window.T_View_reset = `View reset!`;
+      window.T_No_results_found = `No results found for "{0}"`;
+      window.T_N_results_found = `{1} results found for "{0}"`;
+    </script>
+  </head>
+  <body class="mobile-support html" data-url="../../aws/networking/index.html">
+    <div id="R-body" class="default-animation">
+      <div id="R-body-overlay"></div>
+      <nav id="R-topbar">
+        <div class="topbar-wrapper">
+          <div class="topbar-sidebar-divider"></div>
+          <div class="topbar-area topbar-area-start" data-area="start">
+            <div class="topbar-button topbar-button-sidebar" data-content-empty="disable" data-width-s="show" data-width-m="hide" data-width-l="hide"><button class="topbar-control" onclick="toggleNav()" type="button" title="Menu (CTRL&#43;ALT&#43;n)"><i class="fa-fw fas fa-bars"></i></button>
+            </div>
+            <div class="topbar-button topbar-button-toc" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="Table of Contents (CTRL&#43;ALT&#43;t)"><i class="fa-fw fas fa-list-alt"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+<nav class="TableOfContents">
+  <ul>
+    <li><a href="#1-vpc-virtual-private-cloud">1. VPC (Virtual Private Cloud)</a></li>
+    <li><a href="#2-subnet">2. Subnet</a></li>
+    <li><a href="#3-router-route-table">3. Router (Route Table)</a></li>
+    <li><a href="#4-internet-gateway-igw">4. Internet Gateway (IGW)</a></li>
+    <li><a href="#5-nat-gateway--nat-instance">5. NAT Gateway / NAT Instance</a></li>
+    <li><a href="#6-security-components">6. Security Components</a>
+      <ul>
+        <li><a href="#a-network-acl-nacl">a. Network ACL (NACL)</a></li>
+        <li><a href="#b-security-group-sg">b. Security Group (SG)</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-dhcp-options-set">7. DHCP Options Set</a></li>
+    <li><a href="#8-dns-in-vpc">8. DNS in VPC</a></li>
+    <li><a href="#9-vpc-peering">9. VPC Peering</a></li>
+    <li><a href="#10-vpc-endpoints">10. VPC Endpoints</a></li>
+    <li><a href="#11-vpc-flow-logs">11. VPC Flow Logs</a></li>
+    <li><a href="#12-key-comparison-subnet-vs-nacl">12. Key Comparison: Subnet vs NACL</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#key-notes">Key Notes</a></li>
+    <li><a href="#vpc-setup-on-aws-step-by-step">VPC Setup on AWS (Step-by-Step)</a>
+      <ul>
+        <li><a href="#1-create-a-vpc">1. Create a VPC</a></li>
+        <li><a href="#2-create-subnets">2. Create Subnets</a></li>
+        <li><a href="#3-create-an-internet-gateway">3. Create an Internet Gateway</a></li>
+        <li><a href="#4-configure-route-tables">4. Configure Route Tables</a></li>
+        <li><a href="#5-configure-security-groups">5. Configure Security Groups</a></li>
+        <li><a href="#6-launch-an-ec2-instance">6. Launch an EC2 Instance</a></li>
+        <li><a href="#7-test-connectivity">7. Test Connectivity</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../aws/index.html"><span itemprop="name">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">AWS Cloud Networking</span><meta itemprop="position" content="3"></li>
+          </ol>
+          <div class="topbar-area topbar-area-end" data-area="end">
+            <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../aws/aws-storage/index.html" title="Aws Storage (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-next" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../aws/aws-cloudwatch/index.html" title="AWS CloudWatch (🡒)"><i class="fa-fw fas fa-chevron-right"></i></a>
+            </div>
+            <div class="topbar-button topbar-button-more" data-content-empty="hide" data-width-s="show" data-width-m="show" data-width-l="show"><button class="topbar-control" onclick="toggleTopbarFlyout(this)" type="button" title="More"><i class="fa-fw fas fa-ellipsis-v"></i></button>
+              <div class="topbar-content">
+                <div class="topbar-content-wrapper">
+                  <div class="topbar-area topbar-area-more" data-area="more">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="R-main-overlay"></div>
+      <main id="R-body-inner" class="highlightable aws" tabindex="-1">
+        <div class="flex-block-wrapper">
+<article class="default">
+  <header class="headline">
+<div class="R-taxonomy taxonomy-tags cstyle tags" title="Tags" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <ul>
+    <li><a class="term-link" href="../../tags/aws/index.html">Aws</a></li>
+    <li><a class="term-link" href="../../tags/ec2/index.html">Ec2</a></li>
+    <li><a class="term-link" href="../../tags/networking/index.html">Networking</a></li>
+    <li><a class="term-link" href="../../tags/saa-c03/index.html">Saa-C03</a></li>
+    <li><a class="term-link" href="../../tags/solution-architect/index.html">Solution Architect</a></li>
+    <li><a class="term-link" href="../../tags/vpc/index.html">Vpc</a></li>
+  </ul>
+</div>
+  </header>
+
+<h1 id="aws-cloud-networking">AWS Cloud Networking</h1>
+
+<h1 id="aws-vpc-core-terminologies">AWS VPC Core Terminologies</h1>
+<h2 id="1-vpc-virtual-private-cloud">1. VPC (Virtual Private Cloud)</h2>
+<ul>
+<li>A logically isolated virtual network in AWS.</li>
+<li>You can launch AWS resources (EC2, RDS, etc.) inside a VPC.</li>
+<li>You define:
+<ul>
+<li>IP address range (CIDR block)</li>
+<li>Subnets</li>
+<li>Routing</li>
+<li>Security settings</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2-subnet">2. Subnet</h2>
+<ul>
+<li>A segment of a VPC&rsquo;s IP address range.</li>
+<li>Two main types:
+<ul>
+<li><strong>Public Subnet</strong> → Connected to the Internet via an Internet Gateway (IGW).</li>
+<li><strong>Private Subnet</strong> → No direct Internet access (typically uses NAT Gateway or VPN).</li>
+</ul>
+</li>
+<li>Each subnet is tied to a single <strong>Availability Zone (AZ)</strong>.</li>
+</ul>
+<hr>
+<h2 id="3-router-route-table">3. Router (Route Table)</h2>
+<ul>
+<li>Each VPC has a built-in virtual router.</li>
+<li><strong>Route tables</strong> determine how traffic is directed:
+<ul>
+<li>Local routes (within the VPC)</li>
+<li>External routes (e.g., Internet, VPN, Peering)</li>
+</ul>
+</li>
+<li>Default route table automatically routes traffic inside the VPC.</li>
+</ul>
+<hr>
+<h2 id="4-internet-gateway-igw">4. Internet Gateway (IGW)</h2>
+<ul>
+<li>A highly available, horizontally scaled VPC component.</li>
+<li>Enables communication between VPC resources and the Internet.</li>
+<li>Must be attached to the VPC and referenced in the route table.</li>
+</ul>
+<hr>
+<h2 id="5-nat-gateway--nat-instance">5. NAT Gateway / NAT Instance</h2>
+<ul>
+<li><strong>NAT Gateway</strong>: AWS-managed service that allows private subnet instances to access the Internet (for updates, patches, etc.) without exposing them to inbound traffic.</li>
+<li><strong>NAT Instance</strong>: Self-managed EC2 instance providing the same function (legacy option, less common today).</li>
+</ul>
+<hr>
+<h2 id="6-security-components">6. Security Components</h2>
+<h3 id="a-network-acl-nacl">a. Network ACL (NACL)</h3>
+<ul>
+<li>Stateless firewall at the <strong>subnet level</strong>.</li>
+<li>Controls inbound and outbound traffic using <strong>allow or deny</strong> rules.</li>
+<li>Rules are evaluated in order, from lowest to highest number.</li>
+<li>Applies to all resources in the subnet.</li>
+</ul>
+<h3 id="b-security-group-sg">b. Security Group (SG)</h3>
+<ul>
+<li>Stateful firewall at the <strong>instance level</strong>.</li>
+<li>Controls inbound and outbound traffic for specific resources (e.g., EC2).</li>
+<li>Default: <strong>deny all inbound, allow all outbound</strong>.</li>
+<li>Rules only allow (no explicit deny).</li>
+</ul>
+<hr>
+<h2 id="7-dhcp-options-set">7. DHCP Options Set</h2>
+<ul>
+<li>Configurable DHCP settings for a VPC.</li>
+<li>Defines:
+<ul>
+<li>Domain name (e.g., <code>ec2.internal</code>)</li>
+<li>DNS servers (AmazonProvidedDNS or custom)</li>
+<li>NTP servers</li>
+<li>NetBIOS settings (optional)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="8-dns-in-vpc">8. DNS in VPC</h2>
+<ul>
+<li>Amazon provides built-in DNS resolution.</li>
+<li>Key settings:
+<ul>
+<li><strong>enableDnsSupport</strong> → Enables DNS resolution within the VPC (default: true).</li>
+<li><strong>enableDnsHostnames</strong> → Assigns public DNS hostnames to instances with a public IP (default: false; must be enabled for public DNS).</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="9-vpc-peering">9. VPC Peering</h2>
+<ul>
+<li>Connects two VPCs privately over the AWS backbone.</li>
+<li>VPCs can communicate as if on the same network.</li>
+<li><strong>Transitive peering not supported</strong> (A–B, B–C ≠ A–C).</li>
+</ul>
+<hr>
+<h2 id="10-vpc-endpoints">10. VPC Endpoints</h2>
+<ul>
+<li>Provide private connectivity between a VPC and supported AWS services without Internet, NAT, VPN, or Direct Connect.</li>
+<li>Types:
+<ul>
+<li><strong>Interface endpoint</strong> → Elastic network interface in a subnet.</li>
+<li><strong>Gateway endpoint</strong> → Route table entry for services like S3, DynamoDB.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="11-vpc-flow-logs">11. VPC Flow Logs</h2>
+<ul>
+<li>Capture IP traffic information for network interfaces in a VPC.</li>
+<li>Useful for monitoring and troubleshooting.</li>
+</ul>
+<hr>
+<h2 id="12-key-comparison-subnet-vs-nacl">12. Key Comparison: Subnet vs NACL</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Feature</th>
+          <th>Subnet</th>
+          <th>NACL</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Level</td>
+          <td>Network segmentation</td>
+          <td>Firewall rules for subnet</td>
+      </tr>
+      <tr>
+          <td>Purpose</td>
+          <td>Divide VPC into smaller networks</td>
+          <td>Control traffic entering/leaving subnet</td>
+      </tr>
+      <tr>
+          <td>Statefulness</td>
+          <td>Not stateful (just IP ranges)</td>
+          <td>Stateless (evaluate inbound &amp; outbound separately)</td>
+      </tr>
+      <tr>
+          <td>Association</td>
+          <td>One subnet per AZ</td>
+          <td>Can be associated with multiple subnets</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h1 id="aws-vpc--ascii-diagram">AWS VPC – ASCII Diagram</h1>
+<p>+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|   EC2 Instance    |               |   EC2 Instance    |
+|   Public IP: Yes  |               |   Public IP: No   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|                                 |
+v                                 v
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+| Security Group    |               | Security Group    |
+| (Stateful rules)  |               | (Stateful rules)  |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|                                 |
+v                                 v
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+| Network ACL       |               | Network ACL       |
+| (Stateless rules) |               | (Stateless rules) |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|                                 |
+v                                 v
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+| Route Table       |               | Route Table       |
+| Local + 0.0.0.0/0 |               | Local + NAT GW    |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|                                 |
+v                                 v
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+| Internet Gateway  |               | NAT Gateway       |
+| (IGW in Public    |               | (in Public Subnet)|
+| Subnet)           |               |                   |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+               +&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-+
+|                                 |
++&mdash;&mdash;&mdash;&mdash;&mdash;+&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+
+v
++&mdash;&mdash;&mdash;&ndash;+
+|  Internet |
++&mdash;&mdash;&mdash;&ndash;+</p>
+<h2 id="key-notes">Key Notes</h2>
+<ul>
+<li><strong>IGW</strong> → Required for Internet access (public subnets).</li>
+<li><strong>NAT GW</strong> → Enables private subnet instances to access the Internet.</li>
+<li><strong>SG</strong> → Stateful firewall at instance level.</li>
+<li><strong>NACL</strong> → Stateless firewall at subnet level.</li>
+<li><strong>Route Tables</strong> → Define traffic direction (local, IGW, NAT, peering, etc.).</li>
+<li><strong>DHCP/DNS</strong> → Control hostname resolution and domain naming.</li>
+</ul>
+<hr>
+<h2 id="vpc-setup-on-aws-step-by-step">VPC Setup on AWS (Step-by-Step)</h2>
+<h3 id="1-create-a-vpc">1. Create a VPC</h3>
+<ol>
+<li>Open the <a href="https://aws.amazon.com/console/" rel="external" target="_blank">AWS Console</a>.</li>
+<li>Go to <strong>VPC → Create VPC</strong>.</li>
+<li>Enter details:
+<ul>
+<li>Name: <code>MyVPC</code></li>
+<li>CIDR block: <code>10.0.0.0/16</code></li>
+<li>IPv6: Optional</li>
+<li>Tenancy: Default</li>
+</ul>
+</li>
+<li>Click <strong>Create VPC</strong>.</li>
+</ol>
+<h3 id="2-create-subnets">2. Create Subnets</h3>
+<ol>
+<li>Go to <strong>Subnets → Create subnet</strong>.</li>
+<li>Name: <code>Public-Subnet</code> → CIDR: <code>10.0.1.0/24</code> (AZ <code>us-east-1a</code>).</li>
+<li>Name: <code>Private-Subnet</code> → CIDR: <code>10.0.2.0/24</code> (AZ <code>us-east-1b</code>).</li>
+</ol>
+<h3 id="3-create-an-internet-gateway">3. Create an Internet Gateway</h3>
+<ol>
+<li>Go to <strong>Internet Gateways → Create IGW</strong>.</li>
+<li>Attach it to your VPC.</li>
+</ol>
+<h3 id="4-configure-route-tables">4. Configure Route Tables</h3>
+<ol>
+<li>Create <code>PublicRouteTable</code> and associate with Public Subnet.</li>
+<li>Add route <code>0.0.0.0/0 → IGW</code>.</li>
+<li>For Private Subnet, add route <code>0.0.0.0/0 → NAT Gateway</code>.</li>
+</ol>
+<h3 id="5-configure-security-groups">5. Configure Security Groups</h3>
+<ul>
+<li>Allow <strong>SSH (22)</strong> from your IP.</li>
+<li>Allow <strong>HTTP (80)</strong> and <strong>HTTPS (443)</strong>.</li>
+<li>Default: allow all outbound.</li>
+</ul>
+<h3 id="6-launch-an-ec2-instance">6. Launch an EC2 Instance</h3>
+<ul>
+<li>Select AMI (Amazon Linux/Ubuntu).</li>
+<li>Place in <code>Public-Subnet</code> with SG attached.</li>
+<li>Assign a key pair and launch.</li>
+</ul>
+<h3 id="7-test-connectivity">7. Test Connectivity</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh -i your-key.pem ec2-user@&lt;public-ip&gt;</span></span></code></pre></div>
+
+  <footer class="footline">
+<div class="R-taxonomy taxonomy-categories cstyle" title="Categories" style="--VARIABLE-TAGS-BG-color: var(--INTERNAL-TAG-BG-color);">
+  <i class="fa-fw fas fa-layer-group"></i>
+  <ul>
+    <li><a class="term-link" href="../../categories/aws/index.html">AWS</a></li>
+    <li><a class="term-link" href="../../categories/certification/index.html">Certification</a></li>
+  </ul>
+</div>
+  </footer>
+</article>
+        </div>
+      </main>
+    </div>
+    <aside id="R-sidebar" class="default-animation">
+      <div id="R-header-topbar" class="default-animation"></div>
+      <div id="R-header-wrapper" class="default-animation">
+        <div id="R-header" class="default-animation">
+          <a id="R-logo" class="R-default" href="../../index.html">
+Helm
+          </a>
+        </div>
+        <script>
+          window.index_js_url="../../searchindex.en.js?1755961071";
+        </script>
+        <search><form action="../../search/index.html" method="get">
+          <div class="searchbox default-animation">
+            <button class="search-detail" type="submit" title="Search (CTRL+ALT+f)"><i class="fas fa-search"></i></button>
+            <label class="a11y-only" for="R-search-by">Search</label>
+            <input data-search-input id="R-search-by" name="search-by" class="search-by" type="search" placeholder="Search...">
+            <button class="search-clear" type="button" data-search-clear="" title="Clear search"><i class="fas fa-times" title="Clear search"></i></button>
+          </div>
+        </form></search>
+        <script>
+          var contentLangs=['en'];
+        </script>
+        <script src="../../js/auto-complete.js?1755961071" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1755961071" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1755961071" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1755961071" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1755961071" defer></script>
+        <script src="../../js/search.js?1755961071" defer></script>
+      </div>
+      <div id="R-homelinks" class="default-animation homelinks">
+        <ul>
+          <li><a class="padding" href="../../index.html"><i class="fa-fw fas fa-home"></i> Home</a></li>
+        </ul>
+        <hr class="padding">
+      </div>
+      <div id="R-content-wrapper" class="highlightable">
+        <div id="R-shortcutmenu-home" class="R-sidebarmenu">
+          <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/aws/index.html"><a class="padding" href="../../aws/index.html">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</a><ul id="R-subsections-e9e32a24b6df90bb262ffc443f7fdbea" class="collapsible-menu">
+            <li class="" data-nav-id="/aws/aws-autoscaling/index.html"><a class="padding" href="../../aws/aws-autoscaling/index.html">AWS EC2 Autoscaling</a></li>
+            <li class="" data-nav-id="/aws/session01/index.html"><a class="padding" href="../../aws/session01/index.html">AWS EC2 Services</a></li>
+            <li class="" data-nav-id="/aws/aws-storage/index.html"><a class="padding" href="../../aws/aws-storage/index.html">Aws Storage</a></li>
+            <li class="active " data-nav-id="/aws/networking/index.html"><a class="padding" href="../../aws/networking/index.html">AWS Cloud Networking</a></li>
+            <li class="" data-nav-id="/aws/aws-cloudwatch/index.html"><a class="padding" href="../../aws/aws-cloudwatch/index.html">AWS CloudWatch</a></li>
+            <li class="" data-nav-id="/aws/aws-loadbalancers/index.html"><a class="padding" href="../../aws/aws-loadbalancers/index.html">AWS Load Balancers</a></li></ul></li>
+            <li class="" data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu"></ul></li>
+            <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
+          </ul>
+        </div>
+    
+        <div class="padding footermargin footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter"></div>
+        <div id="R-menu-footer">
+          <hr class="padding default-animation footerLangSwitch footerVariantSwitch footerVisitedLinks footerFooter showFooter">
+          <div id="R-prefooter" class="footerLangSwitch footerVariantSwitch footerVisitedLinks">
+            <ul>
+              <li id="R-select-language-container" class="footerLangSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-language"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-language">Language</label>
+                    <select id="R-select-language" onchange="location = this.querySelector( this.value ).dataset.url;">
+                      <option id="R-select-language-en" value="#R-select-language-en" data-url="../../aws/networking/index.html" lang="en-us" selected></option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+              <li id="R-select-variant-container" class="footerVariantSwitch">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-paint-brush"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <label class="a11y-only" for="R-select-variant">Theme</label>
+                    <select id="R-select-variant" onchange="window.relearn.changeVariant( this.value );">
+                      <option id="R-select-variant-auto" value="auto" selected>Auto</option>
+                    </select>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+                <script>window.relearn.markVariant();</script>
+              </li>
+              <li class="footerVisitedLinks">
+                <div class="padding menu-control">
+                  <i class="fa-fw fas fa-history"></i>
+                  <span>&nbsp;</span>
+                  <div class="control-style">
+                    <button onclick="clearHistory();">Clear History</button>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div id="R-footer" class="footerFooter showFooter">
+        <p>Built with <a href="https://github.com/McShelby/hugo-theme-relearn" title="love"><i class="fas fa-heart"></i></a> by <a href="https://gohugo.io/">Hugo</a></p>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script src="../../js/clipboard.min.js?1755961071" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1755961071" defer></script>
+    <script src="../../js/theme.js?1755961071" defer></script>
+  </body>
+</html>

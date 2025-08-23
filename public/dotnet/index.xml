@@ -72,6 +72,13 @@
       <description>Step-by-step guide to containerize and deploy a .NET Core + Angular + PostgreSQL application using Docker and Kubernetes</description>
     </item>
     <item>
+      <title>SonarQube Overview and Deployment</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/sonarqube/index.html</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/sonarqube/index.html</guid>
+      <description>Comprehensive guide to installing, configuring, and integrating SonarQube for continuous code quality inspection</description>
+    </item>
+    <item>
       <title>.NET Related containers</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/misc/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

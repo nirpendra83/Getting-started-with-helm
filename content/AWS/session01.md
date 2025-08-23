@@ -1,5 +1,5 @@
 ---
-title: "Session 01"
+title: "AWS EC2 Services"
 description: "In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience."
 date: 2025-08-03
 tags: ["aws", "ec2", "compute", "solution architect", "saa-c03"]

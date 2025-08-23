@@ -16,11 +16,32 @@
       <description>Comprehensive Table of Contents for the AWS Solutions Architect Associate certification exam, aligned with the latest SAA-C03 blueprint.</description>
     </item>
     <item>
-      <title>Session 01</title>
+      <title>AWS EC2 Autoscaling</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS EC2 Services</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</link>
       <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</guid>
       <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>Aws Storage</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS Cloud Networking</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</guid>
+      <description>In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.</description>
     </item>
   </channel>
 </rss>

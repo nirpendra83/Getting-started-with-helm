@@ -6,7 +6,7 @@
     <description></description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWS Certified Solutions Architect – Associate (SAA-C03) ToC</title>
@@ -16,11 +16,39 @@
       <description>Comprehensive Table of Contents for the AWS Solutions Architect Associate certification exam, aligned with the latest SAA-C03 blueprint.</description>
     </item>
     <item>
-      <title>Session 01</title>
+      <title>AWS EC2 Autoscaling</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS EC2 Services</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</link>
       <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</guid>
       <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>Aws Storage</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS Cloud Networking</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</guid>
+      <description>In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.</description>
+    </item>
+    <item>
+      <title>AWS CloudWatch</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-cloudwatch/index.html</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-cloudwatch/index.html</guid>
+      <description>AWS CloudWatch AWS CloudWatch is a monitoring and observability service that provides actionable insights for applications, system performance, and infrastructure resources.&#xA;🔹 Key Features Metrics Collection&#xA;Collects and tracks metrics from AWS services, applications, and custom sources.&#xA;Logs Monitoring&#xA;Ingests, stores, and analyzes logs from applications, Lambda, EC2, and other services.&#xA;Alarms&#xA;Set thresholds on metrics to trigger notifications or automated actions.&#xA;Dashboards&#xA;Create custom, real-time dashboards for visibility into system performance.</description>
     </item>
   </channel>
 </rss>

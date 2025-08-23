@@ -6,14 +6,49 @@
     <description>Comprehensive Table of Contents for the AWS Solutions Architect Associate certification exam, aligned with the latest SAA-C03 blueprint.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Session 01</title>
+      <title>AWS EC2 Autoscaling</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS EC2 Services</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</link>
       <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</guid>
       <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>Aws Storage</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</guid>
+      <description>In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.</description>
+    </item>
+    <item>
+      <title>AWS Cloud Networking</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</link>
+      <pubDate>Sun, 03 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</guid>
+      <description>In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.</description>
+    </item>
+    <item>
+      <title>AWS CloudWatch</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-cloudwatch/index.html</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-cloudwatch/index.html</guid>
+      <description>AWS CloudWatch AWS CloudWatch is a monitoring and observability service that provides actionable insights for applications, system performance, and infrastructure resources.&#xA;🔹 Key Features Metrics Collection&#xA;Collects and tracks metrics from AWS services, applications, and custom sources.&#xA;Logs Monitoring&#xA;Ingests, stores, and analyzes logs from applications, Lambda, EC2, and other services.&#xA;Alarms&#xA;Set thresholds on metrics to trigger notifications or automated actions.&#xA;Dashboards&#xA;Create custom, real-time dashboards for visibility into system performance.</description>
+    </item>
+    <item>
+      <title>AWS Load Balancers</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-loadbalancers/index.html</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-loadbalancers/index.html</guid>
+      <description>AWS Load Balancers AWS provides Elastic Load Balancing (ELB) services to automatically distribute incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, and Lambda functions.&#xA;Load balancers help improve fault tolerance, scalability, and availability.&#xA;Types of AWS Load Balancers 1. Application Load Balancer (ALB) Operates at Layer 7 (HTTP/HTTPS). Best for web applications. Supports advanced routing: Path-based (e.g., /images → one service, /api → another service). Host-based (e.g., api.example.com vs app.example.com). Integrates with AWS WAF and CloudWatch. 2. Network Load Balancer (NLB) Operates at Layer 4 (TCP, UDP, TLS). Handles millions of requests per second with ultra-low latency. Best for: Real-time gaming. IoT applications. High-performance workloads. 3. Gateway Load Balancer (GWLB) Operates at Layer 3 (Network Layer). Deploys, scales, and manages third-party virtual appliances (e.g., firewalls, intrusion detection, deep packet inspection). Routes traffic using Geneve protocol. 4. Classic Load Balancer (CLB) (Legacy) Works at both Layer 4 and Layer 7. Limited features, mainly for older applications. Recommended to migrate to ALB or NLB. Key Features High Availability – Automatically distributes traffic across multiple AZs. Health Checks – Routes traffic only to healthy targets. SSL/TLS Termination – Offloads encryption from application servers. Integration – Works with Auto Scaling, CloudWatch, Route 53, and WAF. Security – Supports Security Groups and IAM policies. Use Cases ALB → Microservices, APIs, web apps. NLB → Gaming, streaming, IoT, financial apps. GWLB → Security appliances (firewalls, packet inspection). CLB → Legacy workloads (not recommended for new apps). Example: Architecture Diagram Clients | [AWS Route 53] | [Elastic Load Balancer] / \ [EC2-1] [EC2-2]</description>
     </item>
   </channel>
 </rss>

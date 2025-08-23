@@ -128,7 +128,7 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Deploy a .NET Core Web API using Docker and Kubernetes",
-    "content": "Jenkins — CI/CD Jenkins is an open-source automation server for building, testing, and deploying software.\nThe leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.\nJenkins Official Documentation 1. Installation Jenkins Installation Documentation Docker docker run -d --name jenkins \\ -p 8080:8080 -p 50000:50000 \\ -v jenkins_home:/var/jenkins_home \\ -v /var/run/docker.sock:/var/run/docker.sock \\ jenkins/jenkins:lts\r2. Initial Setup Access Jenkins: http://\u003chost\u003e:8080 Unlock: sudo cat /var/lib/jenkins/secrets/initialAdminPassword\rInstall suggested plugins Create admin user Enable security: Role Strategy Plugin, CSRF protection Disable anonymous read access Jenkins — Quick Start Jenkins is an open-source automation server for building, testing, and deploying software.\nThis quick start shows you how to get Jenkins running and create your first pipeline.\nenkins Pipeline Official Documentation 1. First Pipeline (Hello World) Once Jenkins is installed and set up, you can create a simple pipeline:\nIn Jenkins, click New Item → Pipeline → Name it (e.g., hello-pipeline) → OK. Scroll to Pipeline section and paste this: pipeline { agent any stages { stage('Build') { steps { echo 'Building...' } } stage('Test') { steps { echo 'Testing...' } } stage('Deploy') { steps { echo 'Deploying...' } } } }\rSave and click Build Now — watch Jenkins execute the stages. 10 Jenkins Declarative Pipeline Examples (Windows-Friendly) 1. Hello World (Basic) pipeline { agent any stages { stage('Hello') { steps { echo 'Hello World' } } } }\r2. Multiple Stages pipeline { agent any stages { stage('Build') { steps { echo 'Building...' } } stage('Test') { steps { echo 'Testing...' } } stage('Deploy') { steps { echo 'Deploying...' } } } }\r3. Run Windows Commands pipeline { agent any stages { stage('List Files') { steps { bat 'dir' } } } }\r4. Using Environment Variables pipeline { agent any environment { APP_NAME = 'my-app' } stages { stage('Show Env') { steps { echo \"App Name: ${env.APP_NAME}\" } } } }\r5. Checkout from Git pipeline { agent any stages { stage('Checkout') { steps { git branch: 'main', url: 'https://github.com/example/repo.git' } } } }\r6. Run Tests \u0026 Publish Report pipeline { agent any stages { stage('Test') { steps { bat 'pytest --junitxml=reports\\\\results.xml' junit 'reports/results.xml' } } } }\r7. Use Credentials for Private Repo pipeline { agent any environment { GIT_CREDS = credentials('git-creds') } stages { stage('Checkout') { steps { git url: \"https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/org/private-repo.git\", branch: 'main' } } } }\r8. Build \u0026 Push Docker Image (Windows with Docker Desktop) pipeline { agent any environment { IMAGE_NAME = \"myorg/app\" } stages { stage('Build \u0026 Push') { steps { script { docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') { def img = docker.build(\"${IMAGE_NAME}:${env.BUILD_NUMBER}\") img.push() } } } } } }\r9. Conditional Stage Execution pipeline { agent any stages { stage('Deploy to Prod') { when { branch 'main' } steps { echo 'Deploying to Production...' } } } }\r10. Full CI/CD Example (Windows Commands) pipeline { agent any environment { IMAGE = \"myorg/app:${env.BUILD_NUMBER}\" } stages { stage('Checkout') { steps { checkout scm } } stage('Build') { steps { bat 'make build' } } stage('Test') { steps { bat 'make test' junit 'reports/**/*.xml' } } stage('Docker Build \u0026 Push') { when { branch 'main' } steps { script { docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') { def img = docker.build(env.IMAGE) img.push() } } } } stage('Deploy') { when { branch 'main' } steps { bat 'deploy.bat' } } } post { always { archiveArtifacts artifacts: 'dist/**', fingerprint: true } } }",
+    "content": "Jenkins — CI/CD Jenkins is an open-source automation server for building, testing, and deploying software.\nThe leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project.\nJenkins Official Documentation 1. Installation Jenkins Installation Documentation Docker docker run -d --name jenkins \\ -p 8080:8080 -p 50000:50000 \\ -v jenkins_home:/var/jenkins_home \\ -v /var/run/docker.sock:/var/run/docker.sock \\ jenkins/jenkins:lts\r2. Initial Setup Access Jenkins: http://\u003chost\u003e:8080 Unlock: sudo cat /var/lib/jenkins/secrets/initialAdminPassword\rInstall suggested plugins Create admin user Enable security: Role Strategy Plugin, CSRF protection Disable anonymous read access Jenkins — Quick Start Jenkins is an open-source automation server for building, testing, and deploying software.\nThis quick start shows you how to get Jenkins running and create your first pipeline.\nJenkins Pipeline Official Documentation 1. First Pipeline (Hello World) Once Jenkins is installed and set up, you can create a simple pipeline:\nIn Jenkins, click New Item → Pipeline → Name it (e.g., hello-pipeline) → OK. Scroll to Pipeline section and paste this: pipeline { agent any stages { stage('Build') { steps { echo 'Building...' } } stage('Test') { steps { echo 'Testing...' } } stage('Deploy') { steps { echo 'Deploying...' } } } }\rSave and click Build Now — watch Jenkins execute the stages. 10 Jenkins Declarative Pipeline Examples (Windows-Friendly) 1. Hello World (Basic) pipeline { agent any stages { stage('Hello') { steps { echo 'Hello World' } } } }\r2. Multiple Stages pipeline { agent any stages { stage('Build') { steps { echo 'Building...' } } stage('Test') { steps { echo 'Testing...' } } stage('Deploy') { steps { echo 'Deploying...' } } } }\r3. Run Windows Commands pipeline { agent any stages { stage('List Files') { steps { bat 'dir' } } } }\r4. Using Environment Variables pipeline { agent any environment { APP_NAME = 'my-app' } stages { stage('Show Env') { steps { echo \"App Name: ${env.APP_NAME}\" } } } }\r5. Checkout from Git pipeline { agent any stages { stage('Checkout') { steps { git branch: 'main', url: 'https://github.com/example/repo.git' } } } }\r6. Run Tests \u0026 Publish Report pipeline { agent any stages { stage('Test') { steps { bat 'pytest --junitxml=reports\\\\results.xml' junit 'reports/results.xml' } } } }\r7. Use Credentials for Private Repo pipeline { agent any environment { GIT_CREDS = credentials('git-creds') } stages { stage('Checkout') { steps { git url: \"https://${GIT_CREDS_USR}:${GIT_CREDS_PSW}@github.com/org/private-repo.git\", branch: 'main' } } } }\r8. Build \u0026 Push Docker Image (Windows with Docker Desktop) pipeline { agent any environment { IMAGE_NAME = \"myorg/app\" } stages { stage('Build \u0026 Push') { steps { script { docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') { def img = docker.build(\"${IMAGE_NAME}:${env.BUILD_NUMBER}\") img.push() } } } } } }\r9. Conditional Stage Execution pipeline { agent any stages { stage('Deploy to Prod') { when { branch 'main' } steps { echo 'Deploying to Production...' } } } }\r10. Full CI/CD Example (Windows Commands) pipeline { agent any environment { IMAGE = \"myorg/app:${env.BUILD_NUMBER}\" } stages { stage('Checkout') { steps { checkout scm } } stage('Build') { steps { bat 'make build' } } stage('Test') { steps { bat 'make test' junit 'reports/**/*.xml' } } stage('Docker Build \u0026 Push') { when { branch 'main' } steps { script { docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') { def img = docker.build(env.IMAGE) img.push() } } } } stage('Deploy') { when { branch 'main' } steps { bat 'deploy.bat' } } } post { always { archiveArtifacts artifacts: 'dist/**', fingerprint: true } } }",
     "description": "CICD with Jenkins",
     "tags": [
       "Jenkins ",
@@ -195,6 +195,20 @@ var relearn_searchindex = [
   },
   {
     "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "AWS Auto Scaling AWS Auto Scaling is a service that helps maintain the availability and performance of your applications by automatically adjusting capacity across multiple AWS services.\nKey Features Dynamic Scaling – Automatically increase or decrease capacity based on demand. Predictive Scaling – Forecasts traffic patterns and adjusts resources in advance. Target Tracking – Maintain a metric (e.g., average CPU utilization at 50%). Scheduled Scaling – Scale resources at specific times (e.g., business hours). Health Checks \u0026 Replacement – Detects and replaces unhealthy instances. Benefits Cost Optimization – Pay only for what you use by scaling in/out. High Availability – Ensures applications remain available during demand spikes. Performance Efficiency – Maintains consistent performance under variable load. Flexibility – Works with EC2, ECS, DynamoDB, Aurora, etc. How It Works Define an Auto Scaling Group (ASG) for EC2 instances. Set scaling policies (target tracking, step scaling, scheduled). Auto Scaling monitors CloudWatch metrics. Based on thresholds, it launches or terminates instances. Example Use Cases E-commerce – Scale during seasonal sales or flash deals. Financial Apps – Maintain performance during trading hours. Media \u0026 Streaming – Handle sudden spikes in viewers. Batch Processing – Automatically scale worker nodes for large jobs. Related AWS Services EC2 Auto Scaling Groups Elastic Load Balancing (ELB) Amazon CloudWatch AWS Application Auto Scaling Example: EC2 Auto Scaling Policy (Target Tracking) resource \"aws_autoscaling_policy\" \"cpu_scaling\" { name = \"cpu-scaling\" autoscaling_group_name = aws_autoscaling_group.web_asg.name policy_type = \"TargetTrackingScaling\" target_tracking_configuration { predefined_metric_specification { predefined_metric_type = \"ASGAverageCPUUtilization\" } target_value = 50.0 } }",
+    "description": "In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.",
+    "tags": [
+      "Aws",
+      "Ec2",
+      "Compute",
+      "Solution Architect",
+      "Saa-C03"
+    ],
+    "title": "AWS EC2 Autoscaling",
+    "uri": "/aws/aws-autoscaling/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
     "content": "🖥️ Amazon EC2 (Elastic Compute Cloud) Amazon EC2 provides scalable compute capacity in the AWS cloud. It allows you to launch virtual servers on demand and pay for what you use.\n🔹 Key Concepts 1. EC2 Instance Types General Purpose (e.g., t3, t4g, m5) Compute Optimized (c5) Memory Optimized (r5, x1) Storage Optimized (i3, d2) Accelerated Computing (p4, inf1) 2. Instance Lifecycle Start → Running → Stop → Terminate Instance retirement and status checks 3. Key EC2 Components AMI (Amazon Machine Image) – OS and application environment Instance Type – Hardware configuration Security Group – Acts as a virtual firewall Key Pair – SSH access credentials Elastic IP – Static public IP address User Data – Shell script to run on first boot (cloud-init) 4. Storage Options EBS (Elastic Block Store) Instance Store (ephemeral) EFS for network-attached storage 5. Networking Public/Private Subnets Elastic IPs NAT Gateways Security Groups vs NACLs 🛠️ Hands-On Task List Task Description ✅ Launch an EC2 Instance Use AWS Console or CLI to launch a t2.micro instance with Amazon Linux 2023. ✅ Configure Security Group Allow SSH (port 22) and HTTP (port 80). ✅ SSH into EC2 Connect using a PEM key from a Linux/Mac terminal or PuTTY for Windows. ✅ Install a Web Server Use sudo yum install httpd -y and start the service. ✅ Add a Custom Index Page Modify /var/www/html/index.html with your own content. ✅ Use EC2 User Data Launch a new instance that automatically installs a web server using user data. ✅ Create AMI Create a custom AMI from your configured instance. ✅ Attach/Detach EBS Volume Attach an additional EBS volume and mount it inside the instance. ✅ Stop, Start, and Terminate Observe instance state behavior and test persistent storage. ✅ Enable Detailed Monitoring Turn on CloudWatch detailed monitoring and view CPU graphs. 📘 Exam Tips Know the difference between EBS and Instance Store. Understand user data vs metadata (http://169.254.169.254). Security groups are stateful, NACLs are stateless. EC2 instances by default do not have public IPs in private subnets. IAM roles are used to assign permissions to instances without hardcoding credentials. https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html\nTasks to do ✅ Change the existing ssh public key",
     "description": "In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.",
     "tags": [
@@ -204,16 +218,37 @@ var relearn_searchindex = [
       "Solution Architect",
       "Saa-C03"
     ],
-    "title": "Session 01",
+    "title": "AWS EC2 Services",
     "uri": "/aws/session01/index.html"
   },
   {
-    "breadcrumb": "Introduction to Helm \u003e Tags",
-    "content": "",
-    "description": "",
-    "tags": [],
-    "title": "Tag :: Angular",
-    "uri": "/tags/angular/index.html"
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "🗂️ AWS Storage Overview 1. Object Storage Amazon S3 (Simple Storage Service)\nStores data as objects (files + metadata). Virtually unlimited storage. Accessed over HTTP(S). Use cases: backups, data lakes, static website hosting, ML data storage. Features: versioning, lifecycle policies, cross-region replication. S3 Glacier / Glacier Deep Archive\nLow-cost archival storage. Retrieval options: minutes to hours. Use cases: compliance data, long-term archives. 2. Block Storage Amazon EBS (Elastic Block Store)\nBlock-level storage for EC2 instances. Behaves like a hard drive. Types: General Purpose SSD (gp3), Provisioned IOPS (io2), Throughput optimized HDD (st1), Cold HDD (sc1). Use cases: OS volumes, databases, transactional workloads. Instance Store (Ephemeral Storage)\nStorage physically attached to the EC2 host. Very fast, but data is lost if the instance stops/terminates. Use cases: cache, temporary data, high-performance compute. 3. File Storage Amazon EFS (Elastic File System)\nManaged NFS (Network File System). Shared storage for multiple EC2s, scalable, elastic. Use cases: web servers, CMS, analytics workloads. Amazon FSx\nManaged file systems for specific workloads: FSx for Windows File Server (SMB protocol, Active Directory integration). FSx for Lustre (HPC, ML, big data). FSx for OpenZFS (low-latency workloads). FSx for NetApp ONTAP (enterprise workloads). 4. Hybrid \u0026 Data Transfer AWS Storage Gateway\nConnects on-premises apps with AWS cloud storage. Types: File Gateway, Tape Gateway, Volume Gateway. AWS Snow Family (Snowcone, Snowball, Snowmobile)\nPhysical devices to move large datasets to AWS. Use cases: data migration, edge computing, disconnected environments. AWS DataSync\nAutomated data transfer between on-premises and AWS storage. 5. Backup \u0026 Disaster Recovery AWS Backup Centralized backup across AWS services (EBS, RDS, DynamoDB, EFS, FSx). Policy-based, compliant storage. 🔑 Key Differences Storage Type Example Services Best For Object S3, S3 Glacier Data lakes, backups, archives Block EBS, Instance Store Databases, OS, transactional workloads File EFS, FSx Shared file systems, HPC, enterprise apps Hybrid/Transfer Storage Gateway, Snow Family, DataSync Migration, hybrid cloud, offline data transfer Backup AWS Backup Centralized backup \u0026 compliance",
+    "description": "In-depth chapter on Amazon EC2 for AWS Certified Solutions Architect Associate preparation, including tasks to gain hands-on experience.",
+    "tags": [
+      "Aws",
+      "Ec2",
+      "Compute",
+      "Solution Architect",
+      "Saa-C03"
+    ],
+    "title": "Aws Storage",
+    "uri": "/aws/aws-storage/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "AWS VPC Core Terminologies 1. VPC (Virtual Private Cloud) A logically isolated virtual network in AWS. You can launch AWS resources (EC2, RDS, etc.) inside a VPC. You define: IP address range (CIDR block) Subnets Routing Security settings 2. Subnet A segment of a VPC’s IP address range. Two main types: Public Subnet → Connected to the Internet via an Internet Gateway (IGW). Private Subnet → No direct Internet access (typically uses NAT Gateway or VPN). Each subnet is tied to a single Availability Zone (AZ). 3. Router (Route Table) Each VPC has a built-in virtual router. Route tables determine how traffic is directed: Local routes (within the VPC) External routes (e.g., Internet, VPN, Peering) Default route table automatically routes traffic inside the VPC. 4. Internet Gateway (IGW) A highly available, horizontally scaled VPC component. Enables communication between VPC resources and the Internet. Must be attached to the VPC and referenced in the route table. 5. NAT Gateway / NAT Instance NAT Gateway: AWS-managed service that allows private subnet instances to access the Internet (for updates, patches, etc.) without exposing them to inbound traffic. NAT Instance: Self-managed EC2 instance providing the same function (legacy option, less common today). 6. Security Components a. Network ACL (NACL) Stateless firewall at the subnet level. Controls inbound and outbound traffic using allow or deny rules. Rules are evaluated in order, from lowest to highest number. Applies to all resources in the subnet. b. Security Group (SG) Stateful firewall at the instance level. Controls inbound and outbound traffic for specific resources (e.g., EC2). Default: deny all inbound, allow all outbound. Rules only allow (no explicit deny). 7. DHCP Options Set Configurable DHCP settings for a VPC. Defines: Domain name (e.g., ec2.internal) DNS servers (AmazonProvidedDNS or custom) NTP servers NetBIOS settings (optional) 8. DNS in VPC Amazon provides built-in DNS resolution. Key settings: enableDnsSupport → Enables DNS resolution within the VPC (default: true). enableDnsHostnames → Assigns public DNS hostnames to instances with a public IP (default: false; must be enabled for public DNS). 9. VPC Peering Connects two VPCs privately over the AWS backbone. VPCs can communicate as if on the same network. Transitive peering not supported (A–B, B–C ≠ A–C). 10. VPC Endpoints Provide private connectivity between a VPC and supported AWS services without Internet, NAT, VPN, or Direct Connect. Types: Interface endpoint → Elastic network interface in a subnet. Gateway endpoint → Route table entry for services like S3, DynamoDB. 11. VPC Flow Logs Capture IP traffic information for network interfaces in a VPC. Useful for monitoring and troubleshooting. 12. Key Comparison: Subnet vs NACL Feature Subnet NACL Level Network segmentation Firewall rules for subnet Purpose Divide VPC into smaller networks Control traffic entering/leaving subnet Statefulness Not stateful (just IP ranges) Stateless (evaluate inbound \u0026 outbound separately) Association One subnet per AZ Can be associated with multiple subnets AWS VPC – ASCII Diagram +——————-+ +——————-+ | EC2 Instance | | EC2 Instance | | Public IP: Yes | | Public IP: No | +——————-+ +——————-+ | | v v +——————-+ +——————-+ | Security Group | | Security Group | | (Stateful rules) | | (Stateful rules) | +——————-+ +——————-+ | | v v +——————-+ +——————-+ | Network ACL | | Network ACL | | (Stateless rules) | | (Stateless rules) | +——————-+ +——————-+ | | v v +——————-+ +——————-+ | Route Table | | Route Table | | Local + 0.0.0.0/0 | | Local + NAT GW | +——————-+ +——————-+ | | v v +——————-+ +——————-+ | Internet Gateway | | NAT Gateway | | (IGW in Public | | (in Public Subnet)| | Subnet) | | | +——————-+ +——————-+ | | +—————+—————–+ v +———–+ | Internet | +———–+\nKey Notes IGW → Required for Internet access (public subnets). NAT GW → Enables private subnet instances to access the Internet. SG → Stateful firewall at instance level. NACL → Stateless firewall at subnet level. Route Tables → Define traffic direction (local, IGW, NAT, peering, etc.). DHCP/DNS → Control hostname resolution and domain naming. VPC Setup on AWS (Step-by-Step) 1. Create a VPC Open the AWS Console. Go to VPC → Create VPC. Enter details: Name: MyVPC CIDR block: 10.0.0.0/16 IPv6: Optional Tenancy: Default Click Create VPC. 2. Create Subnets Go to Subnets → Create subnet. Name: Public-Subnet → CIDR: 10.0.1.0/24 (AZ us-east-1a). Name: Private-Subnet → CIDR: 10.0.2.0/24 (AZ us-east-1b). 3. Create an Internet Gateway Go to Internet Gateways → Create IGW. Attach it to your VPC. 4. Configure Route Tables Create PublicRouteTable and associate with Public Subnet. Add route 0.0.0.0/0 → IGW. For Private Subnet, add route 0.0.0.0/0 → NAT Gateway. 5. Configure Security Groups Allow SSH (22) from your IP. Allow HTTP (80) and HTTPS (443). Default: allow all outbound. 6. Launch an EC2 Instance Select AMI (Amazon Linux/Ubuntu). Place in Public-Subnet with SG attached. Assign a key pair and launch. 7. Test Connectivity ssh -i your-key.pem ec2-user@\u003cpublic-ip\u003e",
+    "description": "In-depth chapter on Amazon VPC and EC2 networking for AWS Certified Solutions Architect Associate preparation, with hands-on setup steps.",
+    "tags": [
+      "Aws",
+      "Vpc",
+      "Ec2",
+      "Networking",
+      "Solution Architect",
+      "Saa-C03"
+    ],
+    "title": "AWS Cloud Networking",
+    "uri": "/aws/networking/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -222,6 +257,75 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: Aws",
     "uri": "/tags/aws/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "AWS CloudWatch AWS CloudWatch is a monitoring and observability service that provides actionable insights for applications, system performance, and infrastructure resources.\n🔹 Key Features Metrics Collection\nCollects and tracks metrics from AWS services, applications, and custom sources.\nLogs Monitoring\nIngests, stores, and analyzes logs from applications, Lambda, EC2, and other services.\nAlarms\nSet thresholds on metrics to trigger notifications or automated actions.\nDashboards\nCreate custom, real-time dashboards for visibility into system performance.\nEvents\nDetect and respond to changes in AWS resources using EventBridge.\nApplication Insights\nProvides automated setup and monitoring for enterprise applications.\n🔹 Common Use Cases Monitor EC2 instance CPU utilization. Track Lambda function errors. Set alarms for RDS free storage space. Analyze application logs for errors. Automate responses to infrastructure changes. 🔹 CloudWatch Components Metrics → Numeric data points from resources. Alarms → Actions triggered when a threshold is breached. Logs → Centralized logging for analysis and troubleshooting. Dashboards → Visualizations for metrics and logs. Events (EventBridge) → Reacts to changes and routes events. 🔹 Example: Creating an Alarm (CLI) aws cloudwatch put-metric-alarm \\ --alarm-name \"HighCPUUtilization\" \\ --metric-name CPUUtilization \\ --namespace AWS/EC2 \\ --statistic Average \\ --period 300 \\ --threshold 80 \\ --comparison-operator GreaterThanThreshold \\ --dimensions Name=InstanceId,Value=i-0123456789abcdef0 \\ --evaluation-periods 2 \\ --alarm-actions arn:aws:sns:us-east-1:111122223333:NotifyMe",
+    "description": "AWS CloudWatch AWS CloudWatch is a monitoring and observability service that provides actionable insights for applications, system performance, and infrastructure resources.\n🔹 Key Features Metrics Collection\nCollects and tracks metrics from AWS services, applications, and custom sources.\nLogs Monitoring\nIngests, stores, and analyzes logs from applications, Lambda, EC2, and other services.\nAlarms\nSet thresholds on metrics to trigger notifications or automated actions.\nDashboards\nCreate custom, real-time dashboards for visibility into system performance.",
+    "tags": [
+      "Aws",
+      "CloudWatch",
+      "Monitoring",
+      "Observability"
+    ],
+    "title": "AWS CloudWatch",
+    "uri": "/aws/aws-cloudwatch/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e AWS Certified Solutions Architect – Associate (SAA-C03) ToC",
+    "content": "AWS Load Balancers AWS provides Elastic Load Balancing (ELB) services to automatically distribute incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, and Lambda functions.\nLoad balancers help improve fault tolerance, scalability, and availability.\nTypes of AWS Load Balancers 1. Application Load Balancer (ALB) Operates at Layer 7 (HTTP/HTTPS). Best for web applications. Supports advanced routing: Path-based (e.g., /images → one service, /api → another service). Host-based (e.g., api.example.com vs app.example.com). Integrates with AWS WAF and CloudWatch. 2. Network Load Balancer (NLB) Operates at Layer 4 (TCP, UDP, TLS). Handles millions of requests per second with ultra-low latency. Best for: Real-time gaming. IoT applications. High-performance workloads. 3. Gateway Load Balancer (GWLB) Operates at Layer 3 (Network Layer). Deploys, scales, and manages third-party virtual appliances (e.g., firewalls, intrusion detection, deep packet inspection). Routes traffic using Geneve protocol. 4. Classic Load Balancer (CLB) (Legacy) Works at both Layer 4 and Layer 7. Limited features, mainly for older applications. Recommended to migrate to ALB or NLB. Key Features High Availability – Automatically distributes traffic across multiple AZs. Health Checks – Routes traffic only to healthy targets. SSL/TLS Termination – Offloads encryption from application servers. Integration – Works with Auto Scaling, CloudWatch, Route 53, and WAF. Security – Supports Security Groups and IAM policies. Use Cases ALB → Microservices, APIs, web apps. NLB → Gaming, streaming, IoT, financial apps. GWLB → Security appliances (firewalls, packet inspection). CLB → Legacy workloads (not recommended for new apps). Example: Architecture Diagram Clients | [AWS Route 53] | [Elastic Load Balancer] / \\ [EC2-1] [EC2-2]",
+    "description": "AWS Load Balancers AWS provides Elastic Load Balancing (ELB) services to automatically distribute incoming application traffic across multiple targets, such as Amazon EC2 instances, containers, IP addresses, and Lambda functions.\nLoad balancers help improve fault tolerance, scalability, and availability.\nTypes of AWS Load Balancers 1. Application Load Balancer (ALB) Operates at Layer 7 (HTTP/HTTPS). Best for web applications. Supports advanced routing: Path-based (e.g., /images → one service, /api → another service). Host-based (e.g., api.example.com vs app.example.com). Integrates with AWS WAF and CloudWatch. 2. Network Load Balancer (NLB) Operates at Layer 4 (TCP, UDP, TLS). Handles millions of requests per second with ultra-low latency. Best for: Real-time gaming. IoT applications. High-performance workloads. 3. Gateway Load Balancer (GWLB) Operates at Layer 3 (Network Layer). Deploys, scales, and manages third-party virtual appliances (e.g., firewalls, intrusion detection, deep packet inspection). Routes traffic using Geneve protocol. 4. Classic Load Balancer (CLB) (Legacy) Works at both Layer 4 and Layer 7. Limited features, mainly for older applications. Recommended to migrate to ALB or NLB. Key Features High Availability – Automatically distributes traffic across multiple AZs. Health Checks – Routes traffic only to healthy targets. SSL/TLS Termination – Offloads encryption from application servers. Integration – Works with Auto Scaling, CloudWatch, Route 53, and WAF. Security – Supports Security Groups and IAM policies. Use Cases ALB → Microservices, APIs, web apps. NLB → Gaming, streaming, IoT, financial apps. GWLB → Security appliances (firewalls, packet inspection). CLB → Legacy workloads (not recommended for new apps). Example: Architecture Diagram Clients | [AWS Route 53] | [Elastic Load Balancer] / \\ [EC2-1] [EC2-2]",
+    "tags": [],
+    "title": "AWS Load Balancers",
+    "uri": "/aws/aws-loadbalancers/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: CloudWatch",
+    "uri": "/tags/cloudwatch/index.html"
+  },
+  {
+    "breadcrumb": "",
+    "content": "Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax \u0026 Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.\nPrerequisites Before you begin, ensure you have:\nA basic understanding of Kubernetes concepts Familiarity with Linux command-line operations Required Tools To follow along and perform hands-on tasks, you’ll need:\nVisual Studio Code (VSCode) or any preferred text editor The kubectl CLI to interact with Kubernetes The Helm CLI (helm) installed and configured Hands-On Labs This guide includes practical labs where you’ll learn how to:\nDeploy applications using publicly available Helm charts Customize deployments by editing chart values Create and deploy your own Helm charts Use Helm’s core features such as install, upgrade, rollback, and templating",
+    "description": "Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax \u0026 Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.",
+    "tags": [],
+    "title": "Introduction to Helm",
+    "uri": "/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Monitoring",
+    "uri": "/tags/monitoring/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Observability",
+    "uri": "/tags/observability/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tags",
+    "uri": "/tags/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Angular",
+    "uri": "/tags/angular/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Categories",
@@ -320,20 +424,20 @@ var relearn_searchindex = [
     "uri": "/tags/full-stack/index.html"
   },
   {
-    "breadcrumb": "",
-    "content": "Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax \u0026 Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.\nPrerequisites Before you begin, ensure you have:\nA basic understanding of Kubernetes concepts Familiarity with Linux command-line operations Required Tools To follow along and perform hands-on tasks, you’ll need:\nVisual Studio Code (VSCode) or any preferred text editor The kubectl CLI to interact with Kubernetes The Helm CLI (helm) installed and configured Hands-On Labs This guide includes practical labs where you’ll learn how to:\nDeploy applications using publicly available Helm charts Customize deployments by editing chart values Create and deploy your own Helm charts Use Helm’s core features such as install, upgrade, rollback, and templating",
-    "description": "Table of Contents Overview: What is Helm? Official Helm Documentation Working with Existing Helm Charts Adding and Managing Repositories Installing a Helm Release Using and Customizing values.yaml Overriding Values with --set Upgrading an Existing Release Rolling Back to a Previous Release Viewing Current Values of a Release Managing Multiple Environments Debugging and Dry Runs Creating Helm Charts Quick Start Guide Template Syntax \u0026 Structure Built-in Template Objects Overview: What is Helm? Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.",
-    "tags": [],
-    "title": "Introduction to Helm",
-    "uri": "/index.html"
-  },
-  {
     "breadcrumb": "Introduction to Helm \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
     "title": "Tag :: Jenkins ",
     "uri": "/tags/jenkins-/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Tags",
+    "content": "",
+    "description": "",
+    "tags": [],
+    "title": "Tag :: Networking",
+    "uri": "/tags/networking/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -368,12 +472,12 @@ var relearn_searchindex = [
     "uri": "/tags/starter-kit/index.html"
   },
   {
-    "breadcrumb": "Introduction to Helm",
+    "breadcrumb": "Introduction to Helm \u003e Tags",
     "content": "",
     "description": "",
     "tags": [],
-    "title": "Tags",
-    "uri": "/tags/index.html"
+    "title": "Tag :: Vpc",
+    "uri": "/tags/vpc/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",
@@ -454,6 +558,14 @@ var relearn_searchindex = [
     "tags": [],
     "title": "Tag :: Kubernetes",
     "uri": "/tags/kubernetes/index.html"
+  },
+  {
+    "breadcrumb": "Introduction to Helm \u003e Deploy a .NET Core Web API using Docker and Kubernetes",
+    "content": "SonarQube Overview SonarQube is an open-source platform used for continuous inspection of code quality.\nit does testing of code before build . It performs automatic code reviews with static analysis to detect:\nBugs Code smells Vulnerabilities Duplications It supports multiple programming languages such as Java, C#, JavaScript, Python, Go, and more.\nBugs: Errors in the code that can cause incorrect functionality, crashes, or unexpected behavior. Code Smells: Poor coding practices or patterns that don’t break functionality but reduce maintainability and readability. Security Vulnerabilities: Weaknesses in code that attackers can exploit, such as SQL injection, XSS, or hardcoded passwords. Duplications: Repeated blocks of code that make maintenance harder and increase the risk of inconsistencies. Key Features Code Quality \u0026 Security: Identifies bugs, vulnerabilities, and security hotspots. Multi-language Support: Works with over 25+ programming languages. Integration with CI/CD: Seamlessly integrates with Jenkins, GitLab CI, GitHub Actions, Azure DevOps, and others. Quality Gates: Ensures code meets defined quality standards before merging. Dashboards \u0026 Reports: Provides detailed project health metrics and visualizations. Extensible via Plugins: Supports extensions for SCM, IDEs, and build tools. Architecture SonarQube Server\nHosts the dashboard and analysis results. Manages the database with historical code quality data. SonarScanner\nCLI tool that analyzes source code and sends results to the server. Can be run manually or integrated into CI/CD pipelines. Database\nStores code quality metrics, history, and configuration. Common choices: PostgreSQL, MySQL, SQL Server, Oracle. Installation Prerequisites Java 17+ Database (PostgreSQL recommended) 2 GB+ RAM Installation with Docker Compose Running SonarQube with Docker Compose makes setup easier by managing both SonarQube and PostgreSQL together.\nStep 1: Create a docker-compose.yml version: \"3\" services: postgres: image: postgres:13 container_name: postgres environment: POSTGRES_USER: sonar POSTGRES_PASSWORD: sonar POSTGRES_DB: sonarqube volumes: - postgres_data:/var/lib/postgresql/data sonarqube: image: sonarqube:lts-community container_name: sonarqube depends_on: - postgres environment: SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:5432/sonarqube SONARQUBE_JDBC_USERNAME: sonar SONARQUBE_JDBC_PASSWORD: sonar ports: - \"9000:9000\" volumes: - sonarqube_data:/opt/sonarqube/data - sonarqube_logs:/opt/sonarqube/logs - sonarqube_extensions:/opt/sonarqube/extensions volumes: postgres_data: sonarqube_data: sonarqube_logs: sonarqube_extensions:\rStart the container docker-compose up -d\rAccess SonarQube Open http://localhost:9000 in your browser. Default credentials: Username: admin Password: admin\rSonarQube Editions SonarQube is available in four editions:\n1. Community Edition (Free) Cost: Free (open source) Best for: Small teams, personal projects, learning environments Key Features: Static code analysis for 15+ programming languages Detection of bugs, code smells, and vulnerabilities Basic Quality Gates and reports Integrations with CI/CD tools (Jenkins, GitLab CI, etc.) Basic web-based dashboards 2. Developer Edition Cost: Paid (subscription) Best for: Growing teams and organizations that need deeper insights Additional Features: Support for 20+ programming languages (including C, C++, Objective-C, Swift, and T-SQL) Branch analysis (track quality on feature branches) Pull Request decoration in GitHub, GitLab, Bitbucket, and Azure DevOps Advanced issue detection (security hotspots, more code patterns) Reports on technical debt and maintainability 3. Enterprise Edition Cost: Paid (higher tier) Best for: Large organizations with multiple teams/projects Additional Features: Portfolio Management: Aggregate code quality across projects Governance dashboards for executive-level visibility Project baseline management (manage technical debt over time) Advanced reporting (trends, compliance) Scales for large deployments 4. Data Center Edition Cost: Premium (highest tier) Best for: Enterprises requiring high availability and scalability Additional Features: All features of Enterprise Edition Clustered deployment for high availability (HA) Horizontal scalability with multiple nodes Disaster recovery and business continuity Ideal for mission-critical enterprise environments Quick Comparison Feature Community Developer Enterprise Data Center Price Free Paid Paid Paid Languages (Java, JS, etc.) ✔ ✔ ✔ ✔ C, C++, Swift, T-SQL ✘ ✔ ✔ ✔ Branch Analysis ✘ ✔ ✔ ✔ Pull Request Decoration ✘ ✔ ✔ ✔ Portfolio Management ✘ ✘ ✔ ✔ High Availability (HA) ✘ ✘ ✘ ✔ 👉 For most small teams, Community Edition is enough.\n👉 Enterprises usually choose Enterprise or Data Center Edition for scalability, compliance, and governance.",
+    "description": "Comprehensive guide to installing, configuring, and integrating SonarQube for continuous code quality inspection",
+    "tags": [],
+    "title": "SonarQube Overview and Deployment",
+    "uri": "/dotnet/sonarqube/index.html"
   },
   {
     "breadcrumb": "Introduction to Helm \u003e Tags",

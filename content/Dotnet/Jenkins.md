@@ -53,7 +53,7 @@ This quick start shows you how to get Jenkins running and create your first pipe
 
 ---
 
-## [enkins Pipeline Official Documentation](https://www.jenkins.io/doc/book/pipeline/)
+## [Jenkins Pipeline Official Documentation](https://www.jenkins.io/doc/book/pipeline/)
 
 ## 1. First Pipeline (Hello World)
 

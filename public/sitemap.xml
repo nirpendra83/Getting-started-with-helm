@@ -58,15 +58,55 @@
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/additional/index.html</loc>
   </url>
   <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</loc>
+    <lastmod>2025-08-03T00:00:00+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/session01/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/angular/index.html</loc>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-storage/index.html</loc>
+    <lastmod>2025-08-03T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/networking/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/aws/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-cloudwatch/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-loadbalancers/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/cloudwatch/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/monitoring/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/observability/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
+    <lastmod>2025-08-16T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/angular/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -118,11 +158,11 @@
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/index.html</loc>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/jenkins-/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/jenkins-/index.html</loc>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/networking/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -142,7 +182,7 @@
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/index.html</loc>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/vpc/index.html</loc>
     <lastmod>2025-08-03T00:00:00+00:00</lastmod>
   </url>
   <url>
@@ -183,6 +223,10 @@
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/tags/kubernetes/index.html</loc>
+    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/sonarqube/index.html</loc>
     <lastmod>2025-08-01T00:00:00+00:00</lastmod>
   </url>
   <url>
