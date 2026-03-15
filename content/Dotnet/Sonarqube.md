@@ -181,3 +181,81 @@ SonarQube is available in **four editions**:
 
 👉 For most small teams, **Community Edition** is enough.  
 👉 Enterprises usually choose **Enterprise or Data Center Edition** for scalability, compliance, and governance.
+
+
+## SonarQube with the community branch plugin
+## Download the Plugin
+  - Go to the [Releases page](https://github.com/mc1arke/sonarqube-community-branch-plugin/releases)
+  - Download the latest .jar file, for example:
+  ```sh
+  sonar-community-branch-plugin-1.16.0.jar
+
+  curl -L -o sonarqube-community-branch-plugin-25.7.0.jar \
+  https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/25.7.0/sonarqube-community-branch-plugin-25.7.0.jar
+
+  ```
+ - Place it inside a local folder plugins/ (next to your docker-compose.yml).
+ - So your project structure should look like:
+ ```sh
+ .
+├── docker-compose.yml
+└── plugins/
+    └── sonar-community-branch-plugin-1.16.0.jar
+```
+### Docker compose file
+```yaml
+version: "3"
+
+services:
+  sonarqube:
+    image: sonarqube:8.9-community
+    container_name: sonarqube
+    depends_on:
+      - db
+    environment:
+      - SONAR_JDBC_URL=jdbc:postgresql://db:5432/sonar
+      - SONAR_JDBC_USERNAME=sonar
+      - SONAR_JDBC_PASSWORD=sonar
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true   # temporary workaround
+
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - ./plugins:/opt/sonarqube/extensions/plugins
+    ports:
+      - "9000:9000"
+
+  db:
+    image: postgres:13
+    container_name: sonarqube_postgres
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+      - POSTGRES_DB=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  postgresql:
+  postgresql_data:
+```
+### docker-compose up -d
+### Verify
+```sh
+Go to Administration → Marketplace → Installed and you should see the Community Branch Plugin.
+```
+
+
+## [Follow this](https://github.com/mc1arke/sonarqube-community-branch-plugin.git)
+
+
+OR
+
+```sh
+docker run -d -p 9000:9000 mc1arke/sonarqube-with-community-branch-plugin
+```
+
+### Login to sonarqube with `Admin` user and password `admin`

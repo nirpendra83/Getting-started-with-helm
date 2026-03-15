@@ -5,35 +5,31 @@
     <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta name="generator" content="Hugo 0.139.3">
     <meta name="generator" content="Relearn 7.2.1+f1701957c30daae7cd133bec5a7968480563ce9f">
-    <meta name="description" content="📦 Session 1: Introduction to Helm Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
-⚙️ Prerequisites Before using Helm, ensure the following:
-✅ A working Kubernetes cluster ✅ kubectl configured to access the cluster ✅ Helm CLI installed on your local system 🔧 Install Helm curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash🧩 Verify Helm Installation helm version🌐 How Helm Connects to Kubernetes Helm does not need a server component (like Tiller in v2). It uses:">
+    <meta name="description" content="Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
+🧰 Helm Is Like APT/YUM for Kubernetes Platform Install Method Example Linux apt install nginx Installs NGINX on system Kubernetes helm install nginx Installs NGINX in cluster Helm Architecture Overview Helm 3 architecture is simple because the Tiller component used in Helm 2 has been removed.">
     <meta name="author" content="">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Session 1: Introduction to Helm :: Helm">
-    <meta name="twitter:description" content="📦 Session 1: Introduction to Helm Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
-⚙️ Prerequisites Before using Helm, ensure the following:
-✅ A working Kubernetes cluster ✅ kubectl configured to access the cluster ✅ Helm CLI installed on your local system 🔧 Install Helm curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash🧩 Verify Helm Installation helm version🌐 How Helm Connects to Kubernetes Helm does not need a server component (like Tiller in v2). It uses:">
+    <meta name="twitter:title" content="Session 01 Introduction to Helm :: Helm">
+    <meta name="twitter:description" content="Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
+🧰 Helm Is Like APT/YUM for Kubernetes Platform Install Method Example Linux apt install nginx Installs NGINX on system Kubernetes helm install nginx Installs NGINX in cluster Helm Architecture Overview Helm 3 architecture is simple because the Tiller component used in Helm 2 has been removed.">
     <meta property="og:url" content="https://github.com/nirpendra83/Getting-started-with-helm/helm/session01/index.html">
     <meta property="og:site_name" content="Helm">
-    <meta property="og:title" content="Session 1: Introduction to Helm :: Helm">
-    <meta property="og:description" content="📦 Session 1: Introduction to Helm Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
-⚙️ Prerequisites Before using Helm, ensure the following:
-✅ A working Kubernetes cluster ✅ kubectl configured to access the cluster ✅ Helm CLI installed on your local system 🔧 Install Helm curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash🧩 Verify Helm Installation helm version🌐 How Helm Connects to Kubernetes Helm does not need a server component (like Tiller in v2). It uses:">
+    <meta property="og:title" content="Session 01 Introduction to Helm :: Helm">
+    <meta property="og:description" content="Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
+🧰 Helm Is Like APT/YUM for Kubernetes Platform Install Method Example Linux apt install nginx Installs NGINX on system Kubernetes helm install nginx Installs NGINX in cluster Helm Architecture Overview Helm 3 architecture is simple because the Tiller component used in Helm 2 has been removed.">
     <meta property="og:locale" content="en_us">
     <meta property="og:type" content="article">
     <meta property="article:section" content="Introduction to Helm">
-    <meta itemprop="name" content="Session 1: Introduction to Helm :: Helm">
-    <meta itemprop="description" content="📦 Session 1: Introduction to Helm Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
-⚙️ Prerequisites Before using Helm, ensure the following:
-✅ A working Kubernetes cluster ✅ kubectl configured to access the cluster ✅ Helm CLI installed on your local system 🔧 Install Helm curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash🧩 Verify Helm Installation helm version🌐 How Helm Connects to Kubernetes Helm does not need a server component (like Tiller in v2). It uses:">
-    <meta itemprop="wordCount" content="677">
-    <title>Session 1: Introduction to Helm :: Helm</title>
-    <link href="../../css/fontawesome-all.min.css?1755961071" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1755961071" rel="stylesheet"></noscript>
-    <link href="../../css/auto-complete.css?1755961071" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1755961071" rel="stylesheet"></noscript>
-    <link href="../../css/perfect-scrollbar.min.css?1755961071" rel="stylesheet">
-    <link href="../../css/theme.min.css?1755961071" rel="stylesheet">
-    <link href="../../css/format-html.min.css?1755961071" rel="stylesheet" id="R-format-style">
+    <meta itemprop="name" content="Session 01 Introduction to Helm :: Helm">
+    <meta itemprop="description" content="Helm is the package manager for Kubernetes, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called charts.
+🧰 Helm Is Like APT/YUM for Kubernetes Platform Install Method Example Linux apt install nginx Installs NGINX on system Kubernetes helm install nginx Installs NGINX in cluster Helm Architecture Overview Helm 3 architecture is simple because the Tiller component used in Helm 2 has been removed.">
+    <meta itemprop="wordCount" content="987">
+    <title>Session 01 Introduction to Helm :: Helm</title>
+    <link href="../../css/fontawesome-all.min.css?1773591565" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/fontawesome-all.min.css?1773591565" rel="stylesheet"></noscript>
+    <link href="../../css/auto-complete.css?1773591565" rel="stylesheet" media="print" onload="this.media='all';this.onload=null;"><noscript><link href="../../css/auto-complete.css?1773591565" rel="stylesheet"></noscript>
+    <link href="../../css/perfect-scrollbar.min.css?1773591565" rel="stylesheet">
+    <link href="../../css/theme.min.css?1773591565" rel="stylesheet">
+    <link href="../../css/format-html.min.css?1773591565" rel="stylesheet" id="R-format-style">
     <script>
       window.relearn = window.relearn || {};
       window.relearn.relBasePath='..\/..';
@@ -96,27 +92,30 @@
                 <div class="topbar-content-wrapper">
 <nav class="TableOfContents">
   <ul>
-    <li><a href="#-session-1-introduction-to-helm">📦 Session 1: Introduction to Helm</a></li>
-    <li><a href="#-prerequisites">⚙️ Prerequisites</a>
+    <li><a href="#-helm-is-like-aptyum-for-kubernetes">🧰 Helm Is Like APT/YUM for Kubernetes</a>
       <ul>
+        <li><a href="#helm-architecture">Helm Architecture</a></li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#1-helm-cli">1. Helm CLI</a></li>
+        <li><a href="#2-helm-charts">2. Helm Charts</a></li>
+        <li><a href="#3-releases">3. Releases</a></li>
+        <li><a href="#4-kubernetes-api-server">4. Kubernetes API Server</a></li>
+        <li><a href="#5-helm-repositories">5. Helm Repositories</a></li>
+        <li><a href="#helm-architecture-workflow">Helm Architecture Workflow</a></li>
+        <li><a href="#helm-2-vs-helm-3">Helm 2 vs Helm 3</a></li>
+        <li><a href="#advantages-of-helm">Advantages of Helm</a></li>
+        <li><a href="#-prerequisites">⚙️ Prerequisites</a></li>
         <li><a href="#-install-helm">🔧 Install Helm</a></li>
         <li><a href="#-verify-helm-installation">🧩 Verify Helm Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#-how-helm-connects-to-kubernetes">🌐 How Helm Connects to Kubernetes</a></li>
-    <li><a href="#-getting-started-using-existing-helm-charts">🚀 Getting Started: Using Existing Helm Charts</a>
-      <ul>
+        <li><a href="#-how-helm-connects-to-kubernetes">🌐 How Helm Connects to Kubernetes</a></li>
+        <li><a href="#-getting-started-using-existing-helm-charts">🚀 Getting Started: Using Existing Helm Charts</a></li>
         <li><a href="#1-add-a-chart-repository">1️⃣ Add a Chart Repository</a></li>
         <li><a href="#2-update-the-repository-cache">2️⃣ Update the Repository Cache</a></li>
         <li><a href="#3-search-for-a-chart">3️⃣ Search for a Chart</a></li>
+        <li><a href="#search-without-adding-a-repo">Search without adding a repo</a></li>
         <li><a href="#4-install-a-chart">4️⃣ Install a Chart</a></li>
         <li><a href="#5-verify-the-installation">5️⃣ Verify the Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#-helm-is-like-aptyum-for-kubernetes">🧰 Helm Is Like APT/YUM for Kubernetes</a></li>
-    <li><a href="#-helm-components-overview">🧱 Helm Components Overview</a></li>
-    <li><a href="#-helm-chart-anatomy">📦 Helm Chart Anatomy</a>
-      <ul>
+        <li><a href="#-helm-chart-anatomy">📦 Helm Chart Anatomy</a></li>
         <li><a href="#-create-a-chart">🛠️ Create a Chart</a></li>
       </ul>
     </li>
@@ -146,7 +145,6 @@
       </ul>
     </li>
     <li><a href="#-get-values-from-a-running-release">📄 Get Values from a Running Release</a></li>
-    <li><a href="#-helm-v2-vs-v3">🧠 Helm v2 vs v3</a></li>
     <li><a href="#-common-helm-cli-reference">🧰 Common Helm CLI Reference</a></li>
     <li><a href="#-summary">✅ Summary</a></li>
   </ul>
@@ -158,7 +156,7 @@
           <ol class="topbar-breadcrumbs breadcrumbs highlightable" itemscope itemtype="http://schema.org/BreadcrumbList"><li
             itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="1">&nbsp;>&nbsp;</li><li
             itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><a itemprop="item" href="../../helm/index.html"><span itemprop="name">Introduction to Helm</span></a><meta itemprop="position" content="2">&nbsp;>&nbsp;</li><li
-            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 1: Introduction to Helm</span><meta itemprop="position" content="3"></li>
+            itemscope itemtype="https://schema.org/ListItem" itemprop="itemListElement"><span itemprop="name">Session 01 Introduction to Helm</span><meta itemprop="position" content="3"></li>
           </ol>
           <div class="topbar-area topbar-area-end" data-area="end">
             <div class="topbar-button topbar-button-prev" data-content-empty="disable" data-width-s="show" data-width-m="show" data-width-l="show"><a class="topbar-control" href="../../helm/toc/index.html" title="Helm Contents (🡐)"><i class="fa-fw fas fa-chevron-left"></i></a>
@@ -183,50 +181,9 @@
   <header class="headline">
   </header>
 
-<h1 id="session-1-introduction-to-helm">Session 1: Introduction to Helm</h1>
+<h1 id="session-01-introduction-to-helm">Session 01 Introduction to Helm</h1>
 
-<h2 id="-session-1-introduction-to-helm">📦 Session 1: Introduction to Helm</h2>
 <p>Helm is the <strong>package manager for Kubernetes</strong>, designed to simplify deployment, configuration, and lifecycle management of Kubernetes applications using reusable packages called <strong>charts</strong>.</p>
-<hr>
-<h2 id="-prerequisites">⚙️ Prerequisites</h2>
-<p>Before using Helm, ensure the following:</p>
-<ul>
-<li>✅ A working <strong>Kubernetes cluster</strong></li>
-<li>✅ <code>kubectl</code> configured to access the cluster</li>
-<li>✅ Helm CLI installed on your local system</li>
-</ul>
-<h3 id="-install-helm">🔧 Install Helm</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash</span></span></code></pre></div>
-<h3 id="-verify-helm-installation">🧩 Verify Helm Installation</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm version</span></span></code></pre></div>
-<hr>
-<h2 id="-how-helm-connects-to-kubernetes">🌐 How Helm Connects to Kubernetes</h2>
-<p>Helm does <strong>not need a server component</strong> (like Tiller in v2). It uses:</p>
-<ul>
-<li>Your existing <code>kubeconfig</code> file (<code>~/.kube/config</code>)</li>
-<li>Communicates directly with Kubernetes API server</li>
-<li>Uses standard Kubernetes resources: <code>Deployments</code>, <code>Services</code>, <code>Secrets</code>, etc.</li>
-<li>Releases are tracked in your cluster (by default stored as Kubernetes Secrets)</li>
-</ul>
-<blockquote>
-<p>In essence, Helm is just another <strong>Kubernetes client</strong>, like <code>kubectl</code>, but focused on packages.</p>
-</blockquote>
-<hr>
-<h2 id="-getting-started-using-existing-helm-charts">🚀 Getting Started: Using Existing Helm Charts</h2>
-<p>The fastest way to start with Helm is by <strong>installing applications using public charts</strong>.</p>
-<h3 id="1-add-a-chart-repository">1️⃣ Add a Chart Repository</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add bitnami https://charts.bitnami.com/bitnami</span></span></code></pre></div>
-<h3 id="2-update-the-repository-cache">2️⃣ Update the Repository Cache</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo update</span></span></code></pre></div>
-<h3 id="3-search-for-a-chart">3️⃣ Search for a Chart</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm search repo nginx</span></span></code></pre></div>
-<h3 id="4-install-a-chart">4️⃣ Install a Chart</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx</span></span></code></pre></div>
-<p>This command installs the <strong>nginx chart</strong> from the Bitnami repo as a release named <code>my-nginx</code>.</p>
-<h3 id="5-verify-the-installation">5️⃣ Verify the Installation</h3>
-<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm list
-</span></span><span style="display:flex;"><span>kubectl get all</span></span></code></pre></div>
-<hr>
 <h2 id="-helm-is-like-aptyum-for-kubernetes">🧰 Helm Is Like APT/YUM for Kubernetes</h2>
 <table>
   <thead>
@@ -250,35 +207,223 @@
   </tbody>
 </table>
 <hr>
-<h2 id="-helm-components-overview">🧱 Helm Components Overview</h2>
+<hr>
+<h3 id="helm-architecture">Helm Architecture</h3>
+<p><a href="#R-image-e005751a0165a907ff63a45be698e07e" class="lightbox-link"><img alt="ocp01" class="noborder lazy lightbox noshadow figure-image" loading="lazy" src="../../images/helm-architecure.png" style=" height: auto; width: auto;"></a>
+<a href="javascript:history.back();" class="lightbox-back" id="R-image-e005751a0165a907ff63a45be698e07e"><img alt="ocp01" class="noborder lazy lightbox noshadow lightbox-image" loading="lazy" src="../../images/helm-architecure.png"></a></p>
+<h3 id="overview">Overview</h3>
+<p>Helm 3 architecture is simple because the <strong>Tiller component used in
+Helm 2 has been removed</strong>.</p>
+<p>Helm primarily consists of:</p>
+<ul>
+<li>Helm CLI</li>
+<li>Helm Charts</li>
+<li>Releases</li>
+<li>Kubernetes API Server</li>
+<li>Helm Repositories</li>
+</ul>
+<hr>
+<h3 id="1-helm-cli">1. Helm CLI</h3>
+<p>The Helm CLI is the command line interface used by developers and DevOps
+engineers to interact with Helm.</p>
+<p>Example commands:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add bitnami https://charts.bitnami.com/bitnami
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>helm install my-nginx bitnami/nginx
+</span></span><span style="display:flex;"><span>helm upgrade my-nginx bitnami/nginx
+</span></span><span style="display:flex;"><span>helm uninstall my-nginx</span></span></code></pre></div>
+<p>Responsibilities:</p>
+<ul>
+<li>Installing applications</li>
+<li>Upgrading applications</li>
+<li>Rolling back releases</li>
+<li>Packaging charts</li>
+<li>Managing repositories</li>
+</ul>
+<hr>
+<h3 id="2-helm-charts">2. Helm Charts</h3>
+<p>A <strong>Helm Chart</strong> is a package that contains Kubernetes manifests
+required to run an application.</p>
+<p>Typical Helm chart structure:</p>
+<pre><code>mychart/
+ ├── Chart.yaml
+ ├── values.yaml
+ ├── templates/
+ │    ├── deployment.yaml
+ │    ├── service.yaml
+ │    └── ingress.yaml
+ └── charts/
+</code></pre>
+<p>Important files:</p>
+<div class="highlight wrap-code"><pre tabindex="0"><code>  File          Description
+  ------------- -------------------------------
+  Chart.yaml    Metadata about the chart
+  values.yaml   Default configuration values
+  templates/    Kubernetes manifest templates</code></pre></div>
+<hr>
+<h3 id="3-releases">3. Releases</h3>
+<p>A <strong>Release</strong> is a deployed instance of a Helm chart in a Kubernetes
+cluster.</p>
+<p>Example:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx</span></span></code></pre></div>
+<p>Here:</p>
+<ul>
+<li>Chart → nginx</li>
+<li>Release name → my-nginx</li>
+</ul>
+<p>Multiple releases can be created from the same chart.</p>
+<pre><code>helm install dev-nginx bitnami/nginx
+helm install prod-nginx bitnami/nginx
+</code></pre>
+<p>Helm tracks:</p>
+<ul>
+<li>Configuration</li>
+<li>Version history</li>
+<li>Upgrade records</li>
+</ul>
+<hr>
+<h3 id="4-kubernetes-api-server">4. Kubernetes API Server</h3>
+<p>Helm interacts directly with the Kubernetes API server.</p>
+<p>Workflow:</p>
+<ol>
+<li>User runs a Helm command</li>
+<li>Helm renders chart templates</li>
+<li>Kubernetes manifests are generated</li>
+<li>Helm sends manifests to Kubernetes API</li>
+<li>Kubernetes creates cluster resources</li>
+</ol>
+<p>Resources created include:</p>
+<ul>
+<li>Pods</li>
+<li>Services</li>
+<li>Deployments</li>
+<li>ConfigMaps</li>
+<li>Secrets</li>
+</ul>
+<hr>
+<h3 id="5-helm-repositories">5. Helm Repositories</h3>
+<p>Helm repositories store Helm charts.</p>
+<p>Example repository:</p>
+<pre><code>https://charts.bitnami.com/bitnami
+</code></pre>
+<p>Add repository:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add bitnami https://charts.bitnami.com/bitnami
+</span></span><span style="display:flex;"><span>helm repo update</span></span></code></pre></div>
+<p>Search charts:</p>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm search repo nginx</span></span></code></pre></div>
+<hr>
+<h3 id="helm-architecture-workflow">Helm Architecture Workflow</h3>
+<pre><code>User
+  │
+  │ helm install
+  ▼
+Helm CLI
+  │
+  │ renders templates
+  ▼
+Helm Chart
+  │
+  │ Kubernetes manifests generated
+  ▼
+Kubernetes API Server
+  │
+  ▼
+Cluster Resources
+(Pods, Services, Deployments)
+</code></pre>
+<hr>
+<h3 id="helm-2-vs-helm-3">Helm 2 vs Helm 3</h3>
 <table>
   <thead>
       <tr>
-          <th>Component</th>
-          <th>Description</th>
+          <th>Feature</th>
+          <th>Helm 2</th>
+          <th>Helm 3</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td><strong>Chart</strong></td>
-          <td>Packaged application with Kubernetes templates</td>
+          <td>Server component</td>
+          <td>Tiller</td>
+          <td>Removed</td>
       </tr>
       <tr>
-          <td><strong>Repository</strong></td>
-          <td>Collection of charts (public or private)</td>
+          <td>Security</td>
+          <td>Less secure</td>
+          <td>Improved</td>
       </tr>
       <tr>
-          <td><strong>Release</strong></td>
-          <td>Installed instance of a chart in your cluster</td>
+          <td>Communication</td>
+          <td>CLI → Tiller → Kubernetes</td>
+          <td>CLI → Kubernetes API</td>
       </tr>
       <tr>
-          <td><strong>Helm CLI</strong></td>
-          <td>Interface to install, upgrade, uninstall, or inspect charts</td>
+          <td>Complexity</td>
+          <td>Higher</td>
+          <td>Simpler</td>
       </tr>
   </tbody>
 </table>
+<p>Helm 3 is more secure and easier to manage.</p>
 <hr>
-<h2 id="-helm-chart-anatomy">📦 Helm Chart Anatomy</h2>
+<blockquote>
+<p><strong>Note</strong>
+As of 2026, Helm 4 has not yet been officially released as a stable production version.<br>
+Most production environments still use <strong>Helm 3</strong>. Helm 4 is currently under development and is expected to introduce improvements in performance, security, and overall maintainability.</p>
+</blockquote>
+<h3 id="advantages-of-helm">Advantages of Helm</h3>
+<ul>
+<li>Simplifies Kubernetes application deployment</li>
+<li>Supports reusable templates</li>
+<li>Enables easy upgrades</li>
+<li>Supports rollbacks</li>
+<li>Integrates well with CI/CD pipelines</li>
+</ul>
+<h3 id="-prerequisites">⚙️ Prerequisites</h3>
+<p>Before using Helm, ensure the following:</p>
+<ul>
+<li>✅ A working <strong>Kubernetes cluster</strong></li>
+<li>✅ <code>kubectl</code> configured to access the cluster</li>
+<li>✅ Helm CLI installed on your local system</li>
+</ul>
+<h3 id="-install-helm">🔧 Install Helm</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash</span></span></code></pre></div>
+<h3 id="-verify-helm-installation">🧩 Verify Helm Installation</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm version</span></span></code></pre></div>
+<hr>
+<h3 id="-how-helm-connects-to-kubernetes">🌐 How Helm Connects to Kubernetes</h3>
+<p>Helm does <strong>not need a server component</strong> (like Tiller in v2). It uses:</p>
+<ul>
+<li>Your existing <code>kubeconfig</code> file (<code>~/.kube/config</code>)</li>
+<li>Communicates directly with Kubernetes API server</li>
+<li>Uses standard Kubernetes resources: <code>Deployments</code>, <code>Services</code>, <code>Secrets</code>, etc.</li>
+<li>Releases are tracked in your cluster (by default stored as Kubernetes Secrets)</li>
+</ul>
+<blockquote>
+<p>In essence, Helm is just another <strong>Kubernetes client</strong>, like <code>kubectl</code>, but focused on packages.</p>
+</blockquote>
+<hr>
+<h3 id="-getting-started-using-existing-helm-charts">🚀 Getting Started: Using Existing Helm Charts</h3>
+<p>The fastest way to start with Helm is by <strong>installing applications using public charts</strong>.</p>
+<h3 id="1-add-a-chart-repository">1️⃣ Add a Chart Repository</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add bitnami https://charts.bitnami.com/bitnami</span></span></code></pre></div>
+<h3 id="2-update-the-repository-cache">2️⃣ Update the Repository Cache</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo update</span></span></code></pre></div>
+<h3 id="3-search-for-a-chart">3️⃣ Search for a Chart</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm search repo nginx</span></span></code></pre></div>
+<h3 id="search-without-adding-a-repo">Search without adding a repo</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>helm search hub nginx</span></span></code></pre></div>
+<blockquote>
+<p>Helm searches Artifact Hub, which is the central public registry for Helm charts and other cloud-native packages.</p>
+</blockquote>
+<h3 id="4-install-a-chart">4️⃣ Install a Chart</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm install my-nginx bitnami/nginx</span></span></code></pre></div>
+<p>This command installs the <strong>nginx chart</strong> from the Bitnami repo as a release named <code>my-nginx</code>.</p>
+<h3 id="5-verify-the-installation">5️⃣ Verify the Installation</h3>
+<div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm list
+</span></span><span style="display:flex;"><span>kubectl get all</span></span></code></pre></div>
+<hr>
+<h3 id="-helm-chart-anatomy">📦 Helm Chart Anatomy</h3>
 <p>A <strong>Helm chart</strong> is a structured directory containing:</p>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mychart/
 </span></span><span style="display:flex;"><span>├── Chart.yaml        <span style="color:#75715e"># Chart metadata</span>
@@ -342,57 +487,6 @@
 <h2 id="-get-values-from-a-running-release">📄 Get Values from a Running Release</h2>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm get values my-nginx -n default --all</span></span></code></pre></div>
 <hr>
-<h2 id="-helm-v2-vs-v3">🧠 Helm v2 vs v3</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Feature</th>
-          <th>Helm v2</th>
-          <th>Helm v3</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Tiller Component</td>
-          <td>✅ Required</td>
-          <td>❌ Removed</td>
-      </tr>
-      <tr>
-          <td>Security (RBAC)</td>
-          <td>Complex</td>
-          <td>Simplified</td>
-      </tr>
-      <tr>
-          <td>CRD Support</td>
-          <td>Via Hooks</td>
-          <td>Native Support</td>
-      </tr>
-      <tr>
-          <td>Release Namespacing</td>
-          <td>Global</td>
-          <td>Scoped to Namespace</td>
-      </tr>
-      <tr>
-          <td>Chart Repositories</td>
-          <td>Helm Hub only</td>
-          <td>Helm Hub + OCI support</td>
-      </tr>
-      <tr>
-          <td>Release Storage</td>
-          <td>ConfigMaps</td>
-          <td>Kubernetes Secrets</td>
-      </tr>
-      <tr>
-          <td>Upgrade Strategy</td>
-          <td>Two-step (client + Tiller)</td>
-          <td>Single-step (client-only)</td>
-      </tr>
-  </tbody>
-</table>
-<blockquote>
-<p>Helm v3 is recommended. Use the <a href="https://github.com/helm/helm-2to3" rel="external" target="_blank">2to3 plugin</a> to migrate from Helm v2.</p>
-</blockquote>
-<hr>
 <h2 id="-common-helm-cli-reference">🧰 Common Helm CLI Reference</h2>
 <div class="highlight wrap-code"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add repo</span>
 </span></span><span style="display:flex;"><span>helm repo add &lt;name&gt; &lt;url&gt;
@@ -427,7 +521,6 @@
 <li>Works with your kubeconfig—no need for server-side components.</li>
 <li>Helm v3 is modern, secure, and CI/CD-friendly.</li>
 <li>Start by using existing charts, then build and customize your own.</li>
-<li>Mastering Helm is essential for Kubernetes-based DevOps and GitOps workflows.</li>
 </ul>
 <hr>
 
@@ -446,7 +539,7 @@ Helm
           </a>
         </div>
         <script>
-          window.index_js_url="../../searchindex.en.js?1755961071";
+          window.index_js_url="../../searchindex.en.js?1773591565";
         </script>
         <search><form action="../../search/index.html" method="get">
           <div class="searchbox default-animation">
@@ -459,12 +552,12 @@ Helm
         <script>
           var contentLangs=['en'];
         </script>
-        <script src="../../js/auto-complete.js?1755961071" defer></script>
-        <script src="../../js/lunr/lunr.min.js?1755961071" defer></script>
-        <script src="../../js/lunr/lunr.stemmer.support.min.js?1755961071" defer></script>
-        <script src="../../js/lunr/lunr.multi.min.js?1755961071" defer></script>
-        <script src="../../js/lunr/lunr.en.min.js?1755961071" defer></script>
-        <script src="../../js/search.js?1755961071" defer></script>
+        <script src="../../js/auto-complete.js?1773591565" defer></script>
+        <script src="../../js/lunr/lunr.min.js?1773591565" defer></script>
+        <script src="../../js/lunr/lunr.stemmer.support.min.js?1773591565" defer></script>
+        <script src="../../js/lunr/lunr.multi.min.js?1773591565" defer></script>
+        <script src="../../js/lunr/lunr.en.min.js?1773591565" defer></script>
+        <script src="../../js/search.js?1773591565" defer></script>
       </div>
       <div id="R-homelinks" class="default-animation homelinks">
         <ul>
@@ -475,15 +568,18 @@ Helm
       <div id="R-content-wrapper" class="highlightable">
         <div id="R-shortcutmenu-home" class="R-sidebarmenu">
           <ul class="enlarge morespace collapsible-menu">
+            <li class="parent " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
+            <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../../helm/toc/index.html">Helm Contents</a></li>
+            <li class="active " data-nav-id="/helm/session01/index.html"><a class="padding" href="../../helm/session01/index.html">Session 01 Introduction to Helm</a></li>
+            <li class="" data-nav-id="/helm/session02/index.html"><a class="padding" href="../../helm/session02/index.html">Session 2: Creating and Hosting Custom Helm Charts</a></li>
+            <li class="" data-nav-id="/helm/helmfunctions/index.html"><a class="padding" href="../../helm/helmfunctions/index.html">Helm Functions</a></li>
+            <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../../helm/additional/index.html">Additional</a></li>
+            <li class="" data-nav-id="/helm/helm_complete_guide/index.html"><a class="padding" href="../../helm/helm_complete_guide/index.html">Helm for Kubernetes</a></li></ul></li>
+            <li class="" data-nav-id="/docker/index.html"><a class="padding" href="../../docker/index.html">Container 100 hrs</a><ul id="R-subsections-3be21d56ea3b8348bf4c2beab9229546" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/aws/index.html"><a class="padding" href="../../aws/index.html">AWS Certified Solutions Architect – Associate (SAA-C03) ToC</a><ul id="R-subsections-e9e32a24b6df90bb262ffc443f7fdbea" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/dotnet/index.html"><a class="padding" href="../../dotnet/index.html">Deploy a .NET Core Web API using Docker and Kubernetes</a><ul id="R-subsections-125c9bf07adef4c11f142cc3c9621aa2" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/git/index.html"><a class="padding" href="../../git/index.html">GIT Version Control System</a><ul id="R-subsections-8d4041f058dd2262e83830e1db38cc6d" class="collapsible-menu"></ul></li>
-            <li class="parent " data-nav-id="/helm/index.html"><a class="padding" href="../../helm/index.html">Introduction to Helm</a><ul id="R-subsections-59b9b814f0b23911478473587864f824" class="collapsible-menu">
-            <li class="" data-nav-id="/helm/toc/index.html"><a class="padding" href="../../helm/toc/index.html">Helm Contents</a></li>
-            <li class="active " data-nav-id="/helm/session01/index.html"><a class="padding" href="../../helm/session01/index.html">Session 1: Introduction to Helm</a></li>
-            <li class="" data-nav-id="/helm/session02/index.html"><a class="padding" href="../../helm/session02/index.html">Session 2: Creating and Hosting Custom Helm Charts</a></li>
-            <li class="" data-nav-id="/helm/helmfunctions/index.html"><a class="padding" href="../../helm/helmfunctions/index.html">Helm Functions</a></li>
-            <li class="" data-nav-id="/helm/additional/index.html"><a class="padding" href="../../helm/additional/index.html">Additional</a></li></ul></li>
+            <li class="" data-nav-id="/maven/index.html"><a class="padding" href="../../maven/index.html">Maven</a><ul id="R-subsections-2e808c92f4b23326368ba57701f4f0d7" class="collapsible-menu"></ul></li>
             <li class="" data-nav-id="/vmware/index.html"><a class="padding" href="../../vmware/index.html">Vmware Vsphere</a><ul id="R-subsections-06c2d6a38d55fabdf5e75d97dbfce46c" class="collapsible-menu"></ul></li>
           </ul>
         </div>
@@ -538,8 +634,8 @@ Helm
         </div>
       </div>
     </aside>
-    <script src="../../js/clipboard.min.js?1755961071" defer></script>
-    <script src="../../js/perfect-scrollbar.min.js?1755961071" defer></script>
-    <script src="../../js/theme.js?1755961071" defer></script>
+    <script src="../../js/clipboard.min.js?1773591565" defer></script>
+    <script src="../../js/perfect-scrollbar.min.js?1773591565" defer></script>
+    <script src="../../js/theme.js?1773591565" defer></script>
   </body>
 </html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Container 100 hrs :: Helm</title>
+    <link>https://github.com/nirpendra83/Getting-started-with-helm/docker/index.html</link>
+    <description>Container and Kubernetes</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Container 01</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/docker/container01/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/docker/container01/index.html</guid>
+      <description>Topics 1. Linux Namespaces 2. Linux Cgroups 3. Unshare 4. chroot Introduction: What Are Linux Namespaces? By default, all processes on a Linux system share the same namespaces for things like process IDs, network, mounts, etc. This means:&#xA;All processes see the same list of processes. All processes share the same network interfaces and IP addresses. All processes see the same filesystem mount points. All processes share the same hostname. Why Do We Need Namespaces? Namespaces allow the Linux kernel to isolate and virtualize system resources so that a group of processes can have their own view of the system. This is key for:</description>
+    </item>
+    <item>
+      <title>Container 02</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/docker/conatiner02/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/docker/conatiner02/index.html</guid>
+      <description>Open Container Initiative (OCI) and Container Standards What is OCI? The Open Container Initiative (OCI) is an open governance project under the Linux Foundation started in 2015. It creates open standards for container formats and runtimes to ensure interoperability and portability across container platforms.&#xA;Key OCI Specifications OCI Image Format Specification&#xA;Defines a standard image format including layers, manifests, and metadata so images are portable across tools.&#xA;OCI Runtime Specification&#xA;Defines how to run containers using namespaces, cgroups, hooks, and other OS features.</description>
+    </item>
+    <item>
+      <title>Container 03</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/docker/container03/index.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/docker/container03/index.html</guid>
+      <description>AppArmor with Docker and Kubernetes What is AppArmor? AppArmor is a Linux security module that restricts programs’ capabilities with per-program profiles. It controls what files, network, capabilities, and system calls a process (like a container) can access. Helps reduce the attack surface by limiting what containers can do. Using AppArmor with Docker Step 1: Check if AppArmor is enabled sudo aa-status&#xD;AppArmor on Amazon Linux? Why aa-status is not found? Amazon Linux does not come with AppArmor installed or enabled by default. It primarily uses SELinux (Security-Enhanced Linux) as its Linux security module. AppArmor is mainly found on Ubuntu, Debian, and SUSE-based distributions. Red Hat-based distros (including Amazon Linux) use SELinux. What does this mean? You cannot use AppArmor commands like aa-status on Amazon Linux. To use AppArmor, you would need a host running Ubuntu or Debian. On Amazon Linux, SELinux is the default Mandatory Access Control system. What should you do on Amazon Linux? Explore and use SELinux for security policies. Use SELinux with Docker and Kubernetes to enforce container security. SELinux provides similar (sometimes more granular) control compared to AppArmor. Want SELinux basics and examples? I can help with:</description>
+    </item>
+  </channel>
+</rss>

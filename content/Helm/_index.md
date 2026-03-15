@@ -1,8 +1,9 @@
 +++
 title = "Introduction to Helm"
+weight = 1
 +++
 
-![ocp01](/images/helm.png)
+![ocp01](/images/helm02.png)
 
 ## Table of Contents
 

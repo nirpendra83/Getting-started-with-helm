@@ -6,7 +6,7 @@
     <description>Step-by-step guide to build, containerize, and deploy a .NET Core Web API to a Kubernetes cluster using Docker.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://github.com/nirpendra83/Getting-started-with-helm/dotnet/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Planning</title>
@@ -65,11 +65,32 @@
       <description>CICD with Jenkins</description>
     </item>
     <item>
+      <title>nexus-docker-setup</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/nexus02/index.html</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/nexus02/index.html</guid>
+      <description>Complete guide to install Nexus on Docker and use it for Maven and Docker artifact management with CI/CD integration</description>
+    </item>
+    <item>
       <title>Deploying Learning Portal with Docker and Kubernetes</title>
       <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/session02/index.html</link>
       <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/session02/index.html</guid>
       <description>Step-by-step guide to containerize and deploy a .NET Core + Angular + PostgreSQL application using Docker and Kubernetes</description>
+    </item>
+    <item>
+      <title>Jenkins Pipeline steps</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/sonarqube01/index.html</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/sonarqube01/index.html</guid>
+      <description>Comprehensive guide to installing, configuring, and integrating SonarQube for continuous code quality inspection</description>
+    </item>
+    <item>
+      <title>nexus</title>
+      <link>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/nexus01/index.html</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://github.com/nirpendra83/Getting-started-with-helm/dotnet/nexus01/index.html</guid>
+      <description>A detailed guide to installing, configuring, and integrating Nexus Repository Manager for artifact management and CI/CD pipelines</description>
     </item>
     <item>
       <title>SonarQube Overview and Deployment</title>

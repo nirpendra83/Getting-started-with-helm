@@ -204,3 +204,19 @@ weight: 21
 ### 7. Test Connectivity
 ```bash
 ssh -i your-key.pem ec2-user@<public-ip>
+```
+
+
+## Task
+- [ ] Create a vpc
+- [ ] Create 2  subnets
+- [ ] Create IGW and attach to vpc
+- [ ] Create a route and linked to subnet
+- [ ] Create a vm in private subnet 
+    - [ ] Check if you are able to connect vm 
+-   [ ] Create a vm in public subnet subnet 
+    - [ ] Check if you are able to connect vm 
+- [ ] create a NAT Gateway and attach to a subnet
+- [ ] Create two vpc and enable communication b/w them using vpc peering 
+    - check across account as well
+    -  check across region as well
