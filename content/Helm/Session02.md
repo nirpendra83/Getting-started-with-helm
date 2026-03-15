@@ -3,10 +3,6 @@ title = "Session 2: Creating and Hosting Custom Helm Charts"
 weight = 2
 +++
 
-## 🎯 Session 2: Creating and Hosting Custom Helm Charts
-
-In this session, you'll learn to:
-
 - ✅ Create your own Helm charts from scratch  
 - ✅ Customize templates and use values effectively  
 - ✅ Understand and use `_helpers.tpl`  
@@ -15,7 +11,8 @@ In this session, you'll learn to:
 
 ---
 
-## 🛠️ Step 1: Create a Custom Chart
+- [Official Documentation ](https://helm.sh/docs/chart_template_guide/getting_started)
+### 🛠️ Step 1: Create a Custom Chart
 
 ```bash
 helm create nginx-demo

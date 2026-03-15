@@ -4,7 +4,7 @@
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/docker/container01/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/toc/index.html</loc>
+    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/helm_complete_guide/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/index.html</loc>
@@ -72,9 +72,6 @@
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/additional/index.html</loc>
-  </url>
-  <url>
-    <loc>https://github.com/nirpendra83/Getting-started-with-helm/helm/helm_complete_guide/index.html</loc>
   </url>
   <url>
     <loc>https://github.com/nirpendra83/Getting-started-with-helm/aws/aws-autoscaling/index.html</loc>

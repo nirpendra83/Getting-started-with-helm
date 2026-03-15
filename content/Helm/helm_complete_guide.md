@@ -1,6 +1,6 @@
 +++
 title = "Helm for Kubernetes"
-weight = 10
+weight = 1
 +++
 
 
