@@ -4,10 +4,8 @@ weight = 2
 +++
 
 - ✅ Create your own Helm charts from scratch  
-- ✅ Customize templates and use values effectively  
-- ✅ Understand and use `_helpers.tpl`  
+- ✅ Customize templates and use values effectively    
 - ✅ Host charts on GitHub as a Helm repository  
-- ✅ Apply real-world scenarios (Ingress, ConfigMap, HPA)
 
 ---
 
@@ -36,284 +34,524 @@ nginx-demo/
 └── values.yaml
 ```
 
----
+###  NOTES.txt in a Helm Chart
 
-## 📄 What is `_helpers.tpl`?
+`NOTES.txt` is used to display **post-installation instructions** to users after a Helm chart is installed.
 
-`_helpers.tpl` is a special file used to define reusable template snippets using Go's `template` syntax. It's where you can define helper functions like naming conventions or labels, which you can include in other templates using `{{ include "name" . }}`.
-
-### ✅ Example: `_helpers.tpl`
-
-```gotemplate
-{{- define "nginx-demo.name" -}}
-nginx
-{{- end }}
-
-{{- define "nginx-demo.fullname" -}}
-{{ .Release.Name }}-nginx
-{{- end }}
-
-{{- define "nginx-demo.labels" -}}
-app.kubernetes.io/name: {{ include "nginx-demo.name" . }}
-helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-{{- end }}
-
-{{- define "nginx-demo.serviceAccountName" -}}
-{{- if .Values.serviceAccount.name }}
-{{ .Values.serviceAccount.name }}
-{{- else }}
-{{ include "nginx-demo.fullname" . }}
-{{- end }}
-{{- end }}
-```
-
-### 📌 Usage in Other Templates
-
-```yaml
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-  labels:
-    {{- include "nginx-demo.labels" . | nindent 4 }}
-```
-
-This avoids duplication and keeps your chart DRY (Don't Repeat Yourself).
-
----
-
-## 📦 Custom `values.yaml`
-
-```yaml
-replicaCount: 2
-
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  tag: "1.25.2"
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: true
-  className: "nginx"
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  hosts:
-    - host: nginx.local
-      paths:
-        - path: /
-          pathType: Prefix
-
-config:
-  message: "Welcome to Helm-powered NGINX!"
-
-autoscaling:
-  enabled: true
-  minReplicas: 2
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 70
-
-resources: {}
-nodeSelector: {}
-tolerations: []
-affinity: {}
-```
-
----
-
-## ⚙️ Templates Overview
-
-### 🔸 `deployment.yaml`
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-  labels:
-    {{- include "nginx-demo.labels" . | nindent 4 }}
-spec:
-  replicas: {{ .Values.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ include "nginx-demo.name" . }}
-  template:
-    metadata:
-      labels:
-        app: {{ include "nginx-demo.name" . }}
-    spec:
-      containers:
-        - name: nginx
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: 80
-          env:
-            - name: APP_MESSAGE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ include "nginx-demo.fullname" . }}
-                  key: appMessage
-```
-
----
-
-### 🔸 `service.yaml`
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: 80
-  selector:
-    app: {{ include "nginx-demo.name" . }}
-```
-
----
-
-### 🔸 `configmap.yaml`
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-data:
-  appMessage: {{ .Values.config.message | quote }}
-```
-
----
-
-### 🔸 `ingress.yaml`
-
-```yaml
-{{- if .Values.ingress.enabled }}
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-  annotations:
-    {{- range $key, $value := .Values.ingress.annotations }}
-    {{ $key }}: {{ $value | quote }}
-    {{- end }}
-spec:
-  ingressClassName: {{ .Values.ingress.className }}
-  rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host }}
-      http:
-        paths:
-          {{- range .paths }}
-          - path: {{ .path }}
-            pathType: {{ .pathType }}
-            backend:
-              service:
-                name: {{ include "nginx-demo.fullname" $ }}
-                port:
-                  number: {{ $.Values.service.port }}
-          {{- end }}
-    {{- end }}
-{{- end }}
-```
-
----
-
-### 🔸 `hpa.yaml`
-
-```yaml
-{{- if .Values.autoscaling.enabled }}
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: {{ include "nginx-demo.fullname" . }}
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: {{ include "nginx-demo.fullname" . }}
-  minReplicas: {{ .Values.autoscaling.minReplicas }}
-  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: {{ .Values.autoscaling.targetCPUUtilizationPercentage }}
-{{- end }}
-```
-
----
-
-## 🧪 Run the Chart
+When a user runs:
 
 ```bash
-helm install my-nginx ./nginx-demo
-helm test my-nginx
+helm install myapp ./mychart
+```
+- Helm automatically prints the content of templates/NOTES.txt.
+- This file is typically used to show:
+
+   - Application access URLs
+   - Login credentials
+   - Verification commands
+  - Port-forward instructions
+
+### Examples
+```yaml
+Thank you for installing {{ .Chart.Name }}!
+
+Your release name is: {{ .Release.Name }}
+
+1. Get the application URL by running these commands:
+
+export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app={{ .Chart.Name }}" -o jsonpath="{.items[0].metadata.name}")
+
+kubectl port-forward $POD_NAME 8080:80 --namespace {{ .Release.Namespace }}
+
+2. Access the application at:
+
+http://127.0.0.1:8080
+
+3. To check the status of the deployment:
+
+kubectl get pods -n {{ .Release.Namespace }}
+
+Enjoy using {{ .Chart.Name }}!
 ```
 
----
 
-## 🌐 Host Helm Charts on GitHub
+### Understanding `_helpers.tpl` in Helm Charts
 
-### Step 1: Create and Package
+- `_helpers.tpl` is a file used in Helm charts to define **reusable template helpers**.
 
-```bash
-mkdir helm-registry && cd helm-registry
-helm create order
-helm create delivery
+- These helpers are small template functions that can be reused across multiple template files in the chart.
 
-helm package order
-helm package delivery
+- The file is usually located at: mychart/templates/_helpers.tpl
+
+
+
+
+
+
+
+
+
+
+### Using GitHub as a Helm Chart Repository
+
+GitHub can be used to host Helm charts by serving them through **GitHub
+Pages**.\
+Helm requires a repository to contain an `index.yaml` file and packaged
+chart files.
+
+A valid Helm repository must contain:
+
+    index.yaml
+    chart-name-version.tgz
+
+Example repository structure:
+
+    helm-repo/
+    ├── index.yaml
+    ├── mychart-0.1.0.tgz
+
+------------------------------------------------------------------------
+
+### Step 1: Create a Helm Chart
+
+Create a new Helm chart.
+
+``` bash
+helm create mychart
+```
+
+Package the chart.
+
+``` bash
+helm package mychart
+```
+
+Output:
+
+    mychart-0.1.0.tgz
+
+------------------------------------------------------------------------
+
+### Step 2: Generate Repository Index
+
+Generate the Helm repository index.
+
+``` bash
 helm repo index .
 ```
 
-### Step 2: Push to GitHub
+This creates:
 
-```bash
+    index.yaml
+
+Directory structure should now look like:
+
+    helm-repo/
+    ├── index.yaml
+    ├── mychart-0.1.0.tgz
+
+------------------------------------------------------------------------
+
+### Step 3: Push Files to GitHub
+
+Create a new GitHub repository.
+
+Example:
+
+    helm01.repo
+
+Push the following files to the repository:
+
+    index.yaml
+    mychart-0.1.0.tgz
+
+Example commands:
+
+``` bash
 git init
-git remote add origin https://github.com/<your-username>/helm-registry.git
 git add .
-git commit -m "Add Order and Delivery Charts"
+git commit -m "Add Helm chart repository"
+git branch -M main
+git remote add origin https://github.com/<username>/helm01.repo.git
 git push -u origin main
 ```
 
-Enable GitHub Pages on the repository (Settings → Pages).
+------------------------------------------------------------------------
 
----
+### Step 4: Enable GitHub Pages
 
-### Step 3: Add and Use Repo
+Go to the repository settings.
 
-```bash
-helm repo add teamcharts https://<your-username>.github.io/helm-registry
-helm repo update
+    Settings → Pages
 
-helm install order-app teamcharts/order
-helm install delivery-app teamcharts/delivery
+Select:
+
+    Source: Deploy from a branch
+    Branch: main
+    Folder: / (root)
+
+Your Helm repository will be available at:
+
+    https://<github-username>.github.io/<repository-name>/
+
+Example:
+
+    https://nirpendra83.github.io/helm01.repo/
+
+------------------------------------------------------------------------
+
+### Step 5: Add the Helm Repository
+
+Add the GitHub repository to Helm.
+
+``` bash
+helm repo add tree https://nirpendra83.github.io/helm01.repo/
 ```
 
----
+Update the repository list.
 
-## ✅ Summary
+``` bash
+helm repo update
+```
 
-| Topic                | Description                                                       |
-|---------------------|-------------------------------------------------------------------|
-| `_helpers.tpl`       | Defines reusable template logic (naming, labels, etc.)           |
-| `values.yaml`        | Central place for all configuration values                       |
-| Templates            | Refer to values and helpers using Go templating                  |
-| Hosting              | GitHub Pages serves `.tgz` charts and `index.yaml` as a repo     |
-| Real-World Additions | ConfigMap, Ingress, Autoscaling (HPA) support                    |
+------------------------------------------------------------------------
 
----
+### Step 6: Verify Helm Repository
+
+Check available charts.
+
+``` bash
+helm search repo tree
+```
+
+Example output:
+
+    NAME           CHART VERSION   APP VERSION   DESCRIPTION
+    tree/mychart   0.1.0           1.0           Example Helm chart
+
+------------------------------------------------------------------------
+
+### Step 7: Install Chart from GitHub Repository
+
+Install the chart.
+
+``` bash
+helm install demo tree/mychart
+```
+
+Check deployment:
+
+``` bash
+kubectl get pods
+```
+
+------------------------------------------------------------------------
+
+### Updating the Helm Repository
+
+Whenever a new chart version is added:
+
+1.  Package the chart again
+
+``` bash
+helm package mychart
+```
+
+2.  Regenerate the index
+
+``` bash
+helm repo index .
+```
+
+3.  Commit and push changes
+
+``` bash
+git add .
+git commit -m "Update Helm chart"
+git push
+```
+
+------------------------------------------------------------------------
+
+### Summary
+
+Using GitHub as a Helm repository involves the following steps:
+
+1.  Create a Helm chart
+2.  Package the chart
+3.  Generate `index.yaml`
+4.  Push files to GitHub
+5.  Enable GitHub Pages
+6.  Add the repository using `helm repo add`
+
+Example Helm repository URL:
+
+    https://nirpendra83.github.io/helm01.repo/
+
+Install chart:
+
+``` bash
+helm install demo tree/mychart
+```
+
+------------------------------------------------------------------------
+
+### Best Practices
+
+-   Use semantic versioning for charts
+-   Always update `index.yaml`
+-   Keep chart packages (`.tgz`) in the repository
+-   Use GitHub Pages instead of GitHub HTML URLs
 
 
 
+## ChartMuseum -- Helm Chart Repository Server
 
+ChartMuseum is an **open-source Helm Chart Repository server** that
+allows you to store, manage, and distribute Helm charts.
+
+It works similarly to a **Docker Registry**, but instead of container
+images it stores **Helm chart packages (.tgz)**.
+
+ChartMuseum allows teams to create **private Helm repositories** for
+internal Kubernetes deployments.
+
+------------------------------------------------------------------------
+
+### Why Use ChartMuseum
+
+While Helm charts can be hosted on **GitHub Pages**, ChartMuseum is
+preferred for **enterprise environments** because it provides more
+control and automation.
+
+### Key Benefits
+
+-   Private Helm chart repository
+-   HTTP API for chart uploads
+-   Chart version management
+-   CI/CD integration
+-   Multiple storage backend support
+
+Supported storage backends:
+
+-   Local filesystem
+-   AWS S3
+-   Google Cloud Storage
+-   Azure Blob Storage
+-   MinIO
+
+------------------------------------------------------------------------
+
+### ChartMuseum Architecture
+
+Typical workflow:
+
+    Developer
+       │
+       │ helm push
+       ▼
+    ChartMuseum Server
+       │
+       │ stores charts
+       ▼
+    Storage Backend
+       │
+       ▼
+    Helm Clients
+
+Helm clients retrieve charts using:
+
+    helm repo add
+    helm install
+
+------------------------------------------------------------------------
+
+### Installing ChartMuseum (Docker)
+
+The easiest way to run ChartMuseum is using Docker.
+
+``` bash
+docker run -d \
+-p 8080:8080 \
+-e STORAGE=local \
+-e STORAGE_LOCAL_ROOTDIR=/charts \
+-v $(pwd)/charts:/charts \
+ghcr.io/helm/chartmuseum:latest
+```
+
+ChartMuseum will start on:
+
+    http://localhost:8080
+
+------------------------------------------------------------------------
+
+### Verify Chart Repository
+
+Open the following URL in a browser:
+
+    http://localhost:8080/index.yaml
+
+Example output:
+
+``` yaml
+apiVersion: v1
+entries:
+  mychart:
+    - version: 0.1.0
+```
+
+------------------------------------------------------------------------
+
+### Add ChartMuseum Repository to Helm
+
+Add the repository to Helm:
+
+``` bash
+helm repo add myrepo http://localhost:8080
+```
+
+Update Helm repositories:
+
+``` bash
+helm repo update
+```
+
+------------------------------------------------------------------------
+
+### Create and Package a Helm Chart
+
+Create a chart:
+
+``` bash
+helm create mychart
+```
+
+Package the chart:
+
+``` bash
+helm package mychart
+```
+
+Output:
+
+    mychart-0.1.0.tgz
+
+------------------------------------------------------------------------
+
+### Upload Chart to ChartMuseum
+
+Upload the chart using curl:
+
+``` bash
+curl --data-binary "@mychart-0.1.0.tgz" http://localhost:8080/api/charts
+```
+
+ChartMuseum will automatically update the repository index.
+
+------------------------------------------------------------------------
+
+### Verify Uploaded Charts
+
+Check available charts:
+
+``` bash
+helm search repo myrepo
+```
+
+Example output:
+
+    NAME            CHART VERSION   APP VERSION   DESCRIPTION
+    myrepo/mychart  0.1.0           1.0           Example chart
+
+------------------------------------------------------------------------
+
+### Install Chart from ChartMuseum
+
+Install the chart:
+
+``` bash
+helm install demo myrepo/mychart
+```
+
+Verify deployment:
+
+``` bash
+kubectl get pods
+```
+
+------------------------------------------------------------------------
+
+### List Charts in ChartMuseum
+
+You can check charts using the API:
+
+    http://localhost:8080/api/charts
+
+Example response:
+
+``` json
+{
+  "mychart": [
+    {
+      "version": "0.1.0"
+    }
+  ]
+}
+```
+
+------------------------------------------------------------------------
+
+### Delete a Chart
+
+Delete a specific chart version:
+
+``` bash
+curl -X DELETE http://localhost:8080/api/charts/mychart/0.1.0
+```
+
+------------------------------------------------------------------------
+
+### ChartMuseum with CI/CD
+
+ChartMuseum integrates easily with CI/CD tools such as:
+
+-   GitLab CI
+-   Jenkins
+-   GitHub Actions
+-   ArgoCD
+-   Tekton
+
+Typical pipeline step:
+
+    helm package mychart
+    curl --data-binary "@mychart-0.1.0.tgz" http://chartmuseum/api/charts
+
+------------------------------------------------------------------------
+
+### Best Practices
+
+-   Use semantic versioning for Helm charts
+-   Automate chart publishing via CI/CD
+-   Use S3 or object storage for production
+-   Secure ChartMuseum using authentication
+
+------------------------------------------------------------------------
+
+### Summary
+
+ChartMuseum provides an easy way to host **private Helm repositories**.
+
+Main workflow:
+
+1.  Create Helm chart
+2.  Package chart
+3.  Upload chart to ChartMuseum
+4.  Add repository to Helm
+5.  Install charts from the repository
+
+Example commands:
+
+``` bash
+helm repo add myrepo http://localhost:8080
+helm install demo myrepo/mychart
+```

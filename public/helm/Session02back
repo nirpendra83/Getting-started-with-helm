@@ -1,0 +1,41 @@
++++
+title = "Session 2: Creating and Hosting Custom Helm Charts"
+weight = 2
++++
+
+- ✅ Create your own Helm charts from scratch  
+- ✅ Customize templates and use values effectively  
+- ✅ Understand and use `_helpers.tpl`  
+- ✅ Host charts on GitHub as a Helm repository  
+- ✅ Apply real-world scenarios (Ingress, ConfigMap, HPA)
+
+---
+
+- [Official Documentation ](https://helm.sh/docs/chart_template_guide/getting_started)
+### 🛠️ Step 1: Create a Custom Chart
+
+```bash
+helm create nginx-demo
+cd nginx-demo
+```
+
+This creates the following structure:
+
+```bash
+nginx-demo/
+├── charts/
+├── Chart.yaml
+├── templates/
+│   ├── deployment.yaml
+│   ├── _helpers.tpl
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── configmap.yaml
+│   └── tests/
+└── values.yaml
+```
+
+
+
+
