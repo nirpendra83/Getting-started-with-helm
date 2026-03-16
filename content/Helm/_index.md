@@ -7,47 +7,155 @@ weight = 1
 
 ## Table of Contents
 
-- [Overview: What is Helm?](#overview-what-is-helm)
-- [Official Helm Documentation](https://helm.sh)
-- Working with Existing Helm Charts
-  - Adding and Managing Repositories
-  - Installing a Helm Release
-  - Using and Customizing `values.yaml`
-  - Overriding Values with `--set`
-  - Upgrading an Existing Release
-  - Rolling Back to a Previous Release
-  - Viewing Current Values of a Release
-  - Managing Multiple Environments
-  - Debugging and Dry Runs
-- Creating Helm Charts
-  - [Quick Start Guide](https://helm.sh/docs/intro/quickstart/)
-  - [Template Syntax & Structure](https://helm.sh/docs/chart_template_guide/getting_started/)
-  - [Built-in Template Objects](https://helm.sh/docs/chart_template_guide/builtin_objects/)
+### 1. Introduction to Helm
 
-## Overview: What is Helm?
+-   [What is Helm?](Session01.md)
+-   [Helm Architecture](#helm-architecture)
+-   [Helm Components](#helm-components)
+-   [Helm 2 vs Helm 3](#helm-2-vs-helm-3)
 
-Helm is the package manager for Kubernetes. It enables developers and operators to package, configure, deploy, and manage applications on Kubernetes clusters using Helm charts—predefined templates that streamline complex deployments.
+------------------------------------------------------------------------
 
-## Prerequisites
+### 2. Installing Helm
 
-Before you begin, ensure you have:
+-   Installing Helm on Linux
+-   Installing Helm on Windows
+-   Verifying Helm Installation
 
-- A basic understanding of Kubernetes concepts  
-- Familiarity with Linux command-line operations
 
-## Required Tools
+------------------------------------------------------------------------
 
-To follow along and perform hands-on tasks, you'll need:
+### 3. Helm Core Concepts
 
-- Visual Studio Code (VSCode) or any preferred text editor  
-- The `kubectl` CLI to interact with Kubernetes  
-- The Helm CLI (`helm`) installed and configured
+-   Charts
+-   Releases
+-   Repositories
+-   Values
+-   Templates
+-   Chart Dependencies
 
-## Hands-On Labs
+------------------------------------------------------------------------
 
-This guide includes practical labs where you'll learn how to:
+### 4. Working with Helm Charts
 
-- Deploy applications using publicly available Helm charts  
-- Customize deployments by editing chart values  
-- Create and deploy your own Helm charts  
-- Use Helm’s core features such as install, upgrade, rollback, and templating
+#### Helm Repositories
+
+-   Adding a Repository
+-   Updating Repositories
+-   Listing Repositories
+-   Searching Charts
+
+#### Installing Applications
+
+-   Installing a Chart
+-   Installing with Custom Values
+-   Installing into a Specific Namespace
+
+#### Managing Releases
+
+-   Listing Releases
+-   Viewing Release History
+-   Upgrading a Release
+-   Rolling Back a Release
+-   Uninstalling a Release
+
+------------------------------------------------------------------------
+
+### 5. Working with values.yaml
+
+-   Understanding values.yaml
+-   Customizing values
+-   Overriding values using CLI
+-   Environment-based values files
+
+------------------------------------------------------------------------
+
+### 6. Helm Chart Development
+
+#### Creating a Chart
+
+-   Creating a new Helm chart
+-   Helm chart directory structure
+-   Chart.yaml explained
+
+#### Helm Templates
+
+-   Template syntax
+-   Variables and pipelines
+-   Functions
+-   Conditionals
+-   Loops
+-   Template helpers
+
+------------------------------------------------------------------------
+
+### 7. Helm Chart Testing and Debugging
+
+-   helm lint
+-   helm template
+-   helm install --dry-run
+-   Helm debugging techniques
+
+------------------------------------------------------------------------
+
+### 8. Helm Dependency Management
+
+-   Adding dependencies
+-   Updating dependencies
+-   Using Chart.yaml dependencies
+
+------------------------------------------------------------------------
+
+### 9. Helm Security and Secrets
+
+-   Managing secrets
+-   Using external secret tools
+-   Helm secrets plugin
+-   Security best practices
+
+------------------------------------------------------------------------
+
+### 10. Helm Best Practices
+
+-   Chart versioning
+-   Values file management
+-   Reusable templates
+-   Environment separation
+-   Production deployment guidelines
+
+------------------------------------------------------------------------
+
+### 11. Helm in CI/CD
+
+-   Using Helm in GitLab CI/CD
+-   Using Helm with ArgoCD
+-   Helm with GitOps workflows
+
+------------------------------------------------------------------------
+
+### 12. Helm vs Other Tools
+
+-   Helm vs Kustomize
+-   Helm vs Terraform
+-   When to use Helm
+
+------------------------------------------------------------------------
+
+### 13. Helm Troubleshooting
+
+-   Common Helm errors
+-   Failed release recovery
+-   Debugging template issues
+
+------------------------------------------------------------------------
+
+### 14. Helm Commands Cheat Sheet
+
+-   Common Helm commands
+-   Helm quick reference
+
+------------------------------------------------------------------------
+
+## Official Helm Documentation
+
+https://helm.sh
